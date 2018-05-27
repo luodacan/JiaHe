@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>体检明细</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <link href="../css/examination/ExaminationReport.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../css/examination/sweetalert.css">
+        <link rel="stylesheet" type="text/css" href="../css/examination/loading.css">
+    </head>
+    <body>
+        <form name="save" id="save_form" method="post">
+            <!--<div class="examination_head" style="display: none;">-->
+                <!--<a class="left" href="javascript:;"></a>-->
+                <!--<div class='examination_head_choose'>-->
+                    <!--<a class='detail cur ' href='javascript:;'>体检明细</a>-->
+                    <!--<a class='suggest jump' href="javascript:;">健康建议</a>-->
+                <!--</div>-->
+                <!--<span class="right detail_right">编辑</span>-->
+                <!--<span class="right suggest_right" style="display: none;">编辑</span>-->
+            <!--</div>-->
+            <!--<div style="height: 44px;"></div>-->
+            <div class="examination_warp clearfix show_ul examination_cur" >
+                <!-- loading指示器 -->
+                <div class="loading" id="loading" style="opacity:0.6;z-index:100;">
+                    <div class="loading_box">
+                        <div style="color: #79be50" class="la-ball-spin-clockwise la-2x">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='examination_suggest examination_cur' style="display: none;">
+                <ul class='suggest_info show_ul'>
+                    <li class='suggest_info_li view'><p class='title'>综述<i class=''></i></p><div class='suggest_info_div'><textarea name="over_view" disabled="disabled"></textarea></div></li>
+                    <li class='suggest_info_li suggest'><p class='title'>建议<i class=''></i></p><div class='suggest_info_div'><textarea name="suggestion"  disabled="disabled"></textarea></div></li>
+                </ul>
+            </div>
+            <div style="height: 40px;"></div>
+            <div class='examination_head_choose'>
+                <a class='detail cur ' href='javascript:;'>体检明细</a>
+                <a class='suggest jump' href="javascript:;">健康建议</a>
+            </div>
+        </form>
+        <div class="back_head"><img src="../images/back_head.jpg"></img></div>
+
+        <script type="text/javascript" src="../js/examination/jquery.js"></script>
+        <script type="text/javascript" src="../js/common/plusNative.js"></script>
+        <script type="text/javascript" src="../js/examination/common.js"></script>
+        <script type="text/javascript" src="../js/examination/sweetalert.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                testApplocal();
+            })
+            function testApplocal() {
+//                window.report_examination_id='2';
+                window.report_examination_id = applocalStorage.getItem("report_examination_id");
+                $.getJSON($localhost + '/Writeapp/Examination/detail', {'id': report_examination_id}, function (data) {
+                    for (var i = 0, len = data['detail'].length; i < len; i++) {
+                        var show = ''
+                        if (data['detail'][i]['type'] == '1') {
+                            show = "<div class='examination_detail'><p class='highest'><i></i>" + data['detail'][i]['name'] + "</p> </div>";
+                            $('.examination_warp').append(show);
+                        }
+                        var two = '';
+                        if (data['detail'][i]['type'] == '2') {
+                            two = " <div class='detail_info'><p class='secondary'>" + data['detail'][i]['name'] + "</p><ul class='detail_info_ul'></ul></div>";
+                            $('.examination_warp .examination_detail:last').append(two);
+                        }
+                        var three = '';
+                        if (data['detail'][i]['type'] == '3') {
+                            three = "<li><p class='thirdgrade'>" + data['detail'][i]['name'] + "<span class='unit'>" + data['detail'][i]['unit'] + "</span></p><div class='secondary_info'><span class='value_span'>" + data['detail'][i]['value'] + "</span><input type='text' name='" + data['detail'][i]['id'] + "' value='" + data['detail'][i]['value'] + "' class='results'></div></li>";
+                        }
+
+                        $('.examination_detail .detail_info_ul:last').append(three);
+                    }
+         
+                    if (data['suggest']['over_view']) {
+                        var view_num = ($(window).width()-15) / 14;
+                        var view_len = Math.round(data['suggest']['over_view'].length / view_num);
+                        $('.view .suggest_info_div textarea').attr('rows', view_len);
+                        $('.view .suggest_info_div textarea').html(data['suggest']['over_view']);
+                    }
+                    if (data['suggest']['suggestion']) {
+                        var sugg_num = ($(window).width()-15) / 14;
+                        var sugg_len = Math.round(data['suggest']['suggestion'].length / sugg_num);
+                        $('.suggest .suggest_info_div textarea').attr('rows', sugg_len);
+                        $('.suggest .suggest_info_div textarea').html(data['suggest']['suggestion']);
+                    }
+                    $('.examination_warp input').on("focus",function () {
+                        $(this).addClass('cur');
+
+                    })
+                })
+                setTimeout("$('#loading').fadeOut('slow')");
+                function_con();
+            }
+            function function_con() {
+                window.len = '0';
+                $('.examination_head_choose a').on('click', function () {
+                    $(this).addClass('cur').siblings('a').removeClass('cur');
+                    len = $('.examination_head_choose a').index(this);
+                    $('.examination_cur').eq(len).show().siblings('.examination_cur').hide();
+                    $('.examination_head .right').eq(len).show().siblings('.right').hide();
+                })
+
+                $('.examination_suggest .suggest_info_li p').click(function () {
+                    $(this).find('i').toggleClass('cur');
+                    $(this).parent().find('div').slideToggle();
+                })
+                $('.examination_suggest textarea').keydown(function (e) {
+                    if (e.which == 13) {
+                        var he = parseFloat($(this).attr('rows')) + 1;
+                        $(this).attr('rows', he);
+                    }
+                })
+                $(window).scroll(function () {
+                    var scrollTop = $(this).scrollTop();
+                    var windowHeight = $(this).height();
+                    if (scrollTop == '0') {
+                        $('.back_head').fadeOut();
+                    }
+                    if (scrollTop > windowHeight) {
+                        $('.back_head').fadeIn();
+                    }
+                });
+                $('.back_head').click(function () {
+                    $("html,body").animate({scrollTop: 0}, 300);
+                });
+
+            }
+//             function detailEdit() {
+//                var text = $('.examination_head .right').eq(len).text();
+//                if (text == "编辑") {
+//                    edit();
+//                } else {
+//                    finish_edit();
+//                }
+//            }
+//            function edit() {
+//                $('.examination_head .right').eq(len).text('保存');
+//                if (len == '0') {
+//                    $('.examination_warp input').removeAttr('readonly').show();
+//                    $('.value_span').hide();
+//                    $('.examination_warp input').css('border-bottom', '1px solid #dfdfdf');
+//                    $('.examination_warp input').change(function () {
+//                        $(this).addClass('cur');
+//                        $(this).parent().find('.value_span').text($(this).val());
+//                    })
+//                }
+//                if (len == '1') {
+//                    $('.examination_suggest textarea').removeAttr('disabled');
+//                    $('.examination_suggest textarea').css('border', '1px solid #dfdfdf');
+//                    $('.examination_suggest .suggest_info_div').slideDown();
+//                    $('.examination_suggest .suggest_info_li i').addClass('cur');
+//                }
+//            }
+
+            function  saveBtn() {
+                if (len == '0') {
+                    var arr = [];
+                    $('input.cur').each(function () {
+                        var id = $(this).attr('name');
+                        var val = $(this).val();
+                        arr[id] = val;
+                    })
+                    console.log(arr);
+                    if (arr.length != 0) {
+
+                        $.ajax({
+                            url: $localhost + '/Writeapp/Examination/save_exam?id=' + report_examination_id,
+                            data: $('.examination_warp .cur').serialize(),
+                            type: "post",
+                            success: function (data) {
+                                if (data == '1') {
+                                    swal({title: "保存成功", text: "", type: "success", html: true, timer: 2000, showConfirmButton: false, });
+                                } else {
+                                    swal({title: "保存失败", text: "", type: "error", html: true, timer: 2000, showConfirmButton: false, });
+                                }
+                            },
+                        });
+                    }else{
+                        swal({title: "保存成功", text: "", type: "success", html: true, timer: 2000, showConfirmButton: false, });
+                    }
+                }
+                if (len == '1') {
+                    $.ajax({
+                        url: $localhost + '/Writeapp/Examination/save_suggest?id=' + report_examination_id,
+                        data: $('.examination_suggest textarea').serialize(),
+                        type: "post",
+                        success: function (data) {
+                            if (data == '1') {
+                                swal({title: "保存成功", text: "", type: "success", html: true, timer: 2000, showConfirmButton: false, });
+                            }
+                        },
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>

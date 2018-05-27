@@ -1,0 +1,797 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5B1DCAC4",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "雅和医疗",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1.0",/*应用版本名称*/
+		"code": ""
+	},
+	"description": "",/*应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "YunShiApp/Html/Home/index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": ""
+	},
+	"permissions": {
+		"Messaging": {
+			"description": "短彩邮件插件"
+		},
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Contacts": {
+			"description": "访问系统联系人信息"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"Maps": {
+			"description": "管理地图插件"
+		},
+		"Speech": {
+			"description": "管理语音识别插件"
+		},
+		"OAuth": {
+			"description": "登录授权"
+		},
+		"Push": {
+			"description": "消息推送"
+		},
+		"Payment": {
+			"description": "管理支付插件"
+		},
+		"Webview": {
+			"description": "窗口管理"
+		}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": false
+		},
+		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+		"runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"plugins": {
+				"payment": {
+					"weixin": {
+						"description": "微信支付",
+						"appid": "wxc1831c04fc90cd3d"
+					},
+					"alipay": {
+						"description": "阿里支付",
+						"scheme": ""
+					}
+				},
+				"push": {
+					"igexin": {
+						"appid": "123",
+						"appkey": "123",
+						"appsecret": "123"
+					}
+				},
+				"oauth": {
+					"qq": {
+						"appid": "101472870",
+						"description": "QQ登录"
+					},
+					"weixin": {
+						"appid": "wxc1831c04fc90cd3d",
+						"appsecret": "123",
+						"description": "微信登录"
+					}
+				}
+			},
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+					"<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.INTERNET\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+				]
+			},
+			"orientation": [
+				"portrait-primary"
+			],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					/*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "", /*iPhone3/3GS程序图标，分辨率：57x57*/
+						"retina": "", /*iPhone4程序图标，分辨率：114x114*/
+						/*iPhone4S/5/6程序图标，分辨率：120x120*/
+						/*iPhone6 Plus程序图标，分辨率：180x180*/
+						"spotlight-normal": "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+						/*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "", /*iPhone4设置页面程序图标，分辨率：29x29*/
+						/*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+						"app@2x": "unpackage/res/icons/120x120.png",
+						"app@3x": "unpackage/res/icons/180x180.png",
+						"settings@3x": "unpackage/res/icons/87x87.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"spotlight@3x": "unpackage/res/icons/120x120.png",
+						"notification@3x": "unpackage/res/icons/60x60.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"ipad": {
+						"normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+						/*iPad iOS7程序图标，分辨率：76x76*/
+						/*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						/*iPad设置页面程序图标，分辨率：29x29*/
+						"app": "unpackage/res/icons/76x76.png",
+						"app@2x": "unpackage/res/icons/152x152.png",
+						"settings": "unpackage/res/icons/29x29.png",
+						"proapp@2x": "unpackage/res/icons/167x167.png",
+						"spotlight": "unpackage/res/icons/40x40.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"notification": "unpackage/res/icons/20x20.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"appstore": "unpackage/res/icons/1024x1024.png"
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
+						"retina35": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/640X960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+						"retina40": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/640X1136.png",/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+						"retina47": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/750X1334.png",/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+						"retina55": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1242X2208.png",/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+						"retina55l": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/2208X1242.png",
+						"iphonex": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1125X2436.png",
+						"iphonexl": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/2436X1125.png"
+					},
+					"ipad": {
+						"portrait": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/768X1004.png", /*iPad竖屏启动图片，分辨率：768x1004*/
+						"portrait-retina": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1536X2008.png",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+						"landscape": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1024X748.png", /*iPad横屏启动图片，分辨率：1024x748*/
+						"landscape-retina": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/2048X1496.png", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+						"portrait7": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/768X1024.png", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+						"portrait-retina7": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1536X2048.png",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+						"landscape7": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1024X768.png", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+						"landscape-retina7": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/2048X1536.png"
+					}
+				},
+				"android": {
+					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/480X762.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/720X1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "C:/Users/Administrator/Desktop/医疗/其他文件/启动图片/1080X1882.png"
+				}
+			}
+		},
+		"ads": {
+			"rp": false,
+			"splash": false,
+			"push": false
+		},
+		"adid": ""
+	},
+	"dependencies": {
+		"pages": {
+			"YunShiApp/Html/Home/index.html": {
+				"resources": [
+					"/YunShiApp/Login.html"
+				],
+				"refer": [
+					"YunShiApp/Html/User/UserCenter.html",
+					"YunShiApp/Html/VAAD/HE.html",
+					"YunShiApp/Html/Pay/Paymemt.html",
+					"newApp/diagnosis/list.html",
+					"YunShiApp/Html/HR/MHR.html",
+					"YunShiApp/Login.html",
+					"YunShiApp/Register2.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Html/User/UserCenter.html": {
+				"resources": [],
+				"refer": [
+					"newApp/personal/myDiagnosis.html",
+					"YunShiApp/Html/User/UserManage.html",
+					"YunShiApp/Html/Home/index.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Html/VAAD/HE.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Html/Home/index.html",
+					"YunShiApp/Html/VAAD/SE.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Register2.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Login.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Login.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Register2.html",
+					"YunShiApp/Html/User/ForgetPass.html",
+					"YunShiApp/Html/Home/index.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Html/VAAD/SE.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Html/VAAD/A.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Html/VAAD/A.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Html/VAAD/PT.html"
+				],
+				"priority": 0
+			},
+			"YunShiApp/Html/VAAD/PT.html": {
+				"resources": [],
+				"refer": [
+					"YunShiApp/Html/VAAD/FP.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"YunShiApp/img/whiteRight.png",
+				"YunShiApp/css/Global.css",
+				"newApp/healthRecord/history.html",
+				"newApp/lib/vue/dist/vue.min.js.map",
+				"YunShiApp/img/Login/wx_logo.png",
+				"newApp/css/diagnosis/myDiagnosisDetail.css",
+				"YunShiApp/Html/User/UserMobile.html",
+				"YunShiApp/js/Ball.js",
+				"newApp/js/examination/mobiscroll.custom-2.17.0.min.js",
+				"newApp/js/common/require_config.js",
+				"newApp/images/vip_banner.png",
+				"YunShiApp/Html/1Test/10.html",
+				"newApp/lib/vue/src/transition/index.js",
+				"newApp/scss/healthEvaluation/questions.scss",
+				"newApp/scss/healthRecord/historyQuestions.scss",
+				"YunShiApp/lib/LoadingBall/prettify/prettify.js",
+				"YunShiApp/Html/VAAD/R.html",
+				"YunShiApp/img/tab/VaccineManagement.png",
+				"package.json",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/fontawesome-webfont.svg",
+				"YunShiApp/img/wx_logo.png",
+				"YunShiApp/Html/VAAD/TN.html",
+				"YunShiApp/fonts/glyphicons-halflings-regular.svg",
+				"newApp/lib/vue/src/util/debug.js",
+				"newApp/css/vip/style.css",
+				"newApp/lib/vue/src/directives/internal/class.js",
+				"newApp/healthEvaluation/parts.html",
+				"newApp/lib/vue/src/instance/api/events.js",
+				"newApp/js/common/common.js",
+				"YunShiApp/img/MedicalCare.jpg",
+				"newApp/lib/vue/src/directives/public/for.js",
+				"YunShiApp/Html/VAAD/IBC.html",
+				"YunShiApp/img/vaccine.png",
+				"newApp/css/personal/myDiagnosis.css",
+				"YunShiApp/img/AHead.png",
+				"newApp/lib/vue/src/fragment/factory.js",
+				"newApp/js/app/diagnosis/orderHospital.js",
+				"YunShiApp/img/Shopping.png",
+				"YunShiApp/img/HealthCounseling.png",
+				"newApp/js/app/personal/diagnosisEvaluation.js",
+				"newApp/js/app/healthEvaluation/index.js",
+				"YunShiApp/lib/h5-ruler-master/img/3.png",
+				"newApp/lib/requirejs/bower.json",
+				"newApp/lib/vue/src/directives/public/on.js",
+				"newApp/lib/vue/src/compiler/index.js",
+				"YunShiApp/img/HeadPortrait.png",
+				"YunShiApp/img/AddSleep.png",
+				"newApp/lib/vue/src/instance/internal/misc.js",
+				"YunShiApp/img/HealthyLife.png",
+				"newApp/healthRecord/information.html",
+				"newApp/lib/vue/src/directives/public/ref.js",
+				"YunShiApp/lib/liMarquee/liMarquee.css",
+				"newApp/diagnosis/departments.html",
+				"YunShiApp/lib/h5-ruler-master/jquery-1.11.1.min.js",
+				"YunShiApp/css/mui.min.css",
+				"newApp/lib/vue/src/instance/api/data.js",
+				"newApp/lib/vue/src/parsers/template.js",
+				"YunShiApp/img/lunch.png",
+				"newApp/lib/vue/src/directives/public/el.js",
+				"newApp/css/diagnosis/orderHospital.css",
+				"YunShiApp/js/artDialog.iframeTools.js",
+				"YunShiApp/Html/1Test/1.html",
+				"YunShiApp/img/HP/girl.png",
+				"YunShiApp/css/VAAD/BCG.css",
+				"newApp/css/examination/mobiscroll.custom-2.17.0.min.css",
+				"YunShiApp/img/ServiceScope.png",
+				"YunShiApp/css/bootstrap.min.css",
+				"YunShiApp/img/HP/girlcry.png",
+				"newApp/lib/vue/src/instance/api/dom.js",
+				"YunShiApp/js/jquery-3.2.1.min.js",
+				"newApp/Examination/add.html",
+				"newApp/lib/mui/dist/mui.zoom.js",
+				"YunShiApp/Html/VAAD/VM.html",
+				"newApp/images/image.png",
+				"YunShiApp/img/Login/QQ_logo.png",
+				"YunShiApp/img/Article/5.jpg",
+				"newApp/js/app/personal/myDiagnosisDetail.js",
+				"YunShiApp/lib/font-awesome-4.7.0/css/font-awesome.css",
+				"newApp/lib/vue/src/directives/internal/index.js",
+				"newApp/css/common.css",
+				"newApp/lib/vue/src/util/options.js",
+				"YunShiApp/lib/h5-ruler-master/README.md",
+				"newApp/images/health_index2.png",
+				"newApp/lib/vue/dist/vue.min.js",
+				"newApp/images/health_index1.png",
+				"newApp/lib/vue/src/fragment/fragment.js",
+				"newApp/js/examination/sweetalert.min.js",
+				"YunShiApp/img/Login/oauth_icon.png",
+				"YunShiApp/lib/Swiper-4/js/swiper.min.js",
+				"YunShiApp/img/PostSeedNursing.png",
+				"YunShiApp/lib/MyIcon/iconfont.woff",
+				"YunShiApp/img/Article/Detailed.jpg",
+				"YunShiApp/img/ImmunizationProgram.png",
+				"newApp/healthEvaluation/index.html",
+				"newApp/css/healthRecord/history.css.map",
+				"YunShiApp/js/custom.js",
+				"YunShiApp/img/HP/boy.png",
+				"newApp/images/health_index5.png",
+				"newApp/css/healthRecord/information.css",
+				"YunShiApp/img/dinner.png",
+				"YunShiApp/Html/1Test/4.html",
+				"YunShiApp/img/YoungPeople.png",
+				"newApp/lib/vue/src/util/component.js",
+				"YunShiApp/img/Article/2.jpg",
+				"YunShiApp/img/AddDiet.png",
+				"YunShiApp/lib/echarts/echarts.min.js",
+				"newApp/js/app/diagnosis/order.js",
+				"newApp/lib/vue/src/directives/public/bind.js",
+				"newApp/public/success.js",
+				"newApp/css/diagnosis/orderUserInfoList.css",
+				"newApp/images/health_index3.png",
+				"newApp/lib/vue/src/compiler/resolve-slots.js",
+				"newApp/js/app/diagnosis/vcblock.js",
+				"YunShiApp/fonts/glyphicons-halflings-regular.woff",
+				"newApp/lib/vue-swiper/README.md",
+				"YunShiApp/img/Add.png",
+				"YunShiApp/Html/Home/Register.html",
+				"newApp/lib/vue/src/compiler/compile.js",
+				"YunShiApp/js/flexible.js",
+				"YunShiApp/img/water.png",
+				"newApp/lib/mui/dist/mui.view.js",
+				"newApp/scss/healthRecord/information.scss",
+				"YunShiApp/img/Register.png",
+				"YunShiApp/img/Shopping1.png",
+				"newApp/images/test1.png",
+				"YunShiApp/images/progress.gif",
+				"YunShiApp/Html/1Test/8.html",
+				"YunShiApp/Html/HR/AM.html",
+				"newApp/lib/vue/src/directive.js",
+				"newApp/css/vaccine/index.css",
+				"YunShiApp/lib/Swiper-4/css/swiper.css",
+				"newApp/css/vip/idangerous.swiper.css",
+				"newApp/images/category_1@3x.png",
+				"newApp/lib/vue/bower.json",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/fontawesome-webfont.eot",
+				"newApp/css/diagnosis/introduction.css",
+				"YunShiApp/css/Reset.css",
+				"newApp/lib/vconsole.min.js",
+				"YunShiApp/js/login/register.js",
+				"YunShiApp/img/My.png",
+				"YunShiApp/img/ServiceIntroduction.png",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css.map",
+				"newApp/lib/vue/src/directives/public/show.js",
+				"YunShiApp/css/Register.css",
+				"newApp/lib/vue-swiper/dist/vue-swipe.css",
+				"YunShiApp/img/HP/boycry.png",
+				"newApp/js/vip/swiper-3.3.1.jquery.min.js",
+				"newApp/js/common/text.js",
+				"newApp/lib/vue/src/directives/public/cloak.js",
+				"newApp/js/app/healthEvaluation/parts.js",
+				"YunShiApp/img/Article/4.jpg",
+				"newApp/lib/vue/src/instance/internal/state.js",
+				"YunShiApp/img/RB/4.jpg",
+				"YunShiApp/lib/LoadingBall/js/waterbubble.js",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff",
+				"index.html",
+				"newApp/scss/personal/choosePay.scss",
+				"fonts/otherfont.ttf",
+				"newApp/lib/mui/mui.min.css",
+				"YunShiApp/Html/User/UserPass.html",
+				"newApp/scss/config.scss",
+				"newApp/css/healthRecord/history.css",
+				"YunShiApp/lib/font-awesome-4.7.0/css/font-awesome.min.css",
+				"newApp/js/app/diagnosis/departments.js",
+				"newApp/images/babyimg@3x.png",
+				"YunShiApp/Html/VAAD/HA.html",
+				"YunShiApp/lib/MyIcon/iconfont.eot",
+				"newApp/lib/vue/src/compiler/compile-props.js",
+				"YunShiApp/img/Index.png",
+				"newApp/healthEvaluation/questions.html",
+				"newApp/personal/diagnosisEvaluation.html",
+				"YunShiApp/lib/LoadingBall/js/waterbubble.min.js",
+				"YunShiApp/img/ServiceFlow.png",
+				"YunShiApp/img/Article/7.jpg",
+				"YunShiApp/css/VAAD/VM.css",
+				"YunShiApp/lib/Swiper-4/js/swiper.module.js",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/FontAwesome.otf",
+				"newApp/images/tick_round.png",
+				"newApp/Examination/index.html",
+				"newApp/js/index.js",
+				"YunShiApp/lib/weui-master/jquery-weui.min.js",
+				"YunShiApp/img/Register/boy.png",
+				"newApp/lib/requirejs/require.js",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js",
+				"YunShiApp/img/breakfast.png",
+				"YunShiApp/Html/VAAD/BCG.html",
+				"newApp/lib/mui/mui.previewimage.css",
+				"YunShiApp/css/Index.css",
+				"newApp/lib/mui/mui.css",
+				"newApp/lib/vue/src/util/env.js",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/js/npm.js",
+				"YunShiApp/lib/layer_mobile/need/layer.css",
+				"YunShiApp/css/custom1.css",
+				"newApp/diagnosis/saveSuccess.html",
+				"YunShiApp/img/vip.png",
+				"newApp/images/free@3x.png",
+				"newApp/images/free_2@3x.png",
+				"YunShiApp/img/tab/HealthAssessment.png",
+				"newApp/images/collection_fill.png",
+				"newApp/lib/vue/src/util/lang.js",
+				"newApp/js/app/diagnosis/orderUserInfoList.js",
+				"newApp/images/category_2@3x.png",
+				"newApp/lib/mui/dist/mui.previewimage.js",
+				"YunShiApp/lib/weui-master/jquery-weui.min.css",
+				"newApp/lib/vue/src/util/dom.js",
+				"YunShiApp/js/mui.min.js",
+				"newApp/lib/vue/src/directives/public/model/text.js",
+				"newApp/lib/vue/src/watcher.js",
+				"newApp/css/healthEvaluation/result.css",
+				"newApp/scss/personal/bindOnAccount.scss",
+				"newApp/lib/vue/src/observer/index.js",
+				"YunShiApp/img/Consultation.png",
+				"newApp/public/nodata.html",
+				"newApp/js/vip/idangerous.swiper.min.js",
+				"newApp/lib/mui/mui.ttf",
+				"newApp/css/diagnosis/order.css",
+				"YunShiApp/Html/1Test/7.html",
+				"YunShiApp/js/RsaKey.js",
+				"newApp/images/editor_gray.png",
+				"YunShiApp/img/tab/HealthRecords.png",
+				"newApp/lib/vue/src/observer/array.js",
+				"YunShiApp/Html/1Test/6.html",
+				"YunShiApp/Html/1Test/5.html",
+				"YunShiApp/img/RB/1.jpg",
+				"newApp/scss/healthEvaluation/result.scss",
+				"newApp/lib/vue/src/directives/priorities.js",
+				"YunShiApp/js/ElasticLayer.js",
+				"newApp/css/examination/ExaminationReport.css",
+				"YunShiApp/Html/1Test/2.html",
+				"newApp/js/common/urlConfig.js",
+				"YunShiApp/lib/MyIcon/iconfont.ttf",
+				"newApp/images/parts-bg.png",
+				"YunShiApp/fonts/glyphicons-halflings-regular.eot",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2",
+				"newApp/scss/diagnosis/orderHospital.scss",
+				"newApp/diagnosis/order.html",
+				"newApp/images/del_red.png",
+				"newApp/lib/vue/src/directives/public/model/checkbox.js",
+				"newApp/images/test2.png",
+				"newApp/css/personal/bindOnAccount.css",
+				"YunShiApp/img/tab/HealthSchool.png",
+				"newApp/diagnosis/introduction.html",
+				"YunShiApp/Html/1Test/3.html",
+				"newApp/diagnosis/vcblock.html",
+				"newApp/scss/diagnosis/list.scss",
+				"YunShiApp/Html/VAAD/GC.html",
+				"YunShiApp/lib/Swiper-4/js/swiper.js",
+				"newApp/js/app/healthEvaluation/questions.js",
+				"newApp/css/common.css.map",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map",
+				"YunShiApp/images/warning.png",
+				"newApp/images/back_head.jpg",
+				"newApp/lib/vue/src/directives/public/html.js",
+				"newApp/lib/vue-swiper/dist/vue-swipe.js",
+				"YunShiApp/js/polyfill.min.js",
+				"newApp/css/healthRecord/information.css.map",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css",
+				"newApp/images/arrow_gray.png",
+				"YunShiApp/lib/h5-ruler-master/img/2.png",
+				"newApp/css/personal/myDiagnosisDetail.css",
+				"newApp/css/examination/loading.css",
+				"newApp/js/app/healthRecord/historyQuestions.js",
+				"YunShiApp/css/ElasticLayer.css",
+				"newApp/lib/vue/src/transition/queue.js",
+				"YunShiApp/img/Contraindication.png",
+				"newApp/healthRecord/index.html",
+				"newApp/scss/healthEvaluation/index.scss",
+				"newApp/vip/vip_content.html",
+				"newApp/scss/diagnosis/order.scss",
+				"newApp/lib/mui/mui.picker.min.css",
+				"README.md",
+				"newApp/lib/vue/src/directives/public/model/radio.js",
+				"YunShiApp/lib/MyIcon/iconfont.css",
+				"YunShiApp/js/Total.js",
+				"newApp/js/app/healthRecord/history.js",
+				"newApp/lib/vue/src/directives/public/text.js",
+				"newApp/images/sign.png",
+				"fonts/mui.ttf",
+				"YunShiApp/img/HealthSchool.png",
+				"newApp/css/personal/diagnosisEvaluation.css",
+				"gulpfile.js",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map",
+				"newApp/lib/vue/dist/vue.common.js",
+				"newApp/css/healthRecord/historyQuestions.css",
+				"YunShiApp/img/Article/1.jpg",
+				"newApp/css/personal/choosePay.css.map",
+				"newApp/scss/common.scss",
+				"newApp/lib/vue/src/index.js",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/js/bootstrap.js",
+				"gulpfile2.js",
+				"YunShiApp/img/AdverseReaction.png",
+				"newApp/lib/mui/dist/mui.min.js",
+				"YunShiApp/img/Article/3.jpg",
+				"newApp/scss/personal/myDiagnosisDetail.scss",
+				"newApp/images/tick_green.png",
+				"newApp/lib/requirejs/README.md",
+				"newApp/lib/vue/src/directives/public/model/select.js",
+				"newApp/lib/vue/src/directives/public/index.js",
+				"YunShiApp/lib/weui-master/jquery-weui.js",
+				"YunShiApp/img/FitnessProgram/jogging.jpg",
+				"newApp/lib/vue/src/global-api.js",
+				"YunShiApp/Html/HR/DOH.html",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2",
+				"newApp/js/app/healthEvaluation/result.js",
+				"newApp/diagnosis/orderHospital.html",
+				"newApp/personal/choosePay.html",
+				"newApp/css/diagnosis/myDiagnosis.css",
+				"YunShiApp/lib/weui-master/weui.min.css",
+				"YunShiApp/lib/layer_mobile/layer.js",
+				"newApp/lib/vue/src/parsers/path.js",
+				"newApp/Examination/detail.html",
+				"YunShiApp/img/tab/GreenGuide.png",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css",
+				"newApp/lib/vue/src/directives/internal/component.js",
+				"newApp/css/healthEvaluation/questions.css",
+				"newApp/lib/vue/src/util/index.js",
+				"newApp/lib/vue/src/directives/element/index.js",
+				"newApp/vaccine/index.html",
+				"newApp/lib/vue/src/directives/element/partial.js",
+				"newApp/css/healthRecord/index.css",
+				"newApp/css/examination/sweetalert.css",
+				"newApp/public/success.html",
+				"newApp/lib/mui/dist/mui.js",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff",
+				"newApp/images/image2.png",
+				"newApp/js/common/css.min.js",
+				"newApp/lib/vue/src/batcher.js",
+				"YunShiApp/lib/MyIcon/demo.css",
+				"YunShiApp/css/animate.css",
+				"YunShiApp/js/calendar.js",
+				"YunShiApp/img/tab/HealthCounseling.png",
+				"newApp/lib/vue/src/filters/index.js",
+				"newApp/lib/vue/src/directives/internal/style.js",
+				"newApp/lib/vue/src/parsers/text.js",
+				"newApp/scss/healthRecord/index.scss",
+				"newApp/images/click_effect.png",
+				"YunShiApp/img/Register/girl.png",
+				"newApp/js/app/personal/choosePay.js",
+				"newApp/lib/requirejs/LICENSE",
+				"YunShiApp/Html/HR/RB.html",
+				"newApp/css/diagnosis/list.css.map",
+				"newApp/css/personal/myDiagnosisDetail.css.map",
+				"newApp/css/healthEvaluation/parts.css",
+				"newApp/css/healthEvaluation/questions.css.map",
+				"newApp/css/diagnosis/orderHospital.css.map",
+				"newApp/js/app/vaccine/index.js",
+				"YunShiApp/img/Register/520.png",
+				"YunShiApp/img/people.png",
+				"YunShiApp/img/Information.png",
+				"newApp/css/config.css",
+				"newApp/lib/vue/src/parsers/directive.js",
+				"newApp/images/baby_normal@3x.png",
+				"newApp/images/health_record2.png",
+				"YunShiApp/lib/Swiper-4/js/swiper.min.js.map",
+				"newApp/css/diagnosis/introduction.css.map",
+				"YunShiApp/js/jsencrypt-2.3.1.min.js",
+				"newApp/js/common/copynative.js",
+				"newApp/scss/diagnosis/introduction.scss",
+				"newApp/js/common/plusNative.js",
+				"newApp/js/common/validate.js",
+				"newApp/css/personal/myDiagnosis.css.map",
+				"YunShiApp/img/RB/2.jpg",
+				"newApp/images/health_index4.png",
+				"YunShiApp/images/dg_loading.gif",
+				"newApp/css/healthEvaluation/index.css.map",
+				"newApp/images/health_record1.png",
+				"YunShiApp/css/custom.css",
+				"YunShiApp/Html/HR/AD.html",
+				"newApp/lib/vue/src/instance/internal/lifecycle.js",
+				"YunShiApp/lib/MyIcon/iconfont.svg",
+				"newApp/scss/personal/diagnosisEvaluation.scss",
+				"YunShiApp/img/ServiceContent.png",
+				"newApp/images/no_surgery.png",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot",
+				"YunShiApp/img/MattersNeedingAttention.png",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap.css.map",
+				"newApp/css/vip/swiper-3.3.1.min.css",
+				"newApp/js/examination/jquery.js",
+				"newApp/js/app/diagnosis/introduction.js",
+				"newApp/scss/personal/myDiagnosis.scss",
+				"newApp/diagnosis/orderUserInfoList.html",
+				"newApp/js/app/personal/myDiagnosis.js",
+				"YunShiApp/js/jquery.artDialog.js",
+				"newApp/lib/vue/src/compiler/transclude.js",
+				"newApp/css/diagnosis/departments.css",
+				"newApp/images/editor_green.png",
+				"newApp/css/vip/swiper.min.css",
+				"YunShiApp/lib/liMarquee/jquery.liMarquee.js",
+				"YunShiApp/lib/MyIcon/demo_symbol.html",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf",
+				"newApp/images/back.png",
+				"package-lock.json",
+				"newApp/lib/vue/src/instance/api/lifecycle.js",
+				"newApp/css/healthRecord/historyQuestions.css.map",
+				"newApp/images/collection.png",
+				"newApp/css/personal/diagnosisEvaluation.css.map",
+				"YunShiApp/img/AddHeartRate.png",
+				"YunShiApp/img/whiteLeft.png",
+				"newApp/js/examination/common.js",
+				"YunShiApp/img/search.png",
+				"newApp/js/app/diagnosis/list.js",
+				"newApp/personal/payDiagnosisSuccess.html",
+				"YunShiApp/img/123.jpg",
+				"newApp/css/diagnosis/orderUserInfoList.css.map",
+				"newApp/lib/vue/src/transition/transition.js",
+				"YunShiApp/img/left.png",
+				"newApp/lib/mui/dist/mui.picker.min.js",
+				"newApp/lib/vue/src/instance/vue.js",
+				"YunShiApp/img/OnlineConsulting.png",
+				"newApp/lib/vue/dist/vue.js",
+				"newApp/scss/healthRecord/history.scss",
+				"YunShiApp/Html/1Test/9.html",
+				"newApp/lib/vue/src/observer/dep.js",
+				"newApp/lib/vue/LICENSE",
+				"newApp/healthRecord/historyQuestions.html",
+				"YunShiApp/Html/VAAD/AD.html",
+				"newApp/css/diagnosis/list.css",
+				"YunShiApp/img/HealthBooks.png",
+				"newApp/css/healthEvaluation/index.css",
+				"newApp/Examination/validation.html",
+				"YunShiApp/img/AddMotion.png",
+				"newApp/lib/vue/src/directives/element/slot.js",
+				"newApp/js/app/personal/payDiagnosisSuccess.js",
+				"newApp/scss/vaccine/index.scss",
+				"YunShiApp/lib/Swiper-4/css/swiper.min.css",
+				"newApp/vip/vip.html",
+				"YunShiApp/Html/VAAD/HP.html",
+				"newApp/css/healthEvaluation/parts.css.map",
+				"YunShiApp/img/app.png",
+				"newApp/lib/vue/src/filters/array-filters.js",
+				"YunShiApp/js/cookie/Cookie.js",
+				"YunShiApp/img/Photograph.png",
+				"newApp/css/config.css.map",
+				"newApp/css/healthRecord/index.css.map",
+				"newApp/images/add_green.png",
+				"newApp/lib/vue/src/instance/internal/events.js",
+				"YunShiApp/lib/MyIcon/iconfont.js",
+				"newApp/lib/vue/src/directives/public/if.js",
+				"YunShiApp/lib/h5-ruler-master/img/1.png",
+				"newApp/js/app/healthRecord/index.js",
+				"newApp/lib/vue/src/parsers/expression.js",
+				"newApp/Examination/hospital.html",
+				"YunShiApp/lib/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf",
+				"newApp/css/personal/bindOnAccount.css.map",
+				"YunShiApp/js/login/login.js",
+				"newApp/lib/vue/src/directives/public/model/index.js",
+				"newApp/scss/diagnosis/orderUserInfoList.scss",
+				"YunShiApp/Html/VAAD/MA.html",
+				"YunShiApp/lib/Swiper-4/js/swiper.modular.js",
+				"newApp/lib/vue/src/directives/internal/prop.js",
+				"newApp/scss/healthEvaluation/parts.scss",
+				"newApp/js/app/diagnosis/saveSuccess.js",
+				"YunShiApp/img/ServiceStandards.png",
+				"newApp/lib/vue/src/config.js",
+				"newApp/lib/vue/src/cache.js",
+				"YunShiApp/Html/HR/R.html",
+				"YunShiApp/js/AppRequest.js",
+				"YunShiApp/lib/LoadingBall/prettify/prettify.css",
+				"newApp/css/personal/choosePay.css",
+				"YunShiApp/lib/h5-ruler-master/ruler.html",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap.css",
+				"newApp/lib/vue/src/instance/internal/init.js",
+				"YunShiApp/lib/h5-ruler-master/ruler.js",
+				"YunShiApp/img/AddAMeal.png",
+				"newApp/css/healthEvaluation/result.css.map",
+				"YunShiApp/lib/MyIcon/demo_fontclass.html",
+				"YunShiApp/lib/h5-ruler-master/ruler.css",
+				"newApp/js/common/flexible.js",
+				"YunShiApp/img/RB/3.jpg",
+				"YunShiApp/js/hidpi-canvas.min.js",
+				"newApp/css/diagnosis/order.css.map",
+				"newApp/lib/vue/src/directives/internal/transition.js",
+				"YunShiApp/img/HealthManagement.png",
+				"YunShiApp/fonts/glyphicons-halflings-regular.ttf",
+				"YunShiApp/Html/HR/HA.html",
+				"YunShiApp/img/GreenGuide.png",
+				"newApp/images/data_icon.png",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg",
+				"YunShiApp/lib/MyIcon/demo_unicode.html",
+				"YunShiApp/css/artdialog.css",
+				"YunShiApp/BindUser.html",
+				"newApp/personal/myDiagnosisDetail.html",
+				"YunShiApp/lib/bootstrap-3.3.7-dist/css/bootstrap-theme.css",
+				"YunShiApp/img/Article/6.jpg",
+				"newApp/js/app/healthRecord/information.js"
+			]
+		}
+	}
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体检报告列表</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <link href="../css/examination/ExaminationReport.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../css/examination/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="../lib/mui/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/examination/loading.css">
+</head>
+<body>
+
+<!--<div class="examination_head">-->
+<!--&lt;!&ndash;<a class="left" href="../physical.html"></a>&ndash;&gt;-->
+<!--<a href="javascript:;" onclick="app.back();" class="left"></a>-->
+<!--<p class="title">体检报告</p>-->
+<!--<a href="javascript:;" class="right edit-delete" onclick="edit();">编辑</a>-->
+<!--<a href="javascript:;" class="right edit-close" onclick="finish_edit();" style="display: none;">取消</a>-->
+<!--</div>-->
+<!--<div style="height: 44px;"></div>-->
+<div class="examination_warp" id="examination_warp">
+    <!-- loading指示器 -->
+    <div class="loading" id="loading">
+        <div class="loading_box">
+            <div style="color: #79be50" class="la-ball-spin-clockwise la-2x">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="examination_list">
+        <ul class='show_ul'>
+            <!--<li><i class='edit_choose'></i><div class='list_left'><span class='title'>珠海市惠爱医院</span><span class='time'>2016-02-17</span><input type='hidden' value=" 1"></div></li>-->
+        </ul>
+    </div>
+
+    <div class="no_examination" style="display:none;">
+        <p>无报告记录</p>
+    </div>
+</div>
+<div class="examination_data">
+    <div class="examination_data_con">
+        <ul>
+            <li class="data_title"><span class="cancel">取消</span><font>推送日期</font><span class="sure">确定</span></li>
+            <li><label for="Monday">星期一</label><input type="checkbox" id="Monday" value="1"></li>
+            <li><label for="Tuesday">星期二</label><input type="checkbox" id="Tuesday" value="2"></li>
+            <li><label for="Wednesday">星期三</label><input type="checkbox" id="Wednesday" value="3"></li>
+            <li><label for="Thursday">星期四</label><input type="checkbox" id="Thursday" value="4"></li>
+            <li><label for="Friday">星期五</label><input type="checkbox" id="Friday" value="5"></li>
+            <li><label for="Saturday">星期六</label><input type="checkbox" id="Saturday" value="6"></li>
+            <li><label for="Sunday">星期日</label><input type="checkbox" id="Sunday" value="7"></li>
+            <li><p>您可以自由选择具体的消息推送日期。</p></li>
+        </ul>
+    </div>
+</div>
+<div style="height: 40px;"></div>
+<div class="examination_foot">
+    <a href="javascript:;" onclick="popAdd();"
+    class="add_edit del_medical_hide"><i class="add_icon"></i><span class="add">新增</span></a>
+
+    <a href="javascript:;" class="del_medical del_medical_show">
+        <i class="del_icon"></i><span class="del">删除</span>
+    </a>
+    <a href="javascript:;" class="del_cancel_medical del_medical_show"><span class="del">取消</span></a>
+
+    <a href="javascript:;" id="touploadarchives" onclick="app.toWeb($localhost+'/Phoneapp/FileUpload/index/g/')"
+       class="add_edit file_upload fi_up del_medical_hide"><span class="add">导入</span></a>
+    <a href='javascript:;'
+       onclick="popValidation();" class="right edit-idcard del_medical_hide">信息修改</a>
+</div>
+<div id="IOS-file">
+    <div class="IOS-prompt">
+        <p class="IOS-title">档案上传</p>
+        <div class="IOS-con">
+            <p>尊敬的用户您好，IOS档案上传以邮箱发送的方式进行托管的，流程如下：</p>
+            <p class="p2">1.将您的健康档案发送到我们公司的邮箱:guanqiang0606@163.com</p>
+            <p class="p2">2.我们会在3个工作日内，进行您的健康档案上传,并以短信和推送消息的方式通知您档案上传的结果。</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/examination/jquery.js"></script>
+<script type="text/javascript" src="../lib/mui/dist/mui.min.js"></script>
+<script type="text/javascript" src="../js/common/plusNative.js"></script>
+<script type="text/javascript" src="../js/examination/common.js"></script>
+<script type="text/javascript" src="../js/examination/sweetalert.min.js"></script>
+<script>
+    testApplocal();
+
+    $(document).ready(function () {
+
+        $("#IOS-file").click(function () {
+            $("#IOS-file").fadeOut("slow");
+        });
+        $('.IOS-prompt').click(function (e) {
+            return false;
+        });
+    });
+
+    function fi_up() {
+        $("#IOS-file").fadeIn("slow");
+    }
+
+    function testApplocal() {
+        window.guest_id = applocalStorage.getItem("guest_id");
+        applocalStorage.setItem("hospital_id", '');
+        applocalStorage.setItem("hospital_name", '');
+        applocalStorage.setItem("report_examination_id", '');
+        $.getJSON($localhost + '/Writeapp/Examination/index', {'guest_id': guest_id}, function (data) {
+            //关闭loading指示器
+            setTimeout("$('#loading').fadeOut('slow')");
+            if (data == 0) {
+                swal({
+                        title: "",
+                        text: "您未完成信息验证",
+                        type: "",
+                        html: true,
+                        timer: "",
+                        showConfirmButton: true,
+                        confirmButtonText: '立即验证',
+                        showCancelButton: true,
+                        cancelButtonText: '返回'
+                    },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            app.pop({"name": "Examination/validation.html", "id": "examination_validation", 'titleNView':{"buttons": popConfig.tovalidation}});
+
+                        } else {
+//                                    location.href = '../physical.html';
+                        }
+                    });
+                return false;
+            }
+            if (data == 3) {
+                swal({
+                        title: "",
+                        text: "匹配失败，请稍后再尝试",
+                        type: "",
+                        html: true,
+                        timer: "",
+                        showConfirmButton: true,
+                        confirmButtonText: '确定',
+                        showCancelButton: false
+                    },
+                    function (isConfirm) {
+//                                location.href = '../physical.html';
+                    });
+                return false;
+            }
+            var show = '';
+            var i = '0';
+            $.each(data['find'], function (idex, item) {
+                if (item['is_import'] == '1') {
+                    var a_info = "<a href='javascript:;' onclick=\"app.pop({'name':'Examination/add.html?list=1&id=" + item['id'] + "','id':'examination_add','titleNView':{'buttons': popConfig.toadd}});\" class='edit_info'></a>";
+                } else {
+                    var a_info = "<a href='javascript:;' onclick=\"app.pop({'name':'Examination/add.html?list=0&id=" + item['id'] + "','id':'examination_add''titleNView':{'buttons': popConfig.toadd}});\" class='edit_gray'></a>";
+                }
+                show += "<li><i class='edit_choose'></i><div class='list_left'><span class='title'>" + item['name'] + "</span><span class='time'>" + item['examination_time'] + "</span><input type='hidden' value='" + item['id'] + "'></div>" + a_info + "</li>"
+                i++;
+            })
+            $('.show_ul').html(show);
+            var num = $('.examination_list li').length;
+            if (num == "0") {
+                $('.examination_list').hide();
+                $('.no_examination').show();
+            }
+            if (data['date']) {
+                var arr = data['date'].split(',');
+                $('.examination_data input[type=checkbox]').each(function () {
+                    if ($.inArray($(this).val(), arr) != '-1') {
+                        $(this).attr('checked', 'checked');
+                    }
+                })
+            }
+            mui("#examination_warp").pullRefresh()?mui("#examination_warp").pullRefresh().endPulldown():"";
+            function_con();
+        })
+    }
+
+    function function_con() {
+        $('.examination_warp li .list_left').on('click', function () {
+            var id = $(this).find('input').val();
+            applocalStorage.setItem("report_examination_id", id);
+            app.pop({"name": "Examination/detail.html", "id": "examination_detail",'titleNView':{"buttons": popConfig.todetail}});
+        })
+        $('.examination_foot .choose_data').click(function () {
+            $('.examination_data').show();
+        })
+        $('.examination_data').click(function (event) {
+            $('.examination_data').hide();
+        })
+        $('.examination_data_con').click(function () {
+            event.stopPropagation();
+        })
+        $('.examination_data .sure').click(function () {
+            var arr = [];
+            $('.examination_data input:checked').each(function () {
+                arr.push($(this).val());
+            })
+            $.post($localhost + '/Writeapp/Examination/save_data', {'data': arr, 'guest_id': guest_id}, function () {
+                $('.examination_data').hide();
+            });
+        })
+        $('.examination_data .cancel').click(function () {
+            $('.examination_data').hide();
+        })
+
+    }
+
+    function edit() {
+        app.setNView({
+            "titleNView": {
+                autoBackButton:true,
+                buttons:[{
+                    "color": "#FFFFFF",
+                    "float": "right",
+                    "text": "完成",
+                    "fontSize": "16px",
+                    "onclick": "javascript:plus.webview.getWebviewById('examination_index').evalJS('finish_edit();')",
+                }],
+            }
+        });
+        $('.examination_list li .list_left').unbind('click');
+        $('.examination_list i.edit_choose').css('display', 'inline-block');
+        $('.examination_list .list_left').css('margin', '-16px 0 0 30px');
+        $('.del_medical_show').css('display', 'inline-block').siblings('a.del_medical_hide').hide();
+        $('.edit-close').show().siblings('.right').hide();
+        $('.examination_list li .list_left').bind('click', function () {
+            $(this).parent('li').toggleClass('checkbox_cur');
+        });
+
+    }
+
+    function finish_edit() {
+        app.setNView({
+            "titleNView": {
+                autoBackButton:true,
+                buttons:[{
+                    "color": "#FFFFFF",
+                    "float": "right",
+                    "text": "编辑",
+                    "fontSize": "16px",
+                    "onclick": "javascript:plus.webview.getWebviewById('examination_index').evalJS('edit();')",
+                }],
+            }
+        });
+        $('.examination_list li .list_left').bind('click', function () {
+            var id = $(this).find('input').val();
+            applocalStorage.setItem("report_examination_id", id);
+            app.pop({"name": "Examination/detail.html", "id": "Examination_detail", 'titleNView':{"buttons": popConfig.todetail}});
+        })
+        var num = $('.examination_list li').length;
+        if (num == "0") {
+            $('.examination_list').hide();
+            $('.no_examination').show();
+        }
+        $('.examination_list li i.edit_choose').css('display', 'none');
+        $('.examination_list li').removeClass('checkbox_cur');
+        $('.examination_list .list_left').css('margin', '0');
+        $('.del_medical_show').hide().siblings('a.del_medical_hide').show();
+        $('.edit-close').hide().siblings('.right').show();
+    }
+
+    //                        删除
+    $('.del_medical').click(function () {
+        swal({
+                title: "",
+                text: "您确定要删除吗？",
+                type: "",
+                html: true,
+                timer: "",
+                showConfirmButton: true,
+                showCancelButton: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    delect();
+                } else {
+                    finish_edit();
+                }
+            });
+    })
+    $('.del_cancel_medical').click(function () {
+        console.log('cancel');
+        finish_edit();
+    })
+
+    function delect() {
+        var arr = [];
+        $('.examination_list .checkbox_cur').each(function () {
+            var id = $(this).find('input').val();
+            arr.push(id);
+            $(this).remove();
+        });
+        $.post($localhost + '/Writeapp/Examination/exam_del', {'arr': arr});
+        finish_edit();
+    }
+
+    var popConfig = {
+        toadd: [{
+            "color": "#FFFFFF",
+            "float": "right",
+            "text": "保存",
+            "fontSize": "16px",
+            "onclick": "javascript:plus.webview.getWebviewById('examination_add').evalJS('saveBtn();')",
+        }],
+        todetail: [{
+            "color": "#FFFFFF",
+            "float": "right",
+            "text": "保存",
+            "fontSize": "16px",
+            "onclick": "javascript:plus.webview.getWebviewById('examination_detail').evalJS('saveBtn();')",
+        }],
+        tovalidation: [{
+            "color": "#FFFFFF",
+            "float": "right",
+            "text": "保存",
+            "fontSize": "16px",
+            "onclick": "javascript:plus.webview.getWebviewById('examination_validation').evalJS('saveBtn();')",
+        }]
+    }
+    function popValidation(){
+        app.pop({'name':'Examination/validation.html','id':'examination_validation','titleNView':{"buttons":popConfig.tovalidation}});
+    }
+    function popAdd(){
+        applocalStorage.setItem("hospital_id",null);
+        applocalStorage.setItem("hospital_name",null);
+        app.pop({'name':'Examination/add.html','id':'examination_add','titleNView':{"buttons":popConfig.toadd}});
+    }
+    mui.init({
+        pullRefresh : {
+            container:"#examination_warp",
+            down : {
+                style:'circle',
+                callback:testApplocal
+            }
+        }
+    });
+</script>
+</body>
+</html>

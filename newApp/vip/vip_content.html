@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>会员详情</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <link rel="stylesheet" type="text/css" href="../css/vip/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/vip/swiper-3.3.1.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/examination/loading.css">
+        <style type="text/css">
+            .swiper-container {
+                height: auto;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 头部 -->
+        <!--<div class="header">-->
+            <!--<a href="javascript:;" onClick="window.history.go(-1)" class="left"></a>-->
+            <!--<div class="vip" id="Control">-->
+                <!--<div class="drop"></div>-->
+                <!--<div class="Control">-->
+                    <!--<div class="triangle"></div>-->
+                    <!--<ul>-->
+                        <!--&lt;!&ndash;                        <li id="13" class="B_1 con">白银套餐</li>-->
+                                                <!--<li id="14" class="B_2">黄金套餐</li>-->
+                                                <!--<li id="15" class="B_3">铂金套餐</li>-->
+                                                <!--<li id="16" class="B_4">钻石套餐</li>&ndash;&gt;-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<a href="#" class="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>-->
+        <!--</div>-->
+        <!-- 固定头部 -->
+        <div class="top_title">
+            <p>种类</p>
+            <div class="title_p">
+                <p class="TJ">体检项目</p>
+                <p class="NV">男</p>
+                <p class="NV">女</p>
+            </div>
+        </div>
+        <!-- 内容 -->
+        <div class="swiper-container" >
+            <div class="swiper-wrapper" id="header_vip" style="min-height:560px;margin-bottom: 40px;">
+                <div class="swiper-slide banner swiper-item1">
+                    <!-- loading指示器 -->
+                    <div class="loading" id="loading1">
+                        <div class="loading_box" style="top:200px;">
+                            <div style="color: #79be50" class="la-ball-spin-clockwise la-2x">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='vip_nav clearfix'>
+                        <div class='nav_box con_1'>
+                            <div class='img'></div>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class='title'>
+                        <p>种类</p>
+                        <div class='title_p'>
+                            <p class='TJ'>体检项目</p>
+                            <p class='NV'>男</p>
+                            <p class='NV'>女</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 尾部 -->
+        <div class="footer" id="footer">
+            <div class="left">共计:</div>
+            <div class="right"><input type="submit" onclick="app.vipbuy()" id="submit" value="购买"></div>
+        </div>
+
+        <script type="text/javascript" src="../js/examination/jquery.js"></script>
+        <script type="text/javascript" src="../js/vip/swiper-3.3.1.jquery.min.js"></script>
+
+        <script type="text/javascript" src="../lib/mui/dist/mui.min.js"></script>
+        <script type="text/javascript" src="../js/common/plusNative.js"></script>
+        <script type="text/javascript" src="../js/examination/common.js"></script>
+        <script type="text/javascript">
+
+                getVip();
+                function getVip() {
+
+                    $.getJSON($localhost + "/Writeapp/Vip/VipContent", {'data': 'vip', 'time': 'new'}, function (data) {//只拿了第一条记录
+                        if (data) {
+                            $.each(data['list'], function (idex, item) {
+                                var vip_item = allPrpos(item['items'], item);
+                                $(".swiper-item1 #loading1").fadeOut();
+                                $(".swiper-item1").append(vip_item).find(".nav_box p").text(data['pack']['name']);
+                            });
+//                            须知与附属优惠
+                            preferential(data['pack'], '1');
+//                           下拉导航
+                            var option = '';
+                            var span = "共计:";
+                            for (var nav in data['all_pack']) {
+//                                添加套餐页面
+                                var pack = add_pack(parseFloat(nav) + 1);
+                                $(".swiper-wrapper").append(pack);
+                                var item = data['all_pack'][nav];
+                                if (item['listorder'] == '1') {
+                                    option += "<li class='con B_" + item['listorder'] + "' id='" + item['id'] + "'>" + item['name'] + "</li>";
+                                    span += "<span class='con'>" + item['price'] + "元/年</span>";
+                                    $("#Control .drop").html(item['name']);
+                                } else {
+                                    option += "<li class='B_" + item['listorder'] + "' id='" + item['id'] + "'>" + item['name'] + "</li>";
+                                    span += "<span>" + item['price'] + "豆/年</span>";
+                                }
+                            }
+                            $('#Control ul').append(option);
+                            $('#footer .left').html(span);
+                        }
+                        return fun_list();
+                    })
+                }
+
+                function fun_list() {
+                    var mySwiper = new Swiper('.swiper-container', {
+                        calculateHeight: true,
+                        nTouchStart: function (swiper) {
+                            $('.swiper-wrapper').height('auto');
+                        },
+                        autoHeight: true,
+                        onSlideChangeStart: function (swiper, even) {
+                            $('#Control li').eq(mySwiper.activeIndex).addClass('con').siblings('li').removeClass('con');
+                            $('#footer span').eq(mySwiper.activeIndex).addClass('con').siblings('span').removeClass('con');
+                            var text = $('#Control li').eq(mySwiper.activeIndex).text();
+                            $('#Control .drop').text(text);
+                            myswiper(mySwiper.activeIndex);
+                            scrollTop();
+                        }
+                    });
+//                    获取其他套餐信息
+                    $.getJSON($localhost + "/Writeapp/Vip/VipContentOther", {'data': 'vip'}, function (data) {//只拿了第一条记录
+                        if (data) {
+                            $.each(data, function (idex, item) {
+                                if (!isNaN(idex)) {//判断为数字类型
+                                    var num = parseFloat(idex) + 2;
+                                    for (var i in item['items']) {
+                                        var vip_item = allPrpos(item['items'][i]['items'], item['items'][i]);
+                                        $(".swiper-item" + num + " #loading" + num).fadeOut();
+                                        $(".swiper-item" + num).append(vip_item).find(".nav_box p").text(item['packge']['name']);
+                                    }
+                                    preferential(item['packge'], num);
+                                }
+                            });
+                        }
+                    });
+
+
+                    // 隔行变色
+                    $('.vip_member dl:odd').css("background", "#f8f9fd");
+                    $('.package li:odd').css("background", "#f8f9fd");
+                    // 获取链接跳转指定套餐
+                    var url = window.location.search;
+                    var loc = url.substring(url.lastIndexOf('=') + 1, url.length);
+                    var Control = $('#Control li');
+                    Control.eq(loc).addClass('con').siblings('li').removeClass('con');
+                    var text = Control.eq(loc).text();
+                    Control.parents('.header').find('.drop').text(text);
+                    $('#footer span').eq(loc).addClass('con').siblings('span').removeClass('con');
+                    myswiper(loc);
+                    mySwiper.slideTo(loc, 1000, false);
+
+                    // 头部选项选择
+                    $('#Control li').on('click', function (event) {
+                        event.stopPropagation();
+                        $(this).addClass('con').siblings('li').removeClass('con');
+                        var index = $(this).index('li');
+                        var text = $(this).text();
+                        $(this).parents('.header').find('.drop').text(text);
+                        $('#footer span').eq(index).addClass('con').siblings('span').removeClass('con');
+                        mySwiper.slideTo(index, 1000, false);
+                        myswiper(index);
+                        scrollTop();
+                    })
+
+                }
+
+
+                // 隐藏高度
+                function myswiper(num) {
+//                    for (var i = 0; i < $('.package').length; i++) {
+//                        if (i == num) {
+//                            $('.package').eq(i).show();
+//                        } else {
+//                            $('.package').eq(i).hide();
+//                        }
+//                    }
+                    var control = $('#Control .con').attr('id');
+                    $("#submit").attr('onclick', 'app.vipbuy(' + control + ')');
+                }
+                // 格式化左边文字高度
+                function scrollTop() {
+                    for (var i = 0; i < $(".box").length; i++) {
+                        var div_box = $(".box").eq(i).find('span');
+                        div_box.css({"top": "4px"});
+                    }
+                }
+
+                $('#Control .drop').on('click', function (event) {
+                    event.stopPropagation();
+                    $(this).siblings('.Control').slideToggle(100);
+                })
+
+                $('body').on('click', function () {
+                    $('#Control .Control').slideUp(100);
+                })
+                var top_num = $('.banner .title').offset().top*2;
+                // 滚动条滚动触发事件
+                $(document).scroll(function () {
+                    var right_scroll = $(this).scrollTop();
+                    var title = $(".title").offset().top;
+                    if ($(document).scrollTop() >= top_num) {
+                          $('.top_title').show();
+                    } else {
+                         $('.top_title').hide();
+                    }
+//                    if (right_scroll >= title - 40) {
+//                        $('.top_title').addClass('cur');
+//                    } else if (right_scroll < title + 40) {
+//                        $('.top_title').removeClass('cur');
+//                    }
+                    for (var i = 0; i < $(".box").length; i++) {
+                        var scroH = $(this).scrollTop();
+                        var boxH = $(".box").eq(i).offset().top;
+                        var boxscroH = boxH + $(".box").eq(i).height();
+                        var div_box = $(".box").eq(i).find('span');
+                        var reduction = scroH - boxH + 88;
+                        if (scroH >= boxH - 64 && scroH < boxscroH - 145) {
+                            div_box.css({"top": reduction + "px"});
+                        } else if (scroH >= boxscroH - 145) {
+                            var div_boxH = $(".box").eq(i).height() - 75;
+                            div_box.css({"top": div_boxH + "px"});
+                        } else if (scroH < boxH - 64) {
+                            div_box.css({"top": "4px"});
+                        }
+                    }
+                });
+
+                // $('#submit').on('click',function(){
+                //     $id = $('#Control .con').attr('id');
+                // })
+                //                遍历对象 细项目
+                function allPrpos(obj, item) {
+                    var dl = '';
+                    var item_num = 0;
+                    var item_class = '';
+                    for (var i in obj) {
+                        switch (obj[i]['sex']) {
+                            case 1:
+                                var sex = '<dd class="con"></dd><dd></dd>';
+                                break;
+                            case 2:
+                                var sex = '<dd></dd><dd class="con"></dd>';
+                                break;
+                            case 3:
+                                var sex = '<dd class="con"></dd><dd class="con"></dd>';
+                                break;
+                            default:
+                                var sex = '<dd></dd><dd ></dd>';
+                                break;
+                        }
+                        dl += '<dl><dt>' + obj[i]['name'] + '</dt>' + sex + '</dl>';
+                        item_num++;
+                    }
+                    if (item_num == 1) {
+                        item_class = 'wid';
+                    }
+                    if (dl != '') {
+                        var vip_item = '<div class="vip_member clearfix scroll_item">\n\
+                                        <div class="box clearfix">\n\
+                                            <div class="left ' + item_class + '">\n\
+                                                <span class="' + item_class + '">' + item['name'] + '</span>\n\
+                                            </div>\n\
+                                            <div class="right">' + dl + '</div>\n\
+                                        </div>\n\
+                                    </div>';
+                    }
+                    return vip_item;
+                }
+//                添加套餐页面
+                function add_pack(num) {
+                    if (num != 1) {
+                        var pack = '<div class="swiper-slide banner swiper-item' + num + '">\n\
+                                        <!-- loading指示器 -->\n\
+                                        <div class="loading" id="loading' + num + '">\n\
+                                            <div class="loading_box" style="top:200px;">\n\
+                                                <div style="color: #79be50" class="la-ball-spin-clockwise la-2x">\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                    <div></div>\n\
+                                                </div>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="vip_nav clearfix">\n\
+                                            <div class="nav_box con_' + num + '">\n\
+                                                <div class="img"></div>\n\
+                                                <p></p>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="title">\n\
+                                            <p>种类</p>\n\
+                                            <div class="title_p">\n\
+                                                <p class="TJ">体检项目</p>\n\
+                                                <p class="NV">男</p>\n\
+                                                <p class="NV">女</p>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                    </div>';
+                        return pack;
+                    }
+                }
+//                须知与附属优惠
+                function preferential(obj, num) {
+                    var notice = '';
+                    notice += '<div class="careful clearfix">\n\
+                            <dl>\n\
+                                <dt>须知</dt>\n\
+                                <dd><span>1.乙肝检查:</span>国家规定体检套餐不能包含乙肝检查，如果需要，可以另加。</dd>\n\
+                                <dd><span>2.液态芯片12项:</span>鳞状上皮细胞癌相关抗原、糖类抗原19-9、甲胎蛋白、糖类抗原125、细胞角蛋白、糖类抗原242、癌胚抗原、β-人绒毛膜促性腺激素、神经元特异性烯醇化酶、游离前列腺特异性抗原、总前列腺特异性抗原、糖类抗原15-3</dd>\n\
+                            </dl>\n\
+                        </div>';
+                    var other = '';
+                    var data = eval(obj['content']);
+                    var lip = '';
+                    for (var i in data) {
+                        if (i > 3) {
+                            lip += '<li class="con">' + data[i]['title'] + '<p>' + data[i]['more'] + '</p></li>';
+                        } else {
+                            lip += '<li>' + data[i]['title'] + '<p>' + data[i]['more'] + '</p></li>';
+                        }
+                    }
+                    notice += '<div class="package clearfix">\n\
+                            <div class="box clearfix">\n\
+                            <div class="left"><span>套餐附属优惠</span></div>\n\
+                            <div class="right"><ul>' + lip + '</ul></div>';
+                    $(".swiper-item" + num).append(notice);
+                }
+
+        </script>
+
+    </body>
+</html>

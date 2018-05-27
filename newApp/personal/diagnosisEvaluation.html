@@ -1,0 +1,53 @@
+<!--saveSuccess.wxml-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+
+  <title>评价</title>
+  <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+  <link rel="stylesheet" href="../css/common.css"/>
+  <link rel="stylesheet" href="../css/personal/diagnosisEvaluation.css"/>
+  <script type="text/javascript" src="../js/common/flexible.js"></script>
+</head>
+<body id="webapp">
+<div class="container">
+  <div class="intro-info">
+    <div class="info">
+      <img :src="picUrl.listIcon+'/'+info.icon" />
+    </div>
+    <div class="title">
+      <span class="t-text bold" v-text="info.item_name"></span>
+      <span class="t-text" v-text="'订单号'+info.order_num"></span>
+    </div>
+  </div>
+  <div class="eva-title comment">
+    <span>我的评价:</span>
+  </div>
+  <div class="eva-num">
+    <div class="eva-n-warp">
+      <img :src="item<=chooseNum?'../images/collection_fill.png':'../images/collection.png'" @click="chooseN(item)"  class="collection" v-for="item in 5" />
+    </div>
+  </div>
+  <div class="eva-title comment">
+    <span>我的评语:</span>
+  </div>
+  <div class="eva-content">
+    <div class="eva-c-warp">
+      <textarea :disabled="isComtent" v-model="evaComtent"  class="eva-c-text" placeholder="请输入您的评语"></textarea>
+    </div>
+
+  </div>
+
+    <div class="success-btn form-button" @click="evaBtn" v-if="!isComtent">
+      <span class="success-btn-t">立即评价</span>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload=function(){require(['../app/personal/diagnosisEvaluation'], function (index) {
+})}</script>
+</html>
+

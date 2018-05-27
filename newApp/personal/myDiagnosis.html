@@ -1,0 +1,41 @@
+<!--myDiagnosis.wxml-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+
+    <title>我的导诊</title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/personal/myDiagnosis.css"/>
+    <script type="text/javascript" src="../js/common/flexible.js"></script>
+</head>
+<body id="webapp">
+<div class="list hide" :class="{'show':list.length>0}">
+    <div class="item" v-for="item in list" @click="chooseItem(item_id)">
+        <a href="javascript:;" @click="chooseList(item.id)">
+            <div class="top">
+                <img :src="picUrl.listIcon+'/'+item.icon"/>
+                <div class="text">
+                    <span class="title" v-text="item.item_name"></span>
+                    <span class="number" v-text="'订单号：'+item.order_num"></span>
+                </div>
+            </div>
+            <div class="bottom">
+                <span class="text" v-text="order_status[item['reservation_status']]"></span>
+            </div>
+        </a>
+    </div>
+    <!--<input type="text" v-model="45">-->
+
+</div>
+<div v-if="hasList">
+    <nodata></nodata>
+</div>
+</body>
+<script type="text/javascript" src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload=function(){require(['../app/personal/myDiagnosis'], function (index) {
+})}</script>
+</html>

@@ -1,0 +1,74 @@
+@import "../config";
+body{
+  background: $color-white;
+}
+@function pr($px) {//定位背景图  原尺寸1045 比例2.784  留边距放大到2.9
+  @return ($px/2.9) /16 + rem;
+}
+
+.parts-content {
+    margin-top: r(112);
+    position: relative;
+    .parts-choose{
+        position: relative;
+        z-index: 1;
+        width: pr(1045);
+        height: pr(1063);
+        background-image: url(../../images/parts-bg.png);
+        background-repeat: no-repeat;
+        background-size:pr(1045) pr(1063);
+        background-position: center center;
+        margin: 0 auto;
+        .parts-item{
+            position: absolute;
+            color: $color-suntan;
+            height: r(60);
+            line-height: r(60);
+            margin-top: r(-50);
+            margin-left: r(-30);
+            padding: 0 r(40);
+            font-size: r(26);
+            z-index: 100;
+        }
+    }
+    .choose-sex{
+        position: absolute;
+        right: r(30);
+        bottom:r(-40-20);
+        width: r(137);
+        z-index: 10;
+        .choose-sex-item{
+            display: inline-block;
+            width: r(137);
+            height: r(40);
+            line-height: r(40);
+            text-align: center;
+            color: $color-white;
+            background:$color-bbb;
+            margin-bottom: r(20);
+            font-size: 12px;
+            padding: 0;
+            border-radius: r(8);
+            &.active{
+                background: $color-green9c3;
+            }
+        }
+    }
+
+
+}
+.tips{
+    margin: r(80) r(40) r(30);
+    padding: r(20) r(30);
+    background: $color-bg;
+    border-radius: r(8);
+    p{
+        font-size: r(28);
+        margin: 0;
+        color: $color-999;
+    }
+    .title{
+        color: $color-suntan;
+        margin-bottom: r(14);
+    }
+}

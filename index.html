@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+</head>
+
+<body>
+<a href="javascript:;" onclick="clickpop(this.id,'diagnosis_list')" id="diagnosis/list.html">导诊美护</a>
+<a href="javascript:;" onclick="clickpop(this.id,'personal_myDiagnosis')" id="personal/myDiagnosis.html">我的导诊</a>
+<br/>
+<a href="javascript:;" onclick="clickpop(this.id,'healthRecord_index',infomation)" id="healthRecord/index.html">健康档案</a>
+<a href="javascript:;" onclick="clickpop(this.id,'healthEvaluation_index',evaluation)" id="healthEvaluation/index.html">健康测评</a>
+<br/>
+<a href="javascript:;" onclick="clickpop(this.id,'vip_vip')" id="vip/vip.html">VIP</a>
+<a href="javascript:;" onclick="plus.webview.open('https://jk520.cc/Phoneapp/Encyclopedia/index')">健康学堂</a>
+
+</body>
+<script type="text/javascript">
+    var infomation = {
+        "titleNView": { //原生头部导航栏
+            "backgroundcolor": "#45b24b",
+            "titletext": "",
+            "titlecolor": "#FFFFFF",
+            "autoBackButton": true
+        }
+    }
+
+    var evaluation = {
+        "titleNView": { //原生头部导航栏
+            "backgroundcolor": "#c8a915",
+            "titlecolor": "#FFFFFF",
+            "autoBackButton": true,
+            "buttons": [
+                {
+                    "fontSize": "26px",
+                    "fontSrc": '_www/fonts/otherfont.ttf',
+                    "text": "\ue62f",
+                    "color": "#ffffff",
+                    "float": "right",
+                    "onclick": "javascript:plus.webview.getWebviewById('healthEvaluation_index').evalJS('toParts();')",
+                },]
+        }
+    };
+
+    var clickpop = function (url, id, option) {
+        //			plus.webview.open("/newApp/" + url,id);
+        plus.webview.open("/newApp/" + url, id, option || {
+            "titleNView": { //原生头部导航栏
+                "backgroundcolor": "#c8a915",
+                "titletext": "",
+                "titlecolor": "#FFFFFF",
+                "autoBackButton": true
+            }
+        }, "slide-in-right");
+    }
+</script>
+
+</html>

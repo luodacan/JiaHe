@@ -1,0 +1,70 @@
+@import "../config";
+$btnbg:#99cc33;
+.list{
+  padding:r(20);
+  .item{
+    background: $color-white;
+    padding: r(20) r(16);
+    @include flex;
+    //height: 187px;
+    margin-bottom: r(30);
+    border-radius: r(6);
+    .img{
+      @include flex-grow(1);
+      height:r(190);
+      width: r(190);
+      min-width: r(190);
+      text-align: center;
+      margin-right: r(30);
+      position: relative;
+      overflow: hidden;
+      .img-i{
+        position: absolute;
+        left:0;
+        max-height: 100%;
+      }
+    }
+    .text{
+      @include flex-grow(1);
+      min-width: r(458);
+      max-width: r(458);
+      .top{
+        min-height: r(60);
+        line-height: r(60);
+        .title{
+          font-weight: bold;
+          font-size: r(28);
+          color: $color-333;
+          display: inline-block;
+          max-width: 68%;
+        }
+        .eva-btn{
+          float:right;
+          width:30%;
+          height: r(60);
+          line-height: r(60);
+          text-align: center;
+          background: $btnbg;
+          color: $color-white;
+          font-size: 12px;
+          border-radius: r(6);
+        }
+        &:after{
+          clear: both;
+        }
+      }
+      .bottom{
+          @include lineclamp(r(60),2,r(32));
+          color: $color-666;
+        font-size: r(26);
+        margin-top: r(10);
+        margin-bottom: r(10);
+      }
+      .time{
+        margin: 0;
+        font-size: r(24);
+        color: $color-999;
+      }
+    }
+  }
+}

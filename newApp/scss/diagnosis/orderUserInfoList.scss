@@ -1,0 +1,156 @@
+@import "../config";
+.list{
+  .item{
+    font-size: r(28);
+    display: block;
+    position: relative;
+    padding: r(30) r(120) r(30) r(30);
+    border-bottom: 1px solid $color-border-e5;
+    &.action{
+      color: $color-red;
+      .user-top .user-name,.user-bottom.user-idcard{
+        color: $color-red;
+      }
+      padding: r(30) r(120) r(30) r(90);
+      background-size: r(48) r(48);
+      background-image: url(#{$wxapp_icon}/check.png);
+      background-position:r(30) center;
+      background-repeat: no-repeat;
+    }
+    &.default{
+      .user-name{
+        padding-right: r(50);
+        background-size: r(40) r(40);
+        background-image: url(#{$wxapp_icon}/default_icon.png);
+        background-position:right center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .user-icon{
+      position: absolute;
+      width: r(80);
+      top:50%;
+      text-align: center;
+      height: r(64);
+      margin-top: r(-32);
+      background-size: r(64) r(64);
+      background-repeat: no-repeat;
+      &.left-icon{
+        //background-image: url(#{$wxapp_icon}/edit_blue.png});
+        left: r(30);
+        background-image: url(#{$wxapp_icon}/profile_light.png);
+      }
+    }
+    .right-icon{
+      //height: r(120);
+      //margin-top: r(-60);
+      width: r(120);
+      height: 100%;
+      right:0;
+      top:0;
+      margin: 0;
+      .other-icon{
+        width:100%;
+        height: 48%;
+        background-size: r(48) r(48);
+        background-position:center center;
+        background-repeat: no-repeat;
+        display: inline-block;
+      }
+      .user-other-edit{
+
+        background-image: url(#{$wxapp_icon}/edit_blue.png);
+
+      }
+      .user-other-del{
+        background-image: url(#{$wxapp_icon}/delete.png);
+      }
+    }
+    .user-top{
+      margin-bottom: r(15);
+      .user-name{
+        color: $color-333;
+        float: left;
+      }
+      .user-phone{
+        float:right;
+      }
+    }
+    .user-bottom{
+      &.user-idcard{
+        color: $color-666;
+      }
+    }
+  }
+
+}
+.edit-user-save{
+  position: fixed;
+  width: 100%;
+  height: r(100);
+  line-height: r(100);
+  border-top: 1px solid $color-border-e5;
+  left: 0;
+  bottom:0;
+  font-size: 0;
+  text-align: center;
+  color: $color-white;
+  .user-save-btn{
+    width: 50%;
+    display: inline-block;
+    height: 100%;
+    font-size: r(28);
+    &.edit-cancel{
+      background: $color-border-e5;
+    }
+    &.edit-save{
+      background:$color-green;
+    }
+  }
+}
+.type-two{
+  .list{
+    .item {
+      background-color: $color-white;
+      padding: r(20) r(50) r(20) r(30);
+      @include flex-center;
+      display: none;
+      &.show {
+        display: flex;
+      }
+      font-size: r(28);
+      border-bottom: 1px solid $color-border-e5;
+      a {
+        display: block;
+        width: 100%;
+      }
+      &.no-border {
+        border: 0;
+      }
+      .title {
+        height: r(80);
+        line-height: r(80);
+        display: inline-block;
+        @include flex-grow(1);
+      }
+      input {
+        text-align: right;
+        height: r(80);
+        line-height: r(80);
+        margin: 0;
+        border: 0;
+        width: r(350);
+        border-radius: 0;
+        font-size: r(28);
+        //padding: r(10) 0;
+        @include flex-grow(1);
+      }
+      .text {
+        @include flex-grow(1);
+        text-align: right;
+        max-width: 70%;
+      }
+    }
+  }
+}

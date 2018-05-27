@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<script src="../../js/flexible.js"></script>
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../css/custom.css" rel="stylesheet" />
+		<link href="../../css/artdialog.css" rel="stylesheet" />			
+		<script src="../../js/jquery-3.2.1.min.js"></script>
+		<script src="../../js/AppRequest.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../js/jsencrypt-2.3.1.min.js"></script>
+		<script src="../../js/RsaKey.js"></script>
+		<title>忘记密码</title>
+	</head>
+	<body>
+		<style>body,html{ height:100%}</style>
+		<div class="container">
+			<header class="header">
+				<div class="backicon" onclick="$ys.platform.back()">
+				<span class="glyphicon glyphicon-chevron-left"></span>返回</div>忘记密码
+			</header>
+			<div class="login" >
+				<div style="text-align: center;padding: 0.5rem;">
+					<img src="../../img/app.png" class="icon"/>
+				</div>	
+				<div class="option"><input type="text" class="form-control" placeholder="手机号" id="username" /><i class="glyphicon glyphicon-user"></i></div>	
+			    <div class="option" ><input type="password" class="form-control" placeholder="新密码" id="password" /><i class="glyphicon glyphicon-lock"></i></div>
+			    <div class="option" ><input type="password" class="form-control" placeholder="重复密码" id="repeatPassword" /><i class="glyphicon glyphicon-lock"></i></div>	
+			    <div class="option" >
+			        <input type="text" class="form-control code" placeholder="验证码" maxlength="5" id="checkCode" />
+			       <a href="javascript:void(0);" id="sendMobileCode" onclick="sendMobileCode();"> 
+			       	<span class="sp-checkcode" id="dyMobileButton">获取验证码</span>
+			       </a>
+			    </div>
+			    <a class="btn btn-danger btn-block" onclick="sub()">更改密码</a>	
+			</div>
+			<script src="../../Script/User/ForgetPass.js"></script>
+		</div>
+	</body>
+</html>

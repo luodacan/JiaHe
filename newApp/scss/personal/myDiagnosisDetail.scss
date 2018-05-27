@@ -1,0 +1,142 @@
+@import "../config";
+body{
+  background: $color-bg;
+  text-align: left;
+}
+.container{
+  overflow: hidden;
+}
+.intro-info{
+  background: $color-white;
+  width: 100%;
+  padding: r(30) 0;
+  margin-bottom: r(10);
+  position: relative;
+  @include flex-center-left;
+  .info{
+    max-width: 70%;
+    .img{
+      width: r(120);
+      height: r(120);
+      margin-left: r(30);
+      margin-right: r(30);
+      vertical-align: middle;
+    }
+
+  }
+  .title{
+    .text{
+      display: block;
+      width: 100%;
+      font-size: r(24);
+      color: $color-999;
+    }
+
+    .bold{
+      display: block;
+      font-size: r(32);
+      margin-bottom: r(10);
+      color: $color-333;
+    }
+  }
+  .price{
+    position: absolute;
+    right:r(30);
+    top: 50%;
+    margin-top: r(-14);
+    color: $color-333;
+    margin-right: r(30);
+    font-size: r(28);
+  }
+}
+.list{
+  width: 100%;
+  margin-bottom:r(120);
+  .item{
+    background-color: $color-white;
+    padding:r(20) r(50) r(20) r(30);
+    @include flex-center;
+    font-size: r(28);
+    border-bottom: 1px solid $color-border-e5;
+    a{
+      display: block;
+      width: 100%;
+    }
+    &.no-border{
+      border:0;
+    }
+    .title{
+      height: r(80);
+      line-height:r(80);
+      display: inline-block;
+    }
+    input{
+      text-align: right;
+      height:r(80);
+      line-height:r(80);
+    }
+    picker{
+      width: 100%;
+    }
+    .upload-img{
+      width:r(120);
+      height:r(80);
+    }
+  }
+}
+.comment{
+  color: $color-666;
+  font-size:r(28);
+  text-align: left;
+  display: inline-block;
+  padding-left:r(30);
+  height: r(60);
+  line-height:r(60);
+  width: 100%;
+}
+.bottom{
+  @include flex-center;
+  width: 100%;
+  height: r(100);
+  background: $color-white;
+  line-height:r(100);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid $color-border-e5;
+  .price{
+    margin-left:r(30);
+    color: $color-red;
+    font-size:r(32);
+    line-height:1.2;
+    .other-price{
+      font-size: 12px;
+      color: $color-green;
+      padding: r(4) 0;
+    }
+  }
+  .order-btn{
+    display: none;
+    background: $color-border-e5;
+    text-align: center;
+    color: $color-white;
+    font-size: r(32);
+    height:r(100);
+    line-height:r(100);
+    width:r(220);
+    &.pay-action{
+      background: $color-green;
+    }
+    &.show-btn{
+      display: inline-block;
+    }
+  }
+  .comment-btn{
+    background: $color-green;
+  }
+}
+
+
+.mt-40{
+  margin-top: r(40);
+}

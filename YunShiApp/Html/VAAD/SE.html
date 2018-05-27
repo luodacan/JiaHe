@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>选择评估</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../css/artdialog.css" />
+		<link rel="stylesheet" href="../../css/custom.css"/>
+		<style>
+			a:hover {text-decoration: none;}
+			.Selected {background-color: rgb(151, 205, 50);cursor: pointer;}			
+			.NoSelected {background-color: darkgray;cursor: pointer;}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<header class="header-yellow row">
+				<div class="col-xs-8 column text-left ">
+					<span class="glyphicon glyphicon-chevron-left" onclick="$ys.platform.back()"></span><span id="span-title"></span>
+				</div>
+				<!--<div class="col-xs-4 column text-right">
+					<a href="A.html" class=" span-white"><span class="glyphicon glyphicon-list-alt"></span> 问卷调查</a>
+				</div>-->
+			</header>
+			<input type="hidden" id="hi-Investigation"/>
+			<div class="row pad10 bc-graywhite">
+				<div class="col-xs-12 column text-center bc-white lih40 border-gray"><strong>健康520专项评估</strong></div>
+				<div id="optlist"></div>
+			</div>
+			<div class="row pad10 text-center" style="margin:0 auto;">
+				<a href="javascript:void(0);" class="btn btn-default btn-block btn-success" onclick="sub()">提交</a>
+			</div>
+		</div>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../Script/HealthRecord/InvQuery.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet" />
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/artdialog.css" rel="stylesheet" />	
+		<script src="js/flexible.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/custom.js"></script>
+		<script src="js/jquery.artDialog.js"></script>
+		<script src="js/artDialog.iframeTools.js"></script>
+		<script src="js/jsencrypt-2.3.1.min.js"></script>
+		<script src="js/RsaKey.js"></script>
+		<title>用户登录</title>
+	</head>
+	<body>
+		<style>		
+			body,html{ height:100%}
+			.preg{
+				font-size: 14px;
+			}
+			.preg a{
+				color: #5CABFF
+			}
+			
+			#OtherLogin{
+				text-align: center;
+				display: none;				
+			}
+			.ologintitle{
+				position: relative;
+				color: #797979;
+				font-weight: 700;
+				font-family: "微软雅黑";
+			}
+			.ologintitle:before,.ologintitle:after{
+				content: '';
+				position: absolute;
+				top: 51%;
+				background: #D7D7D7;
+				width: 3rem;
+				height: 1px;
+			}
+			.ologintitle:before{
+				 left: 0;
+			}
+			.ologintitle:after{
+				right: 0;
+			}			
+			#OtherLogin span{
+				height: 45px;
+				width: 46px;
+				display: inline-block;
+				margin: 0.4rem 0.6rem;
+				background: url(img/Login/oauth_icon.png) no-repeat;
+			}
+			.wxlogin{
+				background-position-y: -47px !important;
+			}
+		</style>
+		<div class="container">
+			<header>
+				<div class="header">
+					登录520账号
+					<span class="register sp-right">注册</span>
+				</div>
+					
+			</header>
+			<div class="login" >
+				<div style="text-align: center;padding: 0.5rem;">
+				<img src="img/app.png" class="icon"/>
+			</div>
+    <div class="option"><input type="text" class="form-control" placeholder="请输入手机号" id="username" /><i class="glyphicon glyphicon-user"></i></div>
+    <div class="option"><input type="password" class="form-control" placeholder="密码" id="password" /><i class="glyphicon glyphicon-lock"></i></div>
+    <div class="option" style="display: none;" id="checkopt">
+        <input type="text" class="form-control code" placeholder="验证码" maxlength="4" id="checkCode" />
+        <a><img src="" id="checkCodeImg"/></a>
+        <i id="checkBoxIcon" class="glyphicon"></i>
+    </div>
+    <a class="btn btn-danger btn-block" id="loginBtn" style="margin-bottom: 10px;">登录</a>
+    <div style="text-align: right;font-family: '微软雅黑';font-size: 14px;color: #6D6D72;margin-bottom: 0.8rem;"><u onclick="$ys.platform.open({url:'/Html/User/ForgetPass.html'});">忘记密码</u></div>
+    <div id="OtherLogin">
+    	<div class="ologintitle">其他登录方式</div> 
+    </div>	
+	</div>
+		</div>
+		<script>
+			
+			var auths=null,wxauths,qqauths;
+			var checkflag=false,checkId='';
+			document.addEventListener("plusready", function(){
+					plus.oauth.getServices(function(services){
+						if(services.length>0){
+							auths = services;
+							loadlogin();
+						}			
+					}, function(e){
+						alert( "获取分享服务列表失败："+e.message+" - "+e.code );
+					});
+			}, false );
+			
+			$ys.platform.init(function(){
+	
+				$('#loginBtn').click(function(){
+					sub();
+				});
+				$('.register').click(function(){
+					$ys.platform.close(function(){
+						$ys.platform.open({url:'/Register2.html'});	
+					});									
+				});
+			});		
+			function sub()
+			{
+				var mobile =$('#username').val();
+				var password=$('#password').val();
+				var reg=/^0?(13|15|18|14|17)[0-9]{9}$/;
+				if(!reg.test(mobile))
+					$.dialog.errorTips('手机格式不正确');
+				else if(!password)
+					$.dialog.errorTips('请填写密码');
+				else{
+					var checkcode='';
+					if(checkflag)
+		        	{       		
+		        		checkcode=$('#checkCode').val();
+		        		if(checkcode.length!=4)
+		        		{
+		        			$.dialog.errorTips('验证码错误');
+		        			return;
+		        		}
+		        	}
+		        	var loading=showLoading();
+		        	var encrypt = new JSEncrypt();
+            		encrypt.setPublicKey(ysapp.custom.RsaKey);
+		        	$.post($ys.url+'/app/login/index',
+                    { username: encrypt.encrypt(mobile), password: encrypt.encrypt(password),checkcode:checkcode,checkId:mobile},
+                    function (result) {
+                        loading.close();
+                        if (result.success) {
+                            $.dialog.succeedTips('登录成功!', function () {                           	
+                            	localStorage.setItem("appToken",result.token);
+                               if(result.page){
+                               	$ys.platform.close(function(){
+                               		$ys.platform.open({url:"/Html/Home/index.html"});
+                               	});
+                               	
+                               }
+                               	else{
+                               		$ys.platform.close(function(){
+                               			$ys.platform.open({url:"/Html/Home/Register.html"});
+                               		});
+                               		
+                               	}
+                            });
+                        }
+                        else{
+                        	if(result.check) 
+                        	{
+                        		var checkCodeUrl = $ys.url + '/register/GetCheckCode';  	
+                        		if(!checkflag){
+                        			
+                        			$('#checkopt').show();                       			
+        							$('#checkCodeImg').click(function () {
+            							$('#checkCodeImg').attr('src', checkCodeUrl + '?time=' + (new Date()).getTime()+'&t='+$('#username').val());
+        							});
+                        			checkflag=true;
+                        		}
+                        		$('#checkCodeImg').attr('src', checkCodeUrl + '?time=' + (new Date()).getTime()+'&t='+$('#username').val());
+                        	}
+                        	$.dialog.alert('登录失败!' + result.msg);
+                        }
+                    },'json');
+				}
+			}
+			function loadlogin()
+			{
+				$('#OtherLogin').show();
+				var obj=$('#OtherLogin');
+				for(var i in auths)
+				{
+					var item=auths[i];
+					if(item.id=="weixin")
+					{
+						obj.append('<span class="wxlogin" onclick="wx_login()"></span>');
+						wxauths=item;
+					}else if(item.id=="qq")
+					{
+						obj.append('<span onclick="qq_login()"></span>');	
+						qqauths=item;
+					}
+				}		
+			}
+			function wx_login()
+			{
+				if(wxauths)
+				{					
+					if(!wxauths.authResult )
+					{
+						wxauths.login( function(e){
+							var userinfo= e.target.userInfo;
+							saveauth('wechat',userinfo.openid,userinfo.unionid,userinfo.headimgurl,'',userinfo.nickname,function(){								
+								authLogout(wxauths);
+							});
+							}, function(e){
+							$.dialog.errorTips( "登录认证失败！" );
+						} );
+					}else{					
+						authLogout(wxauths);
+					}
+				}else{
+					$.dialog.errorTips('微信登录失败！');
+				}
+			}
+			function qq_login()
+			{
+				if(qqauths)
+				{
+					if(!qqauths.authResult)
+					{
+						qqauths.login( function(e){
+							var userinfo= e.target.userInfo;
+							saveauth('qq',e.target.authResult.openid,'',userinfo.headimgurl,'',userinfo.nickname,function(){								
+								authLogout(qqauths);
+							});
+							}, function(e){
+							$.dialog.errorTips( "登录认证失败！" );
+						} );
+					}else{
+						authLogout(qqauths);
+					}
+				}else{
+					$.dialog.errorTips('QQ登录失败！');
+				}
+			}
+			function saveauth(oauthId,openId,unionId,Icon,appid,nickname,callback)
+			{
+				var loading=showLoading();
+				$.post($ys.url+'/app/login/BindUser',
+				{oauthId:oauthId,openId:openId,unionId:unionId,Icon:Icon,appid:appid,nickname:nickname},
+				function(data){
+					loading.close();
+					callback();
+					if(data.success){
+						$.dialog.tips(data.result.msg);	
+						if(data.result.Status==0){
+							localStorage.setItem("appToken",data.result.token);
+							$ys.platform.close(function(){
+								$ys.platform.open({url:"/Html/Home/index.html"});
+							});
+							
+						}else{
+							$ys.platform.close(function(){
+								$ys.platform.open({url:"/BindUser.html",extras:{oauthid:oauthId,openid:openId}});
+							});
+														
+						}						
+					}else{
+						$.dialog.errorTips(data.msg);
+					}
+				},'json');
+			}
+			function authLogout(auth)
+			{
+				if(auth.authResult)
+				{
+					auth.logout(function(e){
+						
+					}, function(e){
+						$.dialog.errorTips( "注销登录认证失败！" );
+					});					
+				}				
+			}
+		</script>
+	</body>
+</html>

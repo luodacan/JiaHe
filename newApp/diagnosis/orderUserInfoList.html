@@ -1,0 +1,77 @@
+<!--departments.wxml-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+    <title>选择就诊人</title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/diagnosis/orderUserInfoList.css"/>
+</head>
+<body id="webapp">
+<div class="hide type-one" :class="{show:listShow==1}">
+    <div class="list hide" :class="{show:hasList}">
+
+        <div class="item user-info " :class="{default:is_default==1,action:isUserChoose==item.id}"
+             v-for="item in userInfoList">
+            <block @click="chooseUserInfo(item)">
+                <div class="user-top">
+                    <div class="user-name">就诊人：<span v-text="item.name"></span></div>
+                    <div class="user-phone" v-text="item.phone_number"></div>
+                    <div class="clear-both"></div>
+                </div>
+                <div class="user-bottom user-idcard">
+                    身份证：<span v-text="item.card_number"></span>
+                </div>
+            </block>
+
+            <div class="user-icon right-icon">
+                <div class="other-icon user-other-edit" @click="userInfoEdit(item)"></div>
+                <div class="other-icon user-other-del" @click="userInfoDel(item)"></div>
+            </div>
+        </div>
+    </div>
+    <div class="edit-user-save">
+        <div class="user-save-btn edit-cancel" @click="goBack">取消</div>
+        <div class="user-save-btn edit-save" @click="addUserInfo">添加</div>
+    </div>
+    <div class="hide" :class="{show:hasList===false}">
+        <nodata></nodata>
+    </div>
+</div>
+<div class="hide type-two" :class="{show:listShow==2}">
+    <div class="list">
+        <div class="item show">
+            <span class="title">就诊人姓名</span>
+            <input type="text" placeholder="请输入姓名"
+                   v-bind:value="editUserInfo['visitor_name']"
+                   v-on:input="oninput($event.target.value,'editUserInfo','visitor_name')"/>
+        </div>
+
+        <div class="item show">
+            <span class="title">就诊人身份证</span>
+            <input type="text" placeholder="请输入身份证"
+                   v-bind:value="editUserInfo['visitor_id_card']"
+                   v-on:input="oninput($event.target.value,'editUserInfo','visitor_id_card')"/>
+        </div>
+        <div class="item show">
+            <span class="title">就诊人手机号</span>
+            <input type="text" placeholder="请输入手机号"
+                   v-bind:value="editUserInfo['visitor_phone']"
+                   v-on:input="oninput($event.target.value,'editUserInfo','visitor_phone')"/>
+        </div>
+    </div>
+    <div class="edit-user-save">
+        <div class="user-save-btn edit-cancel" @click="showPageNum(1)">取消</div>
+        <div class="user-save-btn edit-save" @click="editUserSave">保存</div>
+    </div>
+</div><!--four-end-->
+</body>
+<script type="text/javascript" src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload = function () {
+    require(['../app/diagnosis/orderUserInfoList'], function (index) {
+    })
+}</script>
+</html>

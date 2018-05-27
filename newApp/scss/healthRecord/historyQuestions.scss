@@ -1,0 +1,72 @@
+@import "../config";
+$titlecolor:#808080;
+$publiccolor:#ebebeb;
+.question-content{
+  padding: r(20);
+  margin-bottom: r(120);
+  .question-list{
+    background: $color-white;
+    border-radius: r(15);
+    padding: r(30) r(20);
+    .question-item{
+      margin-bottom: r(30);
+      border-bottom: 1px solid $color-border;
+      &:last-child{
+        border: 0;
+        margin-bottom: 0;
+      }
+      .title{
+        font-size: r(30);
+        color: $titlecolor;
+        line-height: r(42);
+        margin-bottom: r(20);
+      }
+
+      .options{
+        margin-bottom: r(30);
+        &.options-radio{
+          @include flex-center;
+          //justify-content: space-between;
+        }
+        .option-item{
+          display: inline-block;
+          width: r(210);
+          max-width: r(210);
+          height: r(60);
+          line-height: r(60);
+          text-align: center;
+          background: $publiccolor;
+          color: $color-666;
+          border-radius: r(8);
+          margin-bottom: r(10);
+          @include flex-grow(1);
+          &.active{
+            background: $color-green;
+            color: $color-white;
+          }
+        }
+      }
+    }
+  }
+}
+.question-save{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: r(120);
+  line-height: r(120);
+  text-align: center;
+  background: $color-white;
+  .save-btn{
+    display: block;
+    background: $color-green;
+    color: $color-white;
+    font-size: 14px;
+    text-align: center;
+    height: r(76);
+    line-height: r(76);
+    margin:r(22) r(35);
+    border-radius: r(6);
+  }
+}

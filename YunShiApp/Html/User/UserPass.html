@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<script src="../../js/flexible.js"></script>
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../css/custom.css" rel="stylesheet" />
+		<link href="../../css/artdialog.css" rel="stylesheet" />			
+		<script src="../../js/jquery-3.2.1.min.js"></script>		
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../js/jsencrypt-2.3.1.min.js"></script>
+		<script src="../../js/RsaKey.js"></script>
+		<title>重置密码</title>
+	</head>
+	<body>
+		<style>
+			body,html{ height:100%;font-family: "微软雅黑";}
+		</style>
+		<div class="container">
+			<header class="header">
+				<div class="backicon" onclick="$ys.platform.back()">
+				<span class="glyphicon glyphicon-chevron-left"></span>返回</div>重置密码
+			</header>
+			<div class="login" >
+				<div style="text-align: center;padding: 0.5rem;">
+					<img src="../../img/app.png" class="icon"/>
+				</div>			  
+			    <div class="option" ><input type="password" class="form-control" placeholder="密码" id="password" /><i class="glyphicon glyphicon-lock"></i></div>
+			    <div class="option" ><input type="password" class="form-control" placeholder="重复密码" id="repeatPassword" /><i class="glyphicon glyphicon-lock"></i></div>			    
+			    <a class="btn btn-danger btn-block" onclick="sub()">重置</a>	
+			</div>
+		</div>
+		<script>
+			function sub(){
+				var password = $.trim($('#password').val());
+    			var repeatPassword = $.trim($('#repeatPassword').val());
+				if(!password)
+					$.dialog.errorTips('请输入密码');
+			    else if(password.length < 6 && password.length > 20)
+			        $.dialog.errorTips('密码必须6-20位字符');
+			    else if (!repeatPassword)
+			        $.dialog.errorTips('请再次输入密码');
+			    else if (password != repeatPassword)
+			        $.dialog.errorTips('两次密码不一致');
+			    else{
+			    	var loading = showLoading('请稍候', 1);
+			    	var encrypt = new JSEncrypt();
+			    	encrypt.setPublicKey(ysapp.custom.RsaKey);
+			    	$ys.post('/app/member/UserPass',{
+			    		password: encrypt.encrypt(password),			    		
+			    	},function(data){
+			    		loading.close();
+	                    if (data.success) {
+	                        $.dialog.succeedTips('重置成功!', function () {
+	                        	$ys.platform.close(function(){
+	                        		$ys.platform.open({url:'/Html/User/UserManage.html'});
+	                        	});
+	                            
+	                        });
+	                    }
+	                    else
+	                        $.dialog.alert('重置失败!' + result.msg);
+			    	});				    			    	
+			    }
+			}		
+		</script>
+	</body>
+</html>

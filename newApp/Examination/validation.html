@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>体检报告验证</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <link href="../css/examination/ExaminationReport.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--<div class="examination_head">-->
+            <!--<a class="left" href="javascript:;" onClick="window.history.go(-1);"></a>-->
+            <!--<p class="title">身份验证</p>-->
+            <!--<span class="right save">保存</span>-->
+        <!--</div>-->
+
+        <div class="examination_validation">
+            <!--<div style="height: 44px;"></div>-->
+            <ul>
+                <li><p class="title">真实姓名</p><input type="text" value="" class="name" placeholder="请输入真实姓名"></li>
+                <li><p class="title">身份证</p><input type="text" value="" class="id_care" placeholder="请输入身份证号码"></li>
+            </ul>
+            <p class="prompt"></p>
+        </div>
+        <script type="text/javascript" src="../js/examination/jquery.js"></script>
+        <script type="text/javascript" src="../js/common/plusNative.js"></script>
+        <script type="text/javascript" src="../js/examination/common.js"></script>
+        <script>
+
+                $(document).ready(function () {
+                    testApplocal();
+                });
+                function testApplocal() {
+                    window.guest_id = applocalStorage.getItem("guest_id");
+                    $.getJSON($localhost + '/Writeapp/Examination/validation', {'guest_id': guest_id}, function (data) {
+                        if (data) {
+                            $("input.name").val(data['real_name']);
+                            $("input.id_care").val(data['id_card_number']);
+                        }
+                    });
+                    $('input').keyup(function () {
+                        $('.examination_validation p.prompt').text('');
+                    })
+
+                }
+                function saveBtn() {
+                        var name = $('input.name').val();
+                        var id_care = $('input.id_care').val();
+                        $.post($localhost + '/Writeapp/Examination/validation', {guest_id: guest_id, real_name: name, id_card_number: id_care}, function (data) {
+                            switch (data) {
+                                case '1':
+                                    $('.examination_validation p.prompt').text('真实姓名格式错误或为空！');
+                                    break;
+                                case '2':
+                                    $('.examination_validation p.prompt').text('身份证号码格式错误或为空！');
+                                    break;
+                                case '3':
+                                    app.close_VC();
+                                    break;
+                                case '4':
+                                    $('.examination_validation p.prompt').text('该身份证信息已被填写！');
+                                    break;
+                                default:
+                                    $('.examination_validation p.prompt').text('请正确填写！');
+                            }
+                        })
+
+                }
+        </script>
+    </body>
+</html>  

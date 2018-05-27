@@ -1,0 +1,95 @@
+@import "../config";
+.top{
+  height: r(462);
+  background: $color-green45;
+  text-align: center;
+  padding: r(60) 0;
+  .top-record-1{
+    width: r(340);
+    height: r(340);
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url(../../images/health_record1.png);
+    background-size: r(340) r(340);
+    background-repeat: no-repeat;
+    .top-record-2{
+      background: transparent;
+      width: r(290);
+      height: r(290);
+      position: relative;
+      top:r(25);
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 50%;
+      .record-2-top{
+        font-size: r(34);
+        color: $color-white;
+        text-align: center;
+        padding-top: r(90);
+        z-index: 100;
+
+      }
+      .record-2-bottom{
+        position: absolute;
+        width: 100%;
+        height: r(406);
+        background-image: url(../../images/health_record2.png);
+        background-repeat: no-repeat;
+        background-size: r(310) r(402);
+        background-position:center r(130);
+        top:0%;
+        z-index: 200;
+        padding-top: r(187);
+        .record-2-bottom-p{
+          color: $color-green45;
+          font-size: r(24);
+          text-align: center;
+          margin: 0 auto;
+          line-height: r(32);
+          max-width: 80%;
+        }
+      }
+    }
+  }
+}
+.bottom{
+  margin-top: r(10);
+  .item{
+    background-color: $color-white;
+    padding: r(20) r(50) r(20) r(30);
+    border-bottom: 1px solid $color-border;
+    position: relative;
+    @include flex-center;
+    &:first-child{
+      border-top: 1px solid $color-border;
+    }
+    .title {
+      height: r(90);
+      line-height: r(90);
+      display: inline-block;
+      @include flex-grow(1);
+      .left-icon{
+        width: r(40);
+        height: r(40);
+        position: absolute;
+        left: r(30);
+        top: 50%;
+        margin-top: r(-20);
+      }
+      .title-name{
+        display: block;
+        padding-left: r(60);
+        color: $color-666;
+        font-size: r(30);
+      }
+    }
+    .text {
+      @include flex-grow(1);
+      text-align: right;
+      max-width: 70%;
+      color: $color-bbb;
+    }
+  }
+
+}

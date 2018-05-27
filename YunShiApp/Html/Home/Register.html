@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>注册</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/Swiper-4/css/swiper.min.css" />
+		<link rel="stylesheet" href="../../lib/weui-master/weui.min.css" />
+		<link rel="stylesheet" href="../../lib/weui-master/jquery-weui.min.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../css/Register.css" />
+	</head>
+
+	<body>
+		<!-- Swiper -->
+		<input type="hidden" id="inp-info" />
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+
+				<div class="swiper-slide">
+					<div class="row row-position" style="bottom: 10%;left: 20px;">
+						<div class="col-xs-12 column text-left">
+							<img src="../../img/Register/520.png" width="100px" class="img-circle" /><br/><br/>
+							<span class="color_mian">欢迎加入健康520<br/>为了更精准的制定您的健康方案<br/>我们需要简单的聊一聊</span>
+						</div>
+						<div class="col-xs-12 column text-right">
+							<span class="start span-button" style="padding: 5px 30px;">开始吧</span>
+							<div></div>
+							<span style="font-size: 11px;padding-right: 5px;">小伙伴大约5秒钟完成</span>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="row row-position" style="bottom: 10%;left: 20px;">
+						<div class="col-xs-12 column text-left">
+							<img src="../../img/Register/520.png" width="100px" class="img-circle" /><br/><br/>
+							<span class="color_mian">请选择你的性别</span>
+						</div>
+						<div class="col-xs-12 column text-right">
+							<span class="span-button-reverse sex" style="padding: 5px 45px;">男</span>
+							<div><br/></div>
+							<span class="span-button-reverse sex" style="padding: 5px 45px;">女</span>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide ">
+					<div class="row row-position" style="bottom: 10%;left: 20px;">
+						<div class="col-xs-12 column text-left">
+							<img src="../../img/Register/520.png" width="100px" class="img-circle" /><br/><br/>
+							<span class="color_mian">请选择你的身高：<input class="weui_input" id="high" type="text" value="" style="display: inline-block;width: 20%;"></span>
+						</div>
+						<div class="col-xs-12 column text-center" style="width: 100%;overflow-y: auto;">
+							<div id="picker-container" style="background-color: transparent;"></div>
+						</div>
+						<div class="col-xs-12 column text-right pad-t30">
+							<span class="nextstep span-button" style="padding: 5px 30px;">下一步</span>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide ">
+					<div class="row row-position" style="bottom: 10%;left: 20px;">
+						<div class="col-xs-12 column text-left">
+							<img src="../../img/Register/520.png" width="100px" class="img-circle" /><br/><br/>
+							<span class="color_mian">请选择你的出生日期：<input class="weui_input" id="time" value="1990-01-01"  type="text" style="display: inline-block;width: auto;"></span>
+						</div>
+						<div class="col-xs-12 column text-center" style="width: 100%;overflow-y: auto;">
+							<div id="time-container"></div>
+						</div>
+						<div class="col-xs-12 column text-right">
+							<span class="nextstep span-button" style="padding: 5px 30px;">下一步</span>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide ">
+					<div class="row row-position" style="padding-top:40px ; left: 10px;">
+						<div class="col-xs-12 column text-left">
+							<img src="../../img/Register/520.png" width="100px" class="img-circle" /><br/><br/>
+						</div>
+						<div class="col-xs-12 column text-left">
+							<div class="col-xs-3 column">
+								<div class="Violet Violet-right" id="sex"></div>
+							</div>
+							<div class="col-xs-6 column">
+								<img src="../../img/Register/girl.png" width="100%" id="seximg">
+							</div>
+							<div class="col-xs-3 column">
+								<div class="yellow yellow-left" id="end-high"></div>
+							</div>
+							<br />
+						</div>
+						<div class="col-xs-12 column text-left">
+							<div class="col-xs-1 column">
+							</div>
+							<div class="col-xs-3 column text-left">
+								<div class="green green-left" id="end-time"></div>
+							</div>
+						</div>
+						<div class="col-xs-12 column text-left pad-lr20 pad-b15">
+							<!--<div class="col-xs-1 column">
+								<div class="pad-l20">
+									<div id="triangle-up"></div>
+								</div>
+							</div>
+							<div class="col-xs-11 column"></div>-->
+							<div class="col-xs-12 column pad-none">
+								<div class="tip top">
+									<p style="color: black;">健康520已经对你有了一个初步的了解啦，点击下边的按钮，开始你的专属健康方案！</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 column text-center">
+							<a href="javascript:void(0);" onclick="sub()"><span class="start" style="padding: 8px 45px;border:1px solid  rgb(43, 162, 69);color: rgb(43, 162, 69);border-radius:5px;">开启健康计划</span></a>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<a href="index.html"><span style="position: absolute;top: 20px; right: 20px;z-index: 99;color:black;background-color: rgba(0,0,0,0.2);color: white;border-radius: 10px;padding:3px 10px ;">就此跳过</span></a>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script type="text/javascript " src="../../lib/Swiper-4/js/swiper.min.js "></script>
+		<script type="text/javascript" src="../../lib/weui-master/jquery-weui.js"></script>
+		<script type="text/javascript" src="../../js/cookie/Cookie.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../Script/Home/Register.js"></script>
+		
+	</body>
+
+</html>

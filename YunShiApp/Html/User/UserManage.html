@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<script src="../../js/flexible.js"></script>
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../css/custom.css" rel="stylesheet" />
+		<link href="../../css/artdialog.css" rel="stylesheet" />			
+		<script src="../../js/jquery-3.2.1.min.js"></script>		
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>		
+		<title>账号管理</title>
+	</head>
+	<body>
+		<style>
+			body,html{ height:100%}
+			.bgg{display: inline-block; height: 26px;width: 26px;background-size: 100% 100% !important;vertical-align:bottom;}
+			.qqbg{background:url(../../img/Login/QQ_logo.png) no-repeat ;}
+			.wxbg{background: url(../../img/Login/wx_logo.png) no-repeat;}
+			.pd5_10{padding: 8px 10px;}
+			.rightfont{margin-top:1px !important;}
+	
+		</style>
+		<div class="container">
+			<header class="header">
+				<div class="backicon" onclick="$ys.platform.back()">
+			<span class="glyphicon glyphicon-chevron-left"></span>返回</div>账号管理		
+			</header>
+			
+			
+			<div style="margin-top:20px;">
+				<div class="list-grouppp pd5_10" id="bindwx">
+					<div class="text-groupp" style="line-height: 28px;">
+					<span class="bgg wxbg"></span>	
+				  	微信
+					</div>
+					
+					<span class="glyphicon glyphicon-menu-right rright" style="margin-top: 5px;"></span>
+					<span class="rightfont rright " id="sp-bindwx">未绑定</span>
+				</div>
+				<div class="list-grouppp pd5_10" id="bindqq">
+					<div class="text-groupp"  style="line-height: 28px;">
+					<span class="bgg qqbg" ></span>	
+				  	 QQ
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright" style="margin-top: 5px;"></span>
+					<span class="rightfont rright " id="sp-bindqq">未绑定</span>
+				</div>
+				
+			</div>
+			<div style="margin-top:20px;">
+				<div class="list-grouppp" onclick="$ys.platform.open({url:'/Html/User/UserMobile.html'})">
+					<div class="text-groupp">
+					<span class="glyphicon glyphicon-phone lleft"></span>	
+				  	手机号码
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+					<span class="rightfont rright " style="color: #333333;" id="sp-mobile"></span>
+				</div>
+				<div class="list-grouppp" onclick="$ys.platform.open({url:'/Html/User/UserPass.html'})">
+					<div class="text-groupp">
+					<span class="glyphicon glyphicon-lock lleft"></span>	
+				  	重置密码
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+				</div>
+			</div>
+			
+		</div>
+		<script src="../../Script/User/UserManage.js"></script>		
+	</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/layer_mobile/need/layer.css" />
+		<link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../lib/h5-ruler-master/ruler.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../css/artdialog.css"/>
+		<link rel="stylesheet" href="../../css/custom1.css" />
+		<style>
+			.nav-tabs li {text-align: center;background-color: white;color: black;}
+			.nav-tabs li a {color: black;text-align: center;}
+			.nav-tabs li.active a {background-color: white;color: rgb(82, 184, 82);border: 0px;border-bottom: 1px solid rgb(82, 184, 82);}
+			.nav-tabs li.active a:hover {color: rgb(82, 184, 82);border: 0px;border-bottom: 1px solid rgb(82, 184, 82);}
+			.nav-tabs li a:hover {color: rgb(82, 184, 82);border: 0px;border-bottom: 1px solid rgb(82, 184, 82);}
+			.WH {width: 75px;height: 75px;}
+			.aui_state_noTitle {z-index: 99999999;}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row pad15">
+				<div class="col-xs-12 column text-center">今天 <span> <span id="now-mea"></span> <i class="fa fa-caret-down" style="color: green;"></i></span></div>
+			</div>
+			<div class="row lih70 pad-b5">
+				<div class="col-xs-4 column">
+					<img id="img"  class="img-rounded WH" />
+				</div>
+				<div class="col-xs-5 column text-left">
+					<span id="title">酸奶</span>
+				</div>
+				<div class="col-xs-3 column text-right">
+					<i class="fa fa-chevron-right" style="color: green;"></i>
+				</div>
+			</div>
+			<div class="row border-t mar-t15">
+				<div class="col-xs-12 column">
+					<div class="tabbable">
+						<ul class="nav nav-tabs border-none">
+							<li class="active">
+								<a href="javascript:void(0);" data-toggle="tab" class="a-mea"></a>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row mar-t10" style="border-bottom: 5px solid rgb(245,245,245);"></div>
+			<div class="row lih30 pad-tb10">
+				<div class="col-xs-4 column text-center">
+					<div><span id="sp-car">0</span>千卡</div>
+					<div><span id="chonum">0</span><span class="a-mea">克</span></div>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<div class="" style="color: green;">
+						<h3 class="mar-t10"><span class="value"></span><div style="display: inline-block;" id="type"><span class="a-mea"></span></div></h3></div>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<div class="lih60"><i class="fa fa-balance-scale" style="color: green;"></i>估算食物</div>
+				</div>
+			</div>
+			<div class="row pad-lr10">
+				<div id="rulerWrapper" style="background-color: rgba(0,128,0,.7);"></div>
+			</div>
+			<div class="row h35 lih50 ">
+				<footer class="text-center navbar navbar-fixed-bottom " style="background-color: white;border-top: 1px solid rgb(251,251,251);">
+					<div class="col-xs-6 column text-center cancel" style="background-color: rgba(0,128,0,.7);">
+						<span style="color: white;">取消</span>
+					</div>
+					<div class="col-xs-6 column text-center OK" style="background-color: green;">
+						<span style="color: white;">确定</span>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../lib/layer_mobile/layer.js"></script>
+		<script type="text/javascript" src="../../lib/h5-ruler-master/ruler.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script>
+			var pageUnit,pageunitcar,mealtype;
+			var measureRuler;
+			$(function(){
+				var img=decodeURI(ysapp.web.QueryString('img')),
+					title=decodeURI(ysapp.web.QueryString('title')),
+					Id=ysapp.web.QueryString('Id'),					
+					mea=decodeURI(ysapp.web.QueryString('mea'));
+					mealtype=ysapp.web.QueryString('mealtype');
+					pageUnit=decodeURI(ysapp.web.QueryString('unit'));
+					pageunitcar=decodeURI(ysapp.web.QueryString('unitcar'));
+					if($ys.IsInt(Id)&&$ys.IsFloat(pageUnit)&&$ys.IsFloat(pageunitcar))
+					{
+						init(Id);
+					}
+					$("#img").attr("src",img);
+					$("#title").text(title);
+					$('.a-mea').text(mea);
+					var mealname;
+					if(mealtype=='0')
+					mealname='早餐';
+				else if(mealtype=='1')
+					mealname='午餐';
+				else if(mealtype=='2')
+					mealname='晚餐';
+				else if(mealtype=='3')
+					mealname='加餐'
+				else
+					parent.layer.closeAll();
+					
+				$('#now-mea').text(mealname);
+			});
+			function init(Id)
+			{			
+				$(".cancel").click(function() {
+					parent.layer.closeAll();
+				});	
+				
+				$(".OK").click(function() {
+					var val = $(".value").text();
+					var result=(+val)/(+pageUnit)*(+pageunitcar).toFixed(0);
+					$.dialog.confirm('摄入能量'+result+',确认提交？',function(){						
+						if(!$ys.IsInt(Id)||!$ys.IsFloat(result))
+						{
+							$.dialog.errorTips('提交失败');
+							return;
+						}
+						var loading=showLoading();
+						$ys.post('/app/Food/AddMemberEat',{
+							FoodId:Id,
+							mealtype:mealtype,
+							car:result,						
+						},function(data){
+							loading.close();
+							if(data.success)
+							{					
+								parent.layer.closeAll();
+								$.dialog.succeedTips('提交成功');
+							}else{
+								$.dialog.errorTips(data.msg);
+							}
+						});
+					});															
+				});	
+				measureRuler=measureRuler = new MeasureRuler({　　　　
+			wrapperId: "rulerWrapper", //容器ID，页面中写一个DIV就行 (必须)
+			max: 1000, //刻度尺最大的刻度    (非必须，默认为2000)
+			minUnit: 0.5, //刻度尺最小刻度    (非必须，默认为1)
+			unitSet: 2, //刻度尺单元长度    (非必须，默认是10)
+			value: 1, //初始化数值       (非必须，默认为1)
+			mult: 3, //刻度值倍数，默认是最小刻度值为10px，如果定mult为3则最小刻度为30px (非必须，默认为1)
+			callback: rulerSetValue //滑动尺子过程中的回调函数     (非必须)
+			});
+			}
+			//回调函数，参数为滑动过程中的值
+		function rulerSetValue(val) {		
+			var result=(+val)/(+pageUnit)*(+pageunitcar).toFixed(0);
+			$('#sp-car').text(result);
+			$('#chonum').text(val);
+			$(".value").html(val);
+		}					
+		</script>
+	</body>
+
+</html>

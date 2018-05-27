@@ -1,0 +1,2 @@
+.ajax-loading{ width:100%; height:100%; position:fixed; z-index:999999; background-color: rgba(0, 0, 0, 0.2); transition:all ease-in-out .5s; top:0; left:0; display:none; }
+.ajax-loading p{ width: 100px;height: 100px;padding-top: 60px;background: url(../images/progress.gif) no-repeat center;border-radius: 5px;background-color: rgba(0, 0, 0, 0.8);color: #fff;font-size: 16px;}

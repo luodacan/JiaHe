@@ -1,0 +1,795 @@
+/*CSS通用重置样式*/
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+input:focus{
+    outline: none!important;
+}
+ul li input{
+    font-size: 14px;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+html {height: 100%; }
+body {
+    width: 100%;
+    font-family: Arial,'微软雅黑';
+    font-size: 62.5%;
+    line-height: 1;
+    background: #f6f8fb;
+    height: 100%;
+}
+br { display: block; line-height: 1.6em; } 
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+input, textarea { 
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none; 
+}
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong, b { font-weight: bold; }
+em, i { font-style: italic; }
+.clearfix:before, .clearfix:after{content:"\0020";display:block;height:0;overflow:hidden;}
+.clearfix:after{clear:both;}
+.clearfix{zoom:1;}
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+a{ text-decoration: none; font-size: 14px; -webkit-tap-highlight-color:rgba(0,0,0,0);}
+span{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+
+
+/*体检报告列表*/
+/*头部*/
+.examination_head{
+    height: 44px;
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 999;
+    line-height: 44px;
+    border-bottom: 1px solid #dfdfdf;
+}
+.examination_head .left{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    font-size: 14px;
+    background: url(../../images/back.png) no-repeat 15px center;
+    background-size: 9px 15px;
+    cursor: pointer;
+}
+.examination_head .right{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: right;
+    color: #79be50;
+    font-size: 14px;
+}
+
+.examination_head_choose{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #79be50;
+    overflow: hidden;
+    background: #fff;
+}
+.examination_head_choose a{
+    width:50%;
+    text-align: center;
+    color: #79be50;
+    display: inline-block;
+    height: 100%;
+}
+ .examination_head_choose a.detail{
+    float: left;
+}
+.examination_head_choose a.suggest{
+    float: right;
+}
+.examination_head_choose a.cur{
+    background: #79be50;
+    color:#fff;
+}
+.examination_head .title{
+    font-size: 17px;
+    color:#79be50;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    text-align: center;
+    top: 0;
+}
+.examination_foot{
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #dfdfdf;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    line-height: 44px;
+    color:#79be50;
+}
+.examination_foot a{
+    width: 62px;
+    height: 40px;
+    display: inline-block;
+    color:#79be50;
+    text-align: right;
+}
+.examination_foot .record{
+    position: absolute;
+    color: #79be50;
+    width: 50%;
+    left: 25%;
+    text-align: center;
+    font-size: 14px;
+}
+.examination_foot .file_upload{
+    text-align: center;
+}
+
+
+
+/*验证*/
+.examination_validation{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    /*background: #fff;*/
+}
+.examination_validation ul li{
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border: 1px solid #dfdfdf;
+    margin: 10px 0;
+    background: #fff;
+}
+.examination_validation input{
+    border: none;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    float: right;
+    font-size: 14px;
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 15px 8px 30%;
+}
+.examination_validation p.title{
+    display: inline-block;
+    color:#000000;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    font-size: 14px;
+}
+.examination_validation p.prompt{
+    font-size: 14px;
+    margin-left: 15px;
+    color: red;
+}
+.examination_validation button{
+    border: 1px solid #dfdfdf;
+    width: 60px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    color: #79be50;
+    background: #fff;
+    margin: 10px 0;
+}
+/*列表*/
+.examination_warp{
+    overflow-x: hidden;
+}
+.examination_warp .examination_list ul{
+    width: 100%;
+}
+.examination_warp .examination_list ul li a{
+    display: inline-block;
+    width: 100%;
+}
+.examination_warp .examination_list ul li{
+    width: 94%;
+    margin: 10px auto;
+    height: 70px;
+    position: relative;
+}
+.examination_warp .examination_list ul li .edit_choose{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #c1c1c1;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 8px;
+    margin-right: 6px;
+    margin-left: 6px;
+    display: none;
+    position: relative;
+    top: 28px;
+}
+.examination_warp .examination_list ul li.checkbox_cur .edit_choose{
+    background: url(../../images/tick_round.png) no-repeat center;
+    background-size: 100% 100%;
+    border: 0;
+}
+.examination_warp .examination_list ul li .title{
+    font-size: 14px;
+    font-weight: bold;
+    width: 12em;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    color:#000000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+.examination_warp .examination_list ul li .list_left{
+    /*float: left;*/
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 6px;
+    padding: 11px 0 0 15px;
+}
+.examination_warp .examination_list ul li .time{
+    /*float: right;*/
+    display: inherit;
+    /*margin-left: 15px;*/
+    margin-top: 6px;
+    font-size: 11px;
+    color:#666666;
+}
+.examination_warp .examination_list ul li a.edit_info{
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    background: url(../../images/editor_green.png) no-repeat center;
+    background-size: 16px 16px;  
+}
+.examination_warp .examination_list ul li a.edit_gray{
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    background: url(../../images/editor_gray.png) no-repeat center;
+    background-size: 16px 16px;  
+}
+.examination_warp .no_examination{
+    width: 100px;
+    height: 100px;
+    margin: 38% auto;
+    background: url(../../images/no_surgery.png) no-repeat top center;
+    background-size: 100% 100%;
+    text-align: center;
+    color: #b6b6b6;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.examination_warp .no_examination p{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 120px;
+}
+.examination_pop_con{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: none;
+}
+.examination_pop_con .examination_pop_bg{
+    background: rgba(0,0,0,.7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.examination_pop_con .examination_pop{
+    width: 90%;
+    height: 86px;
+    position: fixed;
+    top: 30%;
+    left: 5%;
+
+    background: #fff;
+    z-index: 999;
+    border: 1px solid #dfdfdf;
+}
+.examination_pop_con .examination_pop input{
+    width: 94%;
+    margin: 10px 3%;
+    border:1px solid #dfdfdf;
+    background: transparent;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 4px;
+}
+.examination_pop_con .examination_pop div{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+.examination_pop_con .examination_pop .pop_cancel{
+    width: 80px;
+    height: 24px;
+    background: #b6b6b6;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    border: 0;
+    margin-right: 10px;
+    color: #fff;
+}
+.examination_pop_con .examination_pop .pop_sure{
+    width: 80px;
+    height: 24px;
+    background: #79be50;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+    border: 0;
+    color: #fff;
+}
+/*选择星期*/
+.examination_data{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 1000;
+    display: none;
+}
+.examination_data .examination_data_con{
+    background: #fff;
+    position: relative;
+    width: 80%;
+    left: 10%;
+    top: 13%;
+}
+.examination_data .examination_data_con .data_title{
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+.examination_data .examination_data_con .data_title font{
+    font-size: 16px;
+    position: absolute;
+    width: 50%;
+    left: 25%;
+}
+.examination_data .examination_data_con .data_title .cancel{
+    float: left;
+    width: 22%;
+    font-size: 14px;
+    color: #79be50;
+}
+.examination_data .examination_data_con .data_title .sure{
+    float: right;
+    width: 20%;
+    font-size: 14px;
+    color: #79be50;
+}
+.examination_data .examination_data_con li{
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #dfdfdf;
+    width: 100%;
+    position: relative;
+}
+.examination_data .examination_data_con li label{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    padding-left: 15px;
+    font-size: 14px;
+}
+.examination_data .examination_data_con li input{
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    margin: 0;
+}
+.examination_data .examination_data_con li p{
+    font-size: 11px;
+    color: #666;
+    padding-left: 15px;
+}
+/*明细*/
+.examination_warp .examination_detail{
+    width: 100%;
+    overflow-x: hidden;
+}
+.examination_warp .examination_detail .highest{
+    width: 100%;
+    color:#79be50;
+    font-size: 14px;
+    padding-left: 15px;
+    margin-top: 14px;
+}
+.examination_warp .examination_detail .highest i{
+    background: #79be50;
+    display: inline-block;
+    width: 5px;
+    height: 10px;
+    margin-right: 6px;
+    font-size: 14px;
+    border-radius: 3px/5px;
+}
+.examination_warp .examination_detail .detail_info .secondary{
+    width: 100%;
+    margin: 13px 0 5px 15px;
+    font-size: 11px;
+    color:#666666;
+}
+.examination_warp .examination_detail .detail_info ul{
+    width: 100%;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    padding-left: 15px;
+    background: #fff;
+}
+.examination_warp .examination_detail .detail_info ul li{
+    width: 100%;
+    border-bottom: 1px solid #dfdfdf;
+    position: relative;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.examination_warp .examination_detail .detail_info ul li:last-child{
+    border-bottom:0;
+}
+.examination_warp .examination_detail .detail_info .thirdgrade{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 24px;
+    line-height: 24px;
+}
+.examination_warp .examination_detail .detail_info .secondary_info{
+    float: right;
+    right: 5px;
+    display: inline-block;
+}
+.examination_warp .examination_detail .detail_info .secondary_info input{
+    font-size: 13px;
+    border:0;
+    background: transparent;
+    text-align: right;
+    padding-right: 10px;
+    height: 24px;
+    line-height: 24px;
+    border-bottom: 1px solid #dfdfdf;
+}
+.examination_warp .secondary_info .value_span{
+    display: none;
+    *display: none;
+    *zoom: 1;
+    /*height: 20px;*/
+    margin: 3px 0;
+    line-height: 20px;
+    padding-right:10px;
+    font-size: 14px;
+    color:#666;
+    text-indent:2em;
+}
+.back_head{
+    width: 38px;
+    height:38px;
+    border:1px solid #b1b1b1;
+    z-index: 999;
+    background: #fff;
+    text-align: center;
+    line-height: 38px;
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    border-radius: 50%;
+    display: none;
+}
+.back_head img{
+    margin-top: 7px;
+    width: 20px;
+    height: 22px;
+}
+
+.examination_warp .examination_detail .detail_info .unit{
+    margin-left: 6px;
+    color:#666666;
+}
+/*建议*/
+.examination_suggest{
+    width: 100%;
+    overflow-x: hidden;
+}
+.examination_suggest .suggest_info{
+    width: 100%;
+}
+.examination_suggest .suggest_info li{
+    width: 100%;
+    background: #fff;
+    height: auto;
+    margin-top: 10px;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+}
+.examination_suggest .suggest_info li p.title{
+    width: 96%;
+    margin-left: 15px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.examination_suggest .suggest_info li div.suggest_info_div{
+    display: none;
+    width: 96%;
+    margin: 0 0 13px 15px;
+    padding-top: 13px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid #dfdfdf;
+}
+.examination_suggest .suggest_info li div.suggest_info_div textarea{
+    width: 95%;
+    max-width: 95%;
+    border:0;
+    background: transparent;
+    overflow-y: visible;
+    font-size: 14px;
+    color: #000000;
+    min-height: 60px;
+}
+.examination_suggest .suggest_info li div.suggest_info_div p{
+    line-height: 1.5em;
+}
+.examination_suggest .suggest_info li p.title i{
+    background: url(../../images/arrow_gray.png) no-repeat;
+    background-size: 9px 15px;
+    position: absolute;
+    display: inline-block;
+    right: 14px;
+    top: 14px;
+    width: 9px;
+    height: 15px;
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg); 	/* IE 9 */
+    -moz-transform:rotate(0deg); 	/* Firefox */
+    -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+    -o-transform:rotate(0deg);
+    transition:0.5s;
+}
+.examination_suggest .suggest_info li p.title i.cur{
+    transform:rotate(-90deg);
+    -ms-transform:rotate(-90deg); 	/* IE 9 */
+    -moz-transform:rotate(-90deg); 	/* Firefox */
+    -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-90deg);
+    transition:0.5s;
+}
+.examination_suggest .suggest_info li .suggest_info_div p{
+    margin-bottom: 11px;
+}
+/*新增报告填写资料*/
+.examination_add_fill{
+    width: 100%;
+}
+.examination_add_fill li{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dfdfdf;
+    background: #fff;
+    padding: 0 15px;
+    font-size: 14px;
+    position: relative;
+}
+.examination_add_fill li.cur{
+    background: #c5c5c5;
+}
+.examination_add_fill li p{
+    display: inline-block;
+    /*float: left;*/
+    position: absolute;
+    left: 15px;
+    /*font-weight: bold;*/
+}
+.examination_add_fill li input{
+    float: right;
+    text-align: right;
+    background: transparent;
+    height: 27px;
+    margin-top: 9px;
+    border: 0;
+    border-bottom: 1px solid #dfdfdf;
+    padding-right: 4px;
+}
+.examination_add_fill .instructions{
+    color:#666;
+    font-size: 11px;
+    margin: 15px;
+    display: none;
+}
+.examination_head .cannt_save{
+    color: #dfdfdf;
+}
+/*取消箭头*/
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+.examination_add_fill li select{
+    float: right;
+    text-align: right;
+    background: transparent;
+    height: 27px;
+    margin-top: 9px;
+    border: 0;
+    border-bottom: 1px solid #dfdfdf;
+    padding-right: 4px;
+    -webkit-appearance: none;
+}
+.examination_add_fill .select_div{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+}
+.examination_add_fill .select_div input{
+    width: 64%;
+    height: 30px;
+    padding-left: 4px;
+    margin: 0 15px 0 15px;
+}
+.examination_add_fill .select_div span{
+    display: inline-block;
+    width:20%;
+    height: 30px;
+    line-height: 30px;
+    background: #79be50;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.loading_title{
+    line-height: 40px;
+    color: #b6b6b6;
+    margin-left: 15px;
+    font-size: 14px;
+}
+/*添加*/
+.examination_foot .add_icon{
+    background: url(../../images/add_green.png) no-repeat;
+    position: absolute;
+    background-size: 100%;
+    top: 13px;
+    left: 15px;
+    width: 15px;
+    height: 15px;
+}
+/*删除*/
+.examination_foot .del_medical{
+    display: none;
+    position: relative;
+    color:#fb6565;
+}
+.examination_foot .del_cancel_medical{
+    display: none;
+    float: right;
+    margin-right: 15px;
+}
+.examination_foot .del_medical .del_icon{
+    background: url(../../images/del_red.png) no-repeat;
+    position: absolute;
+    background-size: 100%;
+    top: 14px;
+    left: 15px;
+    width: 15px;
+    height: 15px;
+}
+/*导入*/
+.examination_foot .file_upload{position: absolute;width: 40%;left: 30%;top: 0;font-size: 14px;}
+/*修改身份证*/
+.examination_foot .edit-idcard{
+ float: right;
+ margin-right: 15px;
+}
+
+.examination_foot .choose_data{
+    float: right;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+/*IOS档案上传提示*/
+#IOS-file{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    z-index:1000;
+}
+#IOS-file .IOS-prompt{
+    width: 80%;
+    height: 300px;
+    left: 10%;
+    top: 20%;
+    border: #f6f8fb 1px solid;
+    border-radius: 8px;
+    background:#fff;
+    position: fixed;
+    /*z-index:1001;*/
+}
+#IOS-file .IOS-prompt .IOS-title{
+    font-size: 18px;
+    text-align: center;
+    color: #79be50;
+    padding:10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px #b6b6b6 solid;
+}
+#IOS-file .IOS-prompt .IOS-con{
+    padding: 0 10px;
+}
+#IOS-file .IOS-prompt .IOS-con p{
+    text-indent: 2em;
+    font-size: 15px;
+    line-height: 24px;
+    color:#666666;
+}
+#IOS-file .IOS-prompt .IOS-con p.p2{
+    text-indent: 0;
+}
+

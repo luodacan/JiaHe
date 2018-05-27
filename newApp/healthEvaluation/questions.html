@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/healthEvaluation/questions.css"/>
+    <script type="text/javascript" src="../js/common/flexible.js"></script>
+</head>
+<body id="webapp">
+
+    <div class="list hide" :class="{'show':question_o.length>0}">
+        <p class="eva-title">健康520专项评估</p>
+        <div class="item" v-for="item in question_o">
+           <p class="title" v-text="($index+1)+'、'+item.title"></p>
+            <block v-if="question_t[item.id]">
+                <div class="question-item" v-for="item2 in question_t[item.id]">
+                    <p class="question-title" v-text="item2.title"></p>
+                    <div class="choose-item">
+                        <a href="javascript:;" @click="chooseItem(item2,item3)" class="choose-btn choose-radio" :class="{'active':item3.isSelected}" v-for="item3 in option_p[item2.id]" v-html="item3.name"></a>
+                    </div>
+                </div>
+            </block>
+            <block v-else>
+                <div class="question-item">
+                    <div class="choose-item">
+                        <a href="javascript:;" @click="chooseItem(item,item3)" class="choose-btn choose-radio" :class="{'active':item3.isSelected}" v-for="item3 in option_p[item.id]" v-html="item3.name"></a>
+                    </div>
+                </div>
+            </block>
+        </div>
+    </div>
+    <!--<a href="javascript:;" class="save-btn" @click="saveBtn">提交</a>-->
+    <div class="question-save">
+        <a href="javascript:;" class="save-btn" @click="saveBtn">提交</a>
+    </div>
+</body>
+<script type="text/javascript" src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload = function () {
+    require(['../app/healthEvaluation/questions'], function (index) {
+    })
+}</script>
+</html>

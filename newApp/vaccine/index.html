@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+    <title>疫苗管理</title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/vaccine/index.css"/>
+    <script type="text/javascript" src="../js/common/flexible.js"></script>
+</head>
+<body id="webapp">
+<div class="container">
+    <div class="baby-info">
+        <div class="baby-info-pic"><img src="../images/babyimg@3x.png" alt="" class="baby-pic"></div>
+        <div class="baby-info-detail">
+            <div class="no-baby-info"> + 添加宝宝信息</div>
+        </div>
+    </div>
+
+    <div class="show-type">
+        <a href="javascript:;" class="show-type-item active">接种计划</a>
+        <a href="javascript:;" class="show-type-item">疫苗库</a>
+    </div>
+
+    <div class="show-detail">
+        <div class="show-detail-item">
+            <div class="no-detail">
+                <img src="../images/data_icon.png" alt="">
+                <p>请添加宝宝信息</p>
+                <p>才能查看接种计划</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload = function () {
+    require(['../app/vaccine/index'], function (index) {
+    })
+}</script>
+</html>

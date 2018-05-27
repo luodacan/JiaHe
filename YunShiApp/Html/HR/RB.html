@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>记录早餐</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/weui-master/jquery-weui.min.css" />
+		<link rel="stylesheet" href="../../lib/layer_mobile/need/layer.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />		
+		<link rel="stylesheet" href="../../css/artdialog.css"/>
+		<link rel="stylesheet" href="../../Content/HealthRecord/Addmeal.css"/>
+	</head>
+
+	<body>
+		<input class="weui_input" id="amount" type="text" value="" style="display: none;">
+		<div class="container">
+			<header class="header-Green row">
+				<div class="col-xs-4 column text-left">
+					<span class="glyphicon glyphicon-chevron-left" onclick="$ys.platform.back()"></span>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<div id="h-meal"></div>
+				</div>
+				<div class="col-xs-4 column text-right">
+				</div>
+			</header>
+			<div class="row">
+				<span class="glyphicon glyphicon-search" style="position:relative;top:20px;left: 30px;float:left;height: 0px;z-index: 99;" onclick="search()"></span>
+				<div class="col-xs-12 column pad-t10">
+					<input type="text" class="form-control pad-l40" placeholder="请输入食物名称" id="inp-food">
+				</div>
+				<div class="col-xs-12 column pad-t10">
+					<div class="col-xs-12 column bc-graywhite pad10 circle5">
+						常见食物
+					</div>
+				</div>
+			</div>
+			<div id="foodlist"></div>			
+		</div>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script type="text/javascript " src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js "></script>
+		<script type="text/javascript" src="../../lib/layer_mobile/layer.js"></script>
+		<script type="text/javascript" src="../../lib/weui-master/jquery-weui.js"></script>		
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../Script/HealthRecord/Addmeal.js"></script>
+	</body>
+
+</html>

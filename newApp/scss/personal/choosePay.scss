@@ -1,0 +1,97 @@
+@import "../config";
+
+body {
+  background: $color-bg;
+}
+
+.choose-pay {
+  .list {
+
+    .item {
+      background-color: $color-white;
+      border-bottom: 1px solid $color-border-e5;
+      padding: r(20) r(50) r(20) r(30);
+      display: flex;
+      font-size: r(28);
+      color: $color-333;
+      @include flex-center;
+      &:last-child {
+        border: 0;
+      }
+      .title {
+        height: r(70);
+        line-height: r(70);
+        display: inline-block;
+        @include flex-grow(1);
+      }
+      .text {
+        @include flex-grow(1);
+        text-align: right;
+        max-width: 70%;
+      }
+      .pay-icon {
+        background-size: r(48) r(48);
+        height: r(70);
+        background-repeat: no-repeat;
+        background-position: left r(11);
+        width: r(70);
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        &.alipay{
+          background-image:url(#{$wxapp_icon}/zhifubaopay.png);
+        }
+        &.wechat{
+          background-image:url(#{$wxapp_icon}/wechatpay.png);
+        }
+      }
+    }
+  }
+  .pay-list{
+    .item{
+      position: relative;
+      &.action:after{
+        position: absolute;
+        content: "";
+        width: r(48);
+        height: r(48);
+        right: r(30);
+        top:r(40);
+        background-repeat: no-repeat;
+        background-image: url(#{$wxapp_icon}/paychoose.png);
+        background-size: r(30) r(30);
+      }
+    }
+  }
+  .comment {
+    margin: 0;
+    margin-top: r(40);
+    font-size: r(26);
+  }
+  .pay-num {
+    font-size: r(28);
+    color: $color-333;
+    margin-top: r(80);
+    .num-red {
+      display: inline-block;
+      color: $color-red;
+      margin-left: r(40);
+      font-size: r(32);
+    }
+  }
+
+  .pay-btn {
+    margin: r(120) 0 r(60) 0;
+    padding: 0 r(30);
+    span {
+      display: block;
+      background: $color-red;
+      text-align: center;
+      color: $color-white;
+      font-size: r(32);
+      height: r(90);
+      line-height: r(90);
+      border-radius: r(10);
+    }
+  }
+}

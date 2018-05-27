@@ -1,0 +1,51 @@
+@import "../config";
+.list{
+  .item {
+    background-color: $color-white;
+    padding: r(20) r(60) r(20) r(30);
+    margin-bottom: r(10);
+    @include flex-center;
+    font-size: r(28);
+    display: flex;
+    border: 1px solid $color-border;
+    a {
+      display: block;
+      width: 100%;
+    }
+    &.no-border {
+      border: 0;
+    }
+    .title {
+      height: r(50);
+      line-height: r(50);
+      display: inline-block;
+      font-size: r(30);
+      color: $color-666;
+      @include flex-grow(1);
+    }
+    .text-input {
+      text-align: right;
+      height: r(50);
+      line-height: r(50);
+      margin: 0;
+      border: 0;
+      width: r(350);
+      border-radius: 0;
+      padding: r(10) 0;
+      @include flex-grow(1);
+      color: $color-bbb;
+      font-size: r(28);
+      &::-webkit-input-placeholder{
+        color: $color-bbb;
+      }
+    }
+    .text {
+      @include flex-grow(1);
+      text-align: right;
+      max-width: 70%;
+      color: $color-bbb;
+      font-size: r(28);
+
+    }
+  }
+}

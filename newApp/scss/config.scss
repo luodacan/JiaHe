@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+$color-green45:#45b24b;
+$color-green:#51b951;
+$color-green9c3:#99cc33;;
+$color-suntan:#967e10;
+
+$color-000:#000000;
+$color-333:#333333;
+$color-21:#212121;
+$color-666:#666666;
+$color-999:#999999;
+$color-bbb:#bbbbbb;
+$color-ba:#bababa;
+$color-white:#ffffff;
+$color-f9:#f9f9f9;
+$color-red:#f0664b;
+
+$color-border:#e6e6e6;
+$color-border-e5:#e5e5e5;
+$color-bg:#f2f4f7;
+
+$wxapp_icon:'https://jk520.cc/statics/images/wxapp';
+
+$r:1/16;
+@function r($px) {
+  @return ($px/2) * $r + rem;
+}
+@mixin flex{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin flex-center{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+@mixin flex-center-left{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+@mixin flex-grow($n){
+  -webkit-box-flex: $n;
+  -webkit-flex-grow: $n;
+  flex-grow: $n;
+}
+@mixin lineclamp($height,$n,$lineheight){
+  overflow: hidden;
+  height:$height;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $n;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  line-height:$lineheight;
+}
+//选择医院和选择科室
+@mixin chooseContent{
+  .list{
+    .item{
+      height: r(100);
+      line-height: r(100);
+      background: $color-white;
+      border-bottom: 1px solid $color-border-e5;
+      color: $color-333;
+      font-size: r(28);
+      .text{
+        line-height: 1.5;
+        margin-left: r(30);
+      }
+      &:last-of-type{
+        //border: 0;
+      }
+    }
+  }
+}

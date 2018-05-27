@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>健身计划</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../css/custom.css"/>
+		<link rel="stylesheet" href="../../css/artdialog.css"/>
+		<style>
+			.WH-35 {
+				width: 35px;
+				height: 35px;
+				margin: 0 1px;
+			}
+			
+			.w20 {
+				width: 20%;
+			}
+			.plantool{
+				position: fixed;
+				background-color: #fff;
+				height: 45px;
+				width: 100%;
+				bottom: 0;
+				text-align: center;
+			}
+			.plantool div{
+				display: inline-block;
+				width: 60%;
+				text-align: center;
+				margin-top: 12px;
+			}
+			
+			.plantool .pbtn{
+				width: 100%;
+				color: #fff;
+				background-color:#F76260 ;
+				border: 0;
+				border-radius:4px ;				
+				padding: 4px 0;		
+				outline: none;		
+			}
+			
+		</style>
+	</head>
+
+	<body class="LightGray">
+		<div class="container">
+			<header class="header-white row">
+				<div class="col-xs-4 column text-left ">
+					<span class="glyphicon glyphicon-chevron-left" onclick="$ys.platform.back()">返回</span>
+					<!--<i class="fa fa-plus fs18"></i>-->
+				</div>
+				<div class="col-xs-4 column text-center">
+					<span class="fw700" style="font-size: 14px;">健康改善计划</span>
+				</div>
+				<div class="col-xs-4 column text-right">
+					
+				</div>
+			</header>
+			<div class="row pad-t10">
+				<div class="col-xs-12 column">
+					<span class="text-muted" id="planname"></span>
+					<div id="plancontent"></div>
+				</div>
+			</div>
+			<div class="row" id="planlist">
+				
+			</div>
+			<div style="line-height: 72px;height: 72px;">&nbsp;</div>
+			<div class="plantool">
+				<div>
+					<input type="button" class="pbtn" value="选择计划" id="addplan"/>
+				</div>				
+			</div>
+		</div>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+	</body>
+	<script>
+		$ys.platform.init(function(){
+			var id=$ys.platform.QueryString('Id');
+			if($ys.IsInt(id))
+			{
+				loadplan(id);
+			}else{
+				$.dialog.errorTips('数据异常');
+			}	
+			
+		});
+		function loadplan(id)
+		{
+			$ys.Slide('/app/Investigation/InvPlanDetail',{PoolId:id},$('#planlist'),function(v){
+				var item=[];
+				var itemstr='';
+				v.list.forEach(function(q){
+					itemstr='<img src="'+$ys.url+q.Icon+'" class="WH-35">';
+					item.push(itemstr);
+				});
+				
+				var tmp='<div class="col-xs-12 column mar-tb10 pad-lr5">'+
+					'<div class="col-xs-12 column  bc-white pad5">'+
+						'<div class="col-xs-2 column pad-none lih60 text-center">第'+
+							v.PlanDate+
+						'天</div>'+
+						'<div class="col-xs-7 column pad-none lih30">'+
+							'<span>'+$ys.join(v.list,'、','Name')+'</span>'+
+							'<div class="text-muted">'+
+								item.join('')+								
+							'</div>'+
+						'</div>'+
+						'<div class="col-xs-3 column text-right">'+
+							'<br />'+
+							'<span class="text-muted">共'+v.list.length+'个任务</span>'+
+							'<p></p>'+
+						'</div>'+
+					'</div>'+
+				'</div>';
+				return tmp;
+			},function(data){
+				if(data.success)
+				{
+					$('#planname').text(data.name);
+					$('#plancontent').text(data.content);
+				}
+				if(data.success&&data.result.length>0&&!data.has)
+				{
+					$('#addplan').unbind('click').bind('click',function(){						
+						addPlan(id);
+					});
+				}else{
+					$('#addplan').unbind('click').bind('click',function(){						
+						delPlan(id);
+					});
+					$('#addplan').val('取消计划');
+				}
+			});			
+		}	
+		function addPlan(id)
+		{
+			 $.dialog.confirm('是否添加计划？',function(){
+				 	var loading=showLoading();
+				 		$ys.post('/app/Investigation/MemberAddPlan',{planId:id},function(data){
+				 			loading.close();
+				 			if(data.success)
+				 			{
+				 				$.dialog.succeedTips('添加成功');
+				 				$('#addplan').unbind('click').bind('click',function(){						
+									delPlan(id);
+								});
+								$('#addplan').val('取消计划');
+								if(ysapp.custom.IsApp()) plus.push.createMessage('您已选择新的健康计划');
+				 			}else{
+				 				$.dialog.errorTips(data.msg);
+				 			}		 			
+				 		});
+				 });
+		}
+		function delPlan(id)
+		{
+			$.dialog.confirm('是否取消计划？',function(){
+				$ys.post('/app/Investigation/MemberDelPlan',{planId:id},function(data){
+					if(data.success){
+						$.dialog.succeedTips('取消成功');
+				 		$('#addplan').unbind('click').bind('click',function(){						
+							addPlan(id);
+						});
+						$('#addplan').val('添加计划');
+					}else{
+						$.dialog.errorTips(data.msg);
+					}
+				});
+			});
+		}
+	</script>
+</html>

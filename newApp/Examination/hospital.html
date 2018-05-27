@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>体检报告</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <link href="../css/examination/ExaminationReport.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!--<div class="examination_head">-->
+            <!--<a class="left" href="javascript:;"></a>-->
+            <!--<p class="title">选择医院</p>-->
+            <!--<span class="right save">确定</span>-->
+        <!--</div>-->
+        <!--<div style="height: 44px;"></div>-->
+        <div class="examination_add_fill">
+            <div class="select_div"><input type="text" class="select_input" value=""><span class="select_hospital">查询</span></div>
+            <ul>
+                <li><p></p><input type="hidden" value=""></li>
+            </ul>
+        </div>
+        <div class="back_head"><img src="../images/back_head.jpg"></img></div>
+        <div style="height: 40px;" class="loading_title"></div>
+        <script type="text/javascript" src="../js/examination/jquery.js"></script>
+        <script type="text/javascript" src="../lib/mui/dist/mui.min.js"></script>
+        <script type="text/javascript" src="../js/common/plusNative.js"></script>
+        <script type="text/javascript" src="../js/examination/common.js"></script>
+        <script>
+            $(document).ready(function () {
+                window.name = '';
+                select_ho();
+            })
+            function select_ho() {
+                window.len = 0;
+                $('.left').click(function () {
+                    window.history.go(-1);
+                });
+                $.getJSON($localhost + '/Writeapp/Examination/choose_hospital', {'name': name}, function (data) {
+                    var addli = '';
+                    $.each(data, function (idex, item) {
+                        addli += " <li><p>" + item['name'] + "</p><input type='hidden' value='" + item['id'] + "'></li>";
+                    })
+                    $('.loading_title').text('');
+                    $('ul').html(addli);
+                    $('li').bind('click', function () {
+                        $(this).addClass('cur').siblings().removeClass('cur');
+                        window.id = $(this).find('input').val();
+                        var show = $(this).find('p').text();
+                        $('.select_input').val(show);
+                    })
+                })
+                function_con();
+            }
+            function function_con() {
+
+                $(window).scroll(function () {
+                    if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                        $('.loading_title').text('加载中……');
+                        len += 20;
+                        get();
+                    }
+                })
+                $('.select_hospital').on('click', function () {
+                    name = $(this).parent().find('input').val();
+                    return select_ho();
+                })
+                function get() {
+                    $.getJSON($localhost + '/Writeapp/Examination/choose_hospital', {'len': len, 'name': name}, function (data) {
+                        var addli = '';
+                        $.each(data, function (idex, item) {
+                            addli += " <li><p>" + item['name'] + "</p><input type='hidden' value='" + item['id'] + "'></li>";
+                        })
+                        $('ul li:last').after(addli);
+                        $('li').bind('click', function () {
+                            $(this).addClass('cur').siblings().removeClass('cur');
+                            window.id = $(this).find('input').val();
+                            var show = $(this).find('p').text();
+                            $('.select_input').val(show);
+                        })
+                        $('.loading_title').text('');
+                    })
+                }
+                $(window).scroll(function () {
+                    var scrollTop = $(this).scrollTop();
+                    var windowHeight = $(this).height();
+                    if (scrollTop == '0') {
+                        $('.back_head').fadeOut();
+                    }
+                    if (scrollTop > windowHeight) {
+                        $('.back_head').fadeIn();
+                    }
+                });
+                $('.back_head').click(function () {
+                    $("html,body").animate({scrollTop: 0}, 300);
+                });
+            }
+            function saveBtn() {
+                applocalStorage.setItem("hospital_name", $('.select_input').val());
+                applocalStorage.setItem("hospital_id", id);
+                setTimeout(function(){
+                    app.block_VC({"previous_id":"examination_add","data":{}});
+                    app.close_VC();
+                    }, 100);
+            }
+        </script>
+    </body>
+</html>  

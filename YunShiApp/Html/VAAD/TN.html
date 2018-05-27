@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>新闻页</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../lib/Swiper-4/css/swiper.min.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../Content/information/index.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="header-Green row pad-tb5">
+				<div class="col-xs-3 column text-center pad-r2 lih30" >
+					<span class="glyphicon glyphicon-chevron-left backicon" onclick="$ys.platform.back()"></span>
+					<span id="lefttitle">推荐</span>
+				</div>
+				<div class="col-xs-9 column pad-l2">
+					<i class="fa fa-search text-muted" style="position:absolute;left:15px;padding-top: 9px;height: 30px;width: 30px;" onclick="search()"></i>
+					<input class="form-control h30 pad-l30" placeholder="搜索你感兴趣的问题" style="border-radius: 20px;" id="inp-search"/>
+				</div>
+			</div>
+			<div class="row  border-b">
+				<!-- Swiper -->
+				<div class="col-xs-11 column pad-r10">
+					<div class="swiper-container swiper-container2">
+						<div class="swiper-wrapper" id="catelist" style="display: none;">
+							<div class="swiper-slide sw-tab swcur" onclick="LoadRecommend(this)">
+								推荐
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-1 column text-center pad-lr5 border-l">
+					<i class="fa fa-plus fs18"></i>
+				</div>
+			</div>
+			<div id="artlist"></div>
+			<div style="line-height: 60px;height: 60px;">&nbsp;</div>
+			<div class="row">
+				<footer class="text-center navbar navbar-fixed-bottom " style="background-color: white; padding: 5px 0px; border-top: 1px solid rgb(251,251,251);">
+					<div class="col-xs-4 column text-center">
+						<i class="fa fa-file-text" style="font-size: 18px;"></i><br />
+						<span>文章</span>
+					</div>
+					<div class="col-xs-4 column text-center">
+						<i class="fa fa-compass" style="font-size: 18px;"></i><br />
+						<span>发现</span>
+					</div>
+					<div class="col-xs-4 column text-center">
+						<i class="fa fa-user-o"></i><br />
+						<span>我</span>
+					</div>
+				</footer>
+			</div>
+		</div>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script type="text/javascript " src="../../lib/Swiper-4/js/swiper.min.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../Script/information/index.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,9 @@
+.bc-MediumGrey {background-color: rgb(242, 242, 242);}
+.div-mian {position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 19891014;}
+.border-tb-grren {border-bottom: 1px solid rgb(95, 195, 95);border-top: 1px solid rgb(95, 195, 95);}
+.overflow-auto {overflow: auto;}
+.weui-picker-modal {background: white;}
+.color_mian {color: rgb(199, 169, 21);}
+.weui-picker-modal .picker-item {color: black;}
+.weui-picker-modal .picker-item.picker-selected {color: rgb(199, 169, 21);}
+.title{margin: 0px;}

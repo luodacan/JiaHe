@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>医疗</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/Swiper-4/css/swiper.min.css" />
+		<link rel="stylesheet" href="../../lib/liMarquee/liMarquee.css" />
+		<link rel="stylesheet" href="../../css/Index.css" />
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link rel="stylesheet" href="../../css/artdialog.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-xs-12 column text-center top" style="padding-bottom: 10px;">
+					<h4 style="color: #FFFFFF; padding: 5px 0px;" id="planname"></h4>
+					<!--每天100分，健康生活一辈子-->
+					<div style="height: 200px;">
+						<div class="swiper-container swiper-container1">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="col-xs-8 col-sm-6 column">
+										<div class="vertical-container-end">
+											<div class="Ball circleprogress" style="zoom:0.6;width: 100%;  background-color: transparent;" onclick="$ys.platform.open({url:'/Html/VAAD/HP.html'});">
+												<!--<canvas id="myCanvas" class=""></canvas>-->
+												<canvas id="layer1" style="position: absolute; right: 0; top: 0; z-index: 0;"></canvas>
+												<canvas id="layer2" style="position: absolute; right: 0; top: 0; z-index: 1;"></canvas>
+												<canvas id="layer3" style="position: absolute; right: 0; top: 0; z-index: 2;"></canvas>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6 column">
+										<div class=" color_white">
+											<div class="row text-left">
+												<small>目标总进度</small>
+												<br />
+												<h4 id="jk_zjd">0%</h4>
+											</div>
+											<div class="row text-left">
+												<small>健康评价</small>
+												<br />
+												<h4 id="jk_pj">0%</h4>
+											</div>
+											<div class="row text-left">
+												<small>当天任务数</small>
+												<br />
+												<h4 id="jk_rws">0</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">Slide 2</div>
+								<div class="swiper-slide">Slide 3</div>
+							</div>
+							<div class="button-prev"><img class="WH" src="../../img/whiteLeft.png"></div>
+							<div class="button-next"><img class="WH" src="../../img/whiteRight.png"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 column"></div>
+						<div class="col-xs-8 column" style="border: 2px solid white; background-color: rgb(10,124,37); color: white; padding: 5px; margin: 5px; border-radius: 10px;">
+							<div class="dowebok">
+								<ul>
+									<li style="list-style-type: none;">
+										<a href="../VAAD/GC.html">
+											<h6 style="color: white !important;">调查问卷</h6></a>
+									</li>							
+								</ul>
+							</div>
+						</div>
+						<div class="col-xs-2 column"></div>
+					</div>
+					<div class="row">
+						<div class="vertical-container-center">
+							<div class="col-xs-3 column">
+								<img src="../../img/HeadPortrait.png" width="100%" class="img-circle" />
+							</div>
+							<div class="col-xs-8 column">
+								<div class="row" style="color: white;">
+									<div>
+										<p class="text-left" id="jk_jz" style="height: 12px;"></p>
+									</div>
+									<div></div>
+								</div>
+								<div class="row">
+									<div class="col-xs-11 column text-left text-muted" style="padding: 1px 10px; border-radius: 5px; background-color: rgb(255,255,255);">
+										<p id="jk_tips" style="height: 52px;">欢迎使用健康520</p>
+									</div>
+									<div id="triangle-left"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Swiper -->
+				<div class="col-xs-11 column">
+					<div class="swiper-container swiper-container2">
+						<div class="swiper-wrapper">
+							<!--<div class="swiper-slide">
+								<div>
+									<div class="text-muted ptb2">
+										<i class="iconfont icon-zhangdanbulu color_ping" style="font-size: 30px;"></i>
+										<br/>健康账本
+									</div>
+								</div>
+							</div>-->
+							<div class="swiper-slide">
+								<a href="javascript:void(0);" onclick="$ys.platform.open({url:'/Html/HR/MHR.html'})">
+									<div>
+										<div class="text-muted ptb-tb5">
+											<img src="../../img/tab/HealthAssessment.png" width="45px" />
+											<br/>健康记录
+										</div>
+									</div>
+								</a>
+							</div>
+							<!--<div class="swiper-slide">
+								<div onclick="$ys.platform.open({url:'/Html/Pay/Paymemt.html',extras:{orderid:20180515}})">
+									<div class="text-muted ptb-tb5">
+										<img src="../../img/tab/HealthCounseling.png" width="45px" />
+										<br/>健康咨询
+									</div>
+								</div>
+							</div>-->
+							<div class="swiper-slide">
+								<a href="javascript:void(0);" onclick="$ys.platform.open({url:'/Html/VAAD/HE.html'})">
+									<div>
+										<div class="text-muted ptb-tb5">
+											<img src="../../img/tab/HealthRecords.png" width="45px" />
+											<br/>健康测评
+										</div>
+									</div>
+								</a>
+							</div>
+							<!--<div class="swiper-slide">
+								<a href="javascript:void(0);" onclick="clickpop(this.id,'healthEvaluation_index',evaluation)" id="healthEvaluation/index.html">
+									<div>
+										<div class="text-muted ptb-tb5">
+											<img src="../../img/tab/HealthRecords.png" width="45px" />
+											<br/>健康评测
+										</div>
+									</div>
+								</a>
+							</div>-->
+							<div class="swiper-slide">
+								<a href="javascript:void(0);" >
+									<div>
+										<div class="text-muted ptb-tb5">
+											<img src="../../img/tab/VaccineManagement.png" width="45px" />
+											<br/>疫苗管理
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:void(0);" onclick="clickpop(this.id,'diagnosis_list')" id="diagnosis/list.html">
+									<div>
+										<div class="text-muted ptb-tb5">
+											<img src="../../img/tab/GreenGuide.png" width="45px" />
+											<br/>导诊美护
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="javascript:void(0);" onclick="plus.webview.open('https://jk520.cc/Phoneapp/Encyclopedia/index')">
+									<div class="text-muted ptb-tb5">
+										<img src="../../img/tab/HealthSchool.png" width="45px" />
+										<br/>健康学堂
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-1 column text-left plr0">
+
+					<img src="../../img/left.png" class="next" style="max-width: 100%;width: 27px;" />
+				</div>
+			</div>
+			<div class="row ptb2">
+				<div class="col-xs-12 column">
+					<input type="text" style="padding-right: 35px; border: 1px solid rgb(243,140,190);color: rgb(243,140,190);" class="form-control" id="inp-search">
+					<img src="../../img/search.png"  style="position: absolute; right: 25px; top: -3px;height: 40px;width: 40px;padding: 10px;" onclick="search()"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 column">
+					<p class="ptb2" id="tabsearch">
+						
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 column">
+					<h6 class="pink" style="font-size: 18px;">健康咨询</h6>
+				</div>
+			</div>
+			<div id="Articlelist">
+				
+			</div>
+			<div style="line-height: 72px;height: 72px;">&nbsp;</div>
+			<div class="row">
+				<footer class="text-center navbar navbar-fixed-bottom " style="background-color: white; padding: 5px 0px; border-top: 1px solid rgb(251,251,251);">
+					<!--<div class="col-xs-1 column "></div>-->
+					<div class="col-xs-2 column text-center w20 ">
+						<i class="iconfont icon-home color_red" style="font-size: 30px;"></i><br />
+						<span>首页</span>
+					</div>
+					<div class="col-xs-2 column text-center w20 ">
+						<i class="iconfont icon-daohangzixun color_green" style="font-size: 30px;"></i><br />
+						<span>咨询</span>
+					</div>	
+					<a href="javascript:void(0);" onclick="clickpop(this.id,'healthRecord_index',infomation)" id="healthRecord/index.html">
+					<div class="col-xs-2 column text-center w20 ">
+						<i class="iconfont icon-zhangdanbulu color_ping" style="font-size: 30px;"></i><br />
+						<span>档案</span>
+					</div>
+					</a>
+					<!--<div class="col-xs-2 column text-center w20 ">
+						<i class="iconfont icon-gouwu color_ping" style="font-size: 30px;"></i><br />
+						<span>购物</span>
+					</div>-->
+					<a href="javascript:void(0);" onclick="clickpop(this.id,'vip_vip')" id="vip/vip.html">
+						<div class="col-xs-2 column text-center w20 ">
+							<i class="iconfont icon-renren1 color_yellow" style="font-size: 30px;"></i><br />
+							<span>VIP</span>
+						</div>
+					</a>
+					<a href="javascript:void(0);" onclick="$ys.platform.open({url:'/Html/User/UserCenter.html'})" >
+						<div class="col-xs-2 column text-center w20 ">
+							<i class="iconfont icon-fl-renyuan color_blue" style="font-size: 30px;"></i><br />
+							<span class="text-default">我的</span>
+						</div>
+					</a>
+					<!--<div class="col-xs-1 column "></div>-->
+				</footer>
+			</div>
+		</div>
+		<style>
+			#tabsearch span{
+				margin: 0 1px;
+			}
+		</style>
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js "></script>
+		<script type="text/javascript " src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js "></script>
+		<script type="text/javascript " src="../../lib/Swiper-4/js/swiper.min.js "></script>
+		<script type="text/javascript" src="../../js/Ball.js"></script>
+		<script type="text/javascript" src="../../lib/liMarquee/jquery.liMarquee.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../Script/Home/index.js"></script>
+		
+		
+		
+	<script type="text/javascript">
+		    var infomation = {
+		        "titleNView": { //原生头部导航栏
+		            "backgroundcolor": "#45b24b",
+		            "titletext": "",
+		            "titlecolor": "#FFFFFF",
+		            "autoBackButton": true
+		        }
+		    }
+		
+		    var evaluation = {
+		        "titleNView": { //原生头部导航栏
+		            "backgroundcolor": "#c8a915",
+		            "titlecolor": "#FFFFFF",
+		            "autoBackButton": true,
+		            "buttons": [
+		                {
+		                    "fontSize": "26px",
+		                    "fontSrc": '_www/fonts/otherfont.ttf',
+		                    "text": "\ue62f",
+		                    "color": "#ffffff",
+		                    "float": "right",
+		                    "onclick": "javascript:plus.webview.getWebviewById('healthEvaluation_index').evalJS('toParts();')",
+		                },]
+		        }
+		    };
+		
+		    var clickpop = function (url, id, option) {
+		        plus.webview.open("../../../newApp/" + url, id, option || {
+		            "titleNView": { //原生头部导航栏
+		                "backgroundcolor": "#c8a915",
+		                "titletext": "",
+		                "titlecolor": "#FFFFFF",
+		                "autoBackButton": true
+		            }
+		        }, "slide-in-right");
+		    }		    
+</script>
+	</body>
+
+</html>

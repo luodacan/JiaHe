@@ -1,0 +1,67 @@
+@import "../config";
+
+.bind-type{
+  background: $color-border-e5;
+  @include flex-center-left;
+  .bind-item{
+    @include flex-grow(1);
+    text-align: center;
+    font-size: r(28);
+    height: r(80);
+    line-height: r(80);
+    color: $color-999;
+    &.action{
+      color: $color-green;
+    }
+  }
+}
+
+.bind-form{
+  .form-item{
+    display: block;
+    padding: r(30);
+    .form-input{
+      width: 100%;
+      font-size: r(28);
+      height:r(80);
+      line-height: r(80);
+      border-radius: r(8);
+      border:1px solid $color-border-e5;
+      margin-bottom: r(30);
+     padding-left: 3%;
+    }
+    .code{
+      font-size: 0;
+      white-space: nowrap;
+      display: none;
+      &.code-show{
+        display: block;
+      }
+        .code-input{
+          font-size: r(28);
+          float: left;
+          width: 60%;
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+
+        }
+      .code-btn{
+        font-size: r(28);
+        display: inline-block;
+        width: 40%;
+        float: left;
+        text-align: center;
+        color: $color-white;
+        background: $color-green;
+        line-height: r(80);
+        height: r(80);
+        &.code-btn-ing{
+          background: $color-border;
+        }
+      }
+    }
+  }
+}
+.success-btn{
+  margin:0;
+}

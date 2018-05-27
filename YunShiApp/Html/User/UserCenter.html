@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<script src="../../js/flexible.js"></script>
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../css/custom.css" rel="stylesheet" />
+		<link href="../../css/artdialog.css" rel="stylesheet" />			
+		<script src="../../js/jquery-3.2.1.min.js"></script>		
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>		
+		<title>个人中心</title>
+	</head>
+	<body>
+		<style>
+			body,html{ height:100%}
+			a{text-decoration:none;outline: none;}
+			a:hover, a:visited, a:link, a:active{color: #333333 !important;}
+		</style>
+		<div class="container">
+			<header class="header">
+				<div class="backicon" onclick="$ys.platform.back()">
+			<span class="glyphicon glyphicon-chevron-left"></span>返回</div>	个人中心		
+			</header>
+			<div style="margin-top:20px;">	
+				<div class="list-grouppp" onclick="clickpop(this.id,'personal_myDiagnosis')" id="personal/myDiagnosis.html">
+					<div class="text-groupp">
+					<span class="iconfont icon-jiankangzixun lleft" ></span>	
+				  	我的导诊
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+				</div>
+				<div class="list-grouppp" onclick="$ys.platform.open({url:'/Html/User/UserManage.html'})">
+					<div class="text-groupp">
+					<span class="glyphicon glyphicon-user lleft"></span>	
+				  	账号管理
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+				</div>
+				<div class="list-grouppp">
+					<div class="text-groupp">
+					<span class="glyphicon glyphicon-earphone lleft"></span>	
+				  	健康客服
+					</div>
+					<span class="rright" style="margin-top: 1px;color: #333333;"><a href="tel:020-89562589">020-89562589</a></span>
+				</div>				
+			</div>
+			
+			<div style="margin-top:20px;">
+				<div class="list-grouppp">
+					<div class="text-groupp">
+					<span class="glyphicon glyphicon-bullhorn lleft"></span>	
+				  	声明
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+				</div>
+				<div class="list-grouppp">
+					<div class="text-groupp">
+					<span class="iconfont icon-renren1 lleft" style="top:-1px;"></span>	
+				  	关于我们
+					</div>
+					<span class="glyphicon glyphicon-menu-right rright"></span>
+				</div>
+			</div>
+			
+			<div style="margin-top: 30px;text-align: center;">
+				<button type="button" class="bbtn" onclick="logout()">退出登录</button>
+			</div>
+		</div>		
+		<script>
+			function logout(){
+				localStorage.removeItem("appToken");
+				$ys.platform.close(function(){
+					$ys.platform.open({url:"/Login.html"});
+				});
+				
+			}
+			var clickpop = function (url, id, option) {
+		        plus.webview.open("../../../newApp/" + url, id, option || {
+		            "titleNView": { //原生头部导航栏
+		                "backgroundcolor": "#c8a915",
+		                "titletext": "",
+		                "titlecolor": "#FFFFFF",
+		                "autoBackButton": true
+		            }
+		        }, "slide-in-right");
+		    }
+		</script>
+	</body>
+</html>

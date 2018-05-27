@@ -1,0 +1,50 @@
+body{ font-size:12px; background-color:#f4f6f8;}
+::selection {background: #eb7350;color: #fff;}
+label,b{ font-weight:normal; margin:0}
+input[type=text]{ -webkit-appearance:none;}
+input[type=checkbox], input[type=radio]{  vertical-align: middle;margin: 0 0 0 5px;}
+span{ display:inline-block;}
+em{ font-style:normal}
+ul{ padding:0; margin:0}
+li{list-style: none;}
+p{ margin:0}
+h3{ margin:0}
+h4{ font-size:14px;}
+s{ text-decoration:none;}
+a{ color:#333;-webkit-tap-highlight-color:rgba(255,0,0,0);}
+a:hover, a:focus{ text-decoration:none;}
+a:active,a:hover{ color:#e73641}
+.container{ max-width:640px; padding:0; overflow:hidden;}
+.header{text-align: center;padding: 0.2rem;color: #fff;background-color: #00BFFF;font-weight: 700;font-size: 16px;position: relative;}	
+/*--登录注册--*/
+	
+.login{ width:100%; padding:0 10px; position:relative; }
+.login .icon{height: 2rem;width: 2rem;border-radius:10px ;}
+.login .btn{ font-size:16px;margin-bottom: 0.8rem;background-color: #3CB371!important;border: 0 !important; }
+.login .form-control{ margin-bottom:0.8rem;}
+.login div.option{ position:relative}
+.login div.option .glyphicon{ position:absolute; left:10px; top:11px; color:#999;}
+.login div.option input{ padding-left:30px}
+.login div.option input.code{ width:50%; padding-left:12px; display:inline-block}
+.login div.option img{ vertical-align:top; margin-left:20px; width:3rem; height:34px; border:1px solid rgba(0,0,0,.2);  padding:1px;}
+.sp-checkcode{vertical-align:top;margin-left:20px; width:3rem; height:34px; border:1px solid rgba(0,0,0,.2);  padding:7px 0;text-align: center;cursor: pointer;font-family: "微软雅黑";font-weight: 700;color:#6D6D72;}
+.login div.option .glyphicon-ok-circle,.login div.option .glyphicon-remove-circle{ left:50%; margin-left:-25px;}
+.login div.option .glyphicon-ok-circle{ color:#393}
+.login div.option .glyphicon-remove-circle{ color:#F00}	
+
+
+.ajax-loading{ width:100%; height:100%; position:fixed; z-index:999999; background-color: rgba(0, 0, 0, 0.2); transition:all ease-in-out .5s; top:0; left:0; display:none; }
+.ajax-loading p{ width: 100px;height: 100px;padding-top: 60px;background: url(../images/progress.gif) no-repeat center;border-radius: 5px;background-color: rgba(0, 0, 0, 0.8);color: #fff;font-size: 16px;}
+.custom-dialog{ width:90%; position:fixed; top:40%; left:5%; padding:10px 20px 20px; box-shadow:0 0 10px rgba(0,0,0,5); border-radius:5px; background-color:#fff; display:none; z-index:999;}
+.custom-dialog .btn{ margin-top:10px}
+.sp-right{font-size: 14px;position: absolute;right: 8px;}
+
+.backicon{position: absolute;font-size: 14px;font-weight: 400;vertical-align: top;}
+.backicon span{font-size: 18px;}
+.list-grouppp{border-bottom: 1px solid #e9e9ea;background-color:#fff;padding:10px 10px;font-family:"Arial","Microsoft YaHei","黑体","宋体",sans-serif;font-size: 16px;position: relative;}
+.list-grouppp span{margin: 0 6px;color:#949496;}
+.text-groupp{display: inline-block;}
+.list-grouppp .lleft{position: relative;top:2px}
+.list-grouppp .rright{float:right;font-size:16px;color:#949496;margin-top: 3px;}
+.list-grouppp .righttxt{float:right;font-size:16px;}
+.bbtn{width: 90%;color: #fff;background-color: #E73641;font-family: "微软雅黑";outline: none;padding: 8px;border: 0;border-radius:4px ;font-size: 14px;}

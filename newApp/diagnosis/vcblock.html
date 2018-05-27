@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+
+    <title>陪诊</title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/diagnosis/list.css"/>
+
+</head>
+<body id="webapp">
+<span @click="pop()">pop</span>
+<span @click="block_vc()">block_vc</span>
+<span @click="autoOauth()">autoOauth</span>
+
+<span @click="wxpay()">wxpay</span>
+
+</body>
+
+<script type="text/javascript" src="../lib/vconsole.min.js"></script>
+<script>
+    var vConsole = new VConsole();
+    console.log('Hello world');
+</script>
+<script data-main="../js/common/require_config" src="../lib/requirejs/require.js"></script>
+
+<script type="text/javascript">require(['../app/diagnosis/vcblock'], function (index) {
+
+})</script>
+</html>

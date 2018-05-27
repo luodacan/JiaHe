@@ -1,0 +1,101 @@
+@import "../config";
+body{
+  background: $color-bg;
+}
+.swiper{
+  width:100%;
+  height:r(300);
+  img{
+    width:100%;
+    height:r(300);
+  }
+}
+.list-c{
+  width:100%;
+  .list-item{
+    margin-top: r(10);
+    background: $color-white;
+    border-bottom: 0.5px solid $color-border;
+    border-top: 0.5px solid $color-border;
+    padding:r(30) r(50) r(30) r(30);
+    .item-a{
+      width: 100%;
+     @include flex-center-left;
+    }
+    .img{
+      width: r(90);
+      min-width: r(90);
+      height:r(90);
+      border-radius: r(30);
+      overflow: hidden;
+      @include flex-grow(1);
+      position: relative;
+      img{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: r(-60);
+        margin-left: r(-60);
+        width: r(120);
+        height:r(120);
+      }
+    }
+    .text{
+      padding-left: r(30);
+      display: inline-block;
+       @include flex-grow(1);
+      text{
+        display: block;
+      }
+      .title{
+        font-size:r(28);
+        color: $color-21;
+        margin-bottom:r(25);
+        font-weight: bold;
+        position: relative;
+        .price{
+
+          position: absolute;
+          right: 0;
+          top: 0;
+          color: $color-green;
+          font-weight: inherit;
+          font-size:r(28);
+          .comment-price{
+            font-size: r(24);
+          }
+        }
+      }
+      .detail{
+        p{
+          overflow: hidden;
+          height:30px;
+          //width: r(500);
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          font-size:12px;
+          line-height: 15px;
+          color: $color-999;
+        }
+        overflow: hidden;
+        height:30px;
+        //width: r(500);
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        font-size:12px;
+        line-height: 15px;
+        color: $color-999;
+      }
+    }
+  }
+}
+.mui-slider-indicator .mui-indicator{
+  width: r(10);
+  height: r(10);
+  margin: 1px r(10);
+  background: $color-border-e5;
+}

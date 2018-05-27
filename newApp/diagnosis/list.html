@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+    <title>导诊美护</title>
+    <link rel="stylesheet" href="../lib/mui/mui.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/diagnosis/list.css"/>
+    <script type="text/javascript" src="../js/common/flexible.js"></script>
+</head>
+<body id="webapp">
+<!--<div class="wx-header">-->
+    <!--&lt;!&ndash;<a href="javascript:;" class="header-left back-icon" onclick="app.headerBack();"></a>&ndash;&gt;-->
+    <!--<p class="header-text" v-text="headerText"></p>-->
+<!--</div>-->
+<div class="container">
+    <div class="mui-slider swiper hide" :class="{'show':slide.length>0}">
+        <div class="mui-slider-group">
+            <div class="mui-slider-item" v-for="item in slide" >
+                <img :src="picUrl.wx_accompany_index+'/'+item.slide_pic" class="slide-img" onerror="imgError(this);"/>
+            </div>
+        </div>
+       <div class="mui-slider-indicator">
+		    <div class="mui-indicator" :class="key==0?'mui-active':''" v-for="(key,item) in slide"></div>
+		</div>
+    </div>
+    <!-- list -->
+    <div class="list-c hide" :class="{'show':list.length>0}">
+
+        <div class="list-item" v-for="item in list" @click="clickUrl(item.id)">
+            <a href="javascript:;" class="item-a">
+                <div class="img">
+                    <img :src="picUrl.listIcon+'/'+item.icon"/>
+                </div>
+                <div class="text">
+                    <div class="title"><span v-text="item.name"></span>
+                     <div class="price" ><span v-text="item.default_price_yuan"></span><span class="comment-price">元/次</span></div>
+                    </div>
+
+                    <div class="detail" v-html="item.introduction"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript"  src="../lib/requirejs/require.js"></script>
+<script type="text/javascript" src="../js/common/require_config.js"></script>
+<script type="text/javascript">window.onload=function(){require(['../app/diagnosis/list'], function (index) {
+})}</script>
+</html>

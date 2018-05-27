@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>会员</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <link rel="stylesheet" type="text/css" href="../css/vip/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/examination/loading.css">
+    </head>
+    <body>
+        <!--<div class="header">-->
+            <!--<b onclick="app.popBack()"></b>-->
+            <!--<p>VIP</p>-->
+            <!--<b class="right" onclick="app.myServers()">我的服务</b>-->
+        <!--</div>-->
+             <!-- loading指示器 -->
+        <div class="loading" id="loading">
+            <div class="loading_box" style="top: 25%;">
+                <div style="color: #79be50" class="la-ball-spin-clockwise la-2x">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="nav clearfix">
+            <img src="../images/vip_banner.png" width="160">
+        </div>
+        <div class="member clearfix">
+        </div>
+        <script type="text/javascript" src="../js/examination/jquery.js"></script>
+        <script type="text/javascript" src="../lib/mui/dist/mui.min.js"></script>
+        <script type="text/javascript" src="../js/common/plusNative.js"></script>
+        <script type="text/javascript" src="../js/examination/common.js"></script>
+        <script type="text/javascript">
+                getVip();
+                function getVip() {
+                    for (var i = 0; i < $('.member a').length; i++) {
+                        var attr = $('.member a').eq(i).attr('href');
+                        $('.member a').eq(i).attr('href', attr + i);
+                    }
+
+                    $.getJSON($localhost + "/Writeapp/Vip/index",{'time':'new'},function (data) {
+                        $.each(data, function (idex, item) {
+                            var con = '';
+                            $.each(eval(item['content']), function (idco, itco) {
+                                if (idco <= 3) {
+                                    con += '<li>' + itco['title'] + '</li>';
+                                } else {
+                                    con += '<li class="con">' + itco['title'] + '</li>';
+                                }
+                            });
+                            var box = '<div class="box clearfix">\n\
+                                        <a href="javascript:;" onclick="tocontent('+idex+')">\n\
+                                        <div class="left">\n\
+                                            <div class="position con_' + (idex + 1) + '" style="top: 40px;">\n\
+                                                <div class="img"></div>\n\
+                                                <p>' + item['name'] + '</p>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="right">\n\
+                                        <ul>' + con + '</ul>\n\
+                                    </div><i></i></a></div>';
+                            $(".member").append(box);
+                        });
+//                    关闭loading
+                        $("#loading").fadeOut();
+                    });
+                }
+                function tocontent(id){
+                    app.pop({'name':'vip/vip_content.html?id=' + id,'id':'vip_content'});
+                }
+                // 滚动条滚动触发事件
+                $(window).scroll(function () {
+                    for (var i = 0; i < $(".box").length; i++) {
+                        var scroH = $(this).scrollTop();
+                        var boxH = $(".box").eq(i).offset().top;
+                        var boxscroH = boxH + $(".box").eq(i).height();
+                        var div_box = $(".box").eq(i).find('.position');
+                        var reduction = scroH - boxH + 85;
+                        if (scroH >= boxH - 50 && scroH < boxscroH - 128) {
+                            div_box.css({"top": reduction + "px"});
+                        } else if (scroH >= boxscroH - 128) {
+                            var div_boxH = $(".box").eq(i).height() - 43;
+                            div_box.css({"top": div_boxH + "px"});
+                        } else if (scroH < boxH - 64) {
+                            div_box.css({"top": "40px"});
+                        }
+                    }
+                });
+
+                function ios_button() {
+                    $('.header').find('b').eq(0).addClass('left');
+                }
+
+
+
+
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,222 @@
+html,
+			body {
+				position: relative;
+				height: 100%;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+				width: 100%;
+				height: 100%;
+				/* Center slide text vertically */
+				/*display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;*/
+			}
+			
+			.row-position {
+				width: 100%;
+				position: absolute;
+			}
+			
+			.span-button {
+				background-color: rgb(43, 162, 69);
+				color: white;
+				border-radius: 20px;
+			}
+			
+			.span-button-reverse {
+				color: rgb(43, 162, 69);
+				border: 1px solid rgb(43, 162, 69);
+				border-radius: 20px;
+			}
+			
+			.weui-picker-modal {
+				background: transparent
+			}
+			
+			.color_mian {
+				color: rgb(199, 169, 21);
+			}
+			
+			.weui-picker-modal .picker-item {
+				color: black;
+			}
+			
+			.weui-picker-modal .picker-item.picker-selected {
+				color: rgb(199, 169, 21);
+			}
+			
+			#triangle-up {
+				width: 0;
+				height: 0;
+				border-left: 15px solid transparent;
+				border-right: 15px solid transparent;
+				border-bottom: 30px solid rgb(252, 251, 220);
+			}
+			
+			#triangle-left {
+				width: 0;
+				height: 0;
+				border-top: 50px solid transparent;
+				border-right: 100px solid rgb(87, 178, 73);
+				border-bottom: 50px solid transparent;
+				border-top-left-radius: 5px;
+			}
+			
+			#green {
+				width: 100%;
+				height: 100px;
+				/*top: 15px;*/
+				background: rgb(87, 178, 73);
+				position: relative;
+				text-align: center;
+				/*-moz-border-radius: 10px;*/
+				/*-webkit-border-radius: 10px;*/
+				border-radius: 10px;
+				/*border-bottom-right-radius:10px ;
+				border-top-right-radius:10px;*/
+				color: white;
+			}
+			
+			#green:before {
+				content: "";
+				position: absolute;
+				right: 100%;
+				top: 16px;
+				width: 0;
+				height: 0;
+				border-top: 15px solid transparent;
+				border-right: 25px solid rgb(87, 178, 73);
+				border-bottom: 15px solid transparent;
+			}
+			
+			.green {
+				position: relative;
+				background-color: rgb(87, 178, 73);
+				margin: 20px auto;
+				width: 150px;
+				height: 43px;
+				line-height: 43px;
+				color: white;
+				text-align: center;
+				border-radius: 5px;
+				font-family: sans-serif;
+			}
+			
+			.green:after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border: 8px solid;
+			}
+			
+			.green-left:after {
+				border-right-color: rgb(87, 178, 73);
+				top: 50%;
+				right: 100%;
+				margin-top: -9px;
+			}
+			
+			.yellow {
+				position: relative;
+				background-color: rgb(231, 231, 111);
+				margin: 20px auto;
+				width: 75px;
+				height: 43px;
+				line-height: 43px;
+				color: white;
+				text-align: center;
+				border-radius: 5px;
+				font-family: sans-serif;
+			}
+			
+			.yellow:after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border: 8px solid;
+			}
+			
+			.yellow-left:after {
+				border-right-color: rgb(231, 231, 111);
+				top: 50%;
+				right: 100%;
+				margin-top: -9px;
+			}
+			
+			.Violet {
+				position: relative;
+				background-color: rgb(154, 100, 220);
+				margin: 20px auto;
+				width: 75px;
+				height: 43px;
+				line-height: 43px;
+				color: white;
+				text-align: center;
+				border-radius: 5px;
+				font-family: sans-serif;
+			}
+			
+			.Violet:after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border: 8px solid;
+			}
+			
+			.Violet-right:after {
+				border-left-color: rgb(154, 100, 220);
+				left: 100%;
+				top: 50%;
+				margin-top: -7px;
+			}
+			
+			.tip {
+				position: relative;
+				background-color: rgb(252, 251, 220);
+				/*margin: 20px auto;*/
+				width: 100%;
+				/*height: px;*/
+				/*line-height: 43px;*/
+				padding: 8px;
+				color: transparent;
+				text-align: left;
+				border-radius: 5px;
+			}
+			
+			.tip:after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border: 8px solid;
+			}
+			
+			.top:after {
+				border-bottom-color: rgb(252, 251, 220);
+				left: 20%;
+				bottom: 100%;
+				margin-left: -15px;
+			}

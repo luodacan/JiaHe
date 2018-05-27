@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体检报告</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <link href="../css/examination/ExaminationReport.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/examination/mobiscroll.custom-2.17.0.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../css/examination/sweetalert.css">
+</head>
+<body>
+<!--<div class="examination_head">-->
+<!--<a class="left" href="index.html"></a>-->
+<!--<p class="title">报告信息</p>-->
+<!--<span class="right save">保存</span>-->
+<!--</div>-->
+<!--<div style="height: 44px;"></div>-->
+<div class="examination_add_fill">
+    <ul>
+        <li><p>体检报告名称</p><input type="text" value="" name="save_name" class="save_input"></li>
+        <li><p>体检医院</p><input type="text" value="" name="hospital_name" readonly="true" class="choose_hospital"><input
+                type="hidden" value="" class="save_input" name="hospital_id"></li>
+        <li><p>体检时间</p><input type="text" value="" name="examination_time" class="examination_time save_input"
+                              readonly="true" placeholder=""></li>
+        <li><p>性别</p><select name="sex" class="select_input save_input">
+            <option></option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select></li>
+        <li><p>是否结婚</p><select name="is_married" class="select_input save_input">
+            <option></option>
+            <option value="是">是</option>
+            <option value="否">否</option>
+        </select></li>
+        <li><p>年龄</p><input type="number" value="" name="age" class="save_input" placeholder=""></li>
+        <li><p>祖籍</p><input type="text" value="" name="origin" class="save_input" placeholder=""></li>
+        <li><p>职业</p><input type="text" value="" name="occupation" class="save_input" placeholder=""></li>
+        <li><p>工作单位</p><input type="text" value="" name="work_unit" class="save_input" placeholder=""></li>
+        <li><p>电话号码</p><input type="number" value="" name="phone" class="save_input" placeholder=""></li>
+
+    </ul>
+    <p class="instructions"></p>
+</div>
+<div style="height: 40px;"></div>
+<script type="text/javascript" src="../js/examination/jquery.js"></script>
+<script type="text/javascript" src="../lib/mui/dist/mui.min.js"></script>
+<script type="text/javascript" src="../js/common/plusNative.js"></script>
+<script type="text/javascript" src="../js/examination/common.js"></script>
+
+<script type="text/javascript" src="../js/examination/mobiscroll.custom-2.17.0.min.js"></script>
+<script type="text/javascript" src="../js/examination/sweetalert.min.js"></script>
+<script>
+    $('.header .left').click(function () {
+        window.history.go(-1);
+    })
+    $(document).ready(function () {
+        testApplocal();
+    });
+
+    function testApplocal() {
+        window.guest_id = applocalStorage.getItem("guest_id");
+        hospitalVal();
+        function_con();
+    }
+    function hospitalVal(){
+        window.ho_id = applocalStorage.getItem("hospital_id");
+        window.ho_name = applocalStorage.getItem("hospital_name");
+        ho_name == "null" ? ho_name = "" : "";
+        console.log(ho_name);
+        $('input[name=hospital_id]').val(ho_id);
+        $('input.choose_hospital').val(ho_name);
+    }
+
+    function function_con() {
+        window.id = request("id");
+        if (id != '') {
+            window.list = request("list");
+            if (list == '0') {
+                $('p.instructions').text('*此报告来源于客服，用户无法修改').show();
+                $('.examination_head .right').addClass('cannt_save').removeClass('save');
+                $('select').removeClass('select_input').css('border', '0').attr('onmousedown', 'return false');
+                $('input').removeClass('choose_hospital').removeClass('examination_time').css('border', '0').attr('readonly', 'true');
+            }
+            if (list == '1') {
+                $('p.instructions').text('*此报告来源于用户，用户可以修改').show();
+            }
+            $.getJSON($localhost + '/Writeapp/Examination/add_show', {'id': id}, function (data) {
+                if (data) {
+                    $.each(data, function (idex, item) {
+                        $('input[name=' + idex + ']').val(item);
+                        $('select[name=' + idex + ']').val(item).find('option[value=' + item + ']').attr('selected', 'selected').parents('li').find('input').val(item);
+                    })
+                }
+            })
+        }
+
+
+        $('.choose_hospital').click(function () {
+            app.pop({
+                'name': 'Examination/hospital.html', 'id': 'examination_hospital','VC_block':function(){
+                    hospitalVal();
+                    console.log('ss');
+                }, 'titleNView': {
+                    "buttons": [{
+                        "color": "#FFFFFF",
+                        "float": "right",
+                        "text": "保存",
+                        "fontSize": "16px",
+                        "onclick": "javascript:plus.webview.getWebviewById('examination_hospital').evalJS('saveBtn();')",
+                    }]
+                }
+            });
+        })
+        $('.examination_time').mobiscroll().date({
+            theme: $('#theme').val(),
+            lang: 'zh',
+            display: 'bottom',
+            mode: $('#mode').val()
+        });
+        $('.select_input').mobiscroll().select({
+            theme: $('#theme').val(),
+            lang: 'zh',
+            display: 'bottom',
+            mode: $('#mode').val(),
+            minWidth: 200
+        });
+        $('.examination_head .cannt_save').click(function () {
+            swal({
+                title: "",
+                text: "此报告来源于客服，用户无法修改",
+                type: "error",
+                html: true,
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        })
+
+    }
+
+    function saveBtn() {
+        if (id != '') {
+            var url = $localhost + '/Writeapp/Examination/edit_exam?id=' + id;
+        } else {
+            var url = $localhost + '/Writeapp/Examination/add_exam?guest_id=' + guest_id;
+        }
+        $.ajax({
+            url: url,
+            data: $('.save_input').serialize(),
+            type: "post",
+            success: function (data) {
+                if (data['error']) {
+                    switch (data['error']) {
+                        case '1':
+                            swal({
+                                title: "未完成实名认证！",
+                                text: "",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+
+                            break;
+                        case '3':
+                            swal({
+                                title: "保存失败！",
+                                text: "",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+                            break;
+                        case '4':
+                            swal({
+                                title: "用户名失效！",
+                                text: "",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+//                                        setTimeout("location.href='../physical.html'", 2000);
+                            break;
+                        case '5':
+                            swal({
+                                title: "",
+                                text: "体检医院不能为空",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+                            break;
+                        case '6':
+                            swal({
+                                title: "",
+                                text: "体检时间不能为空",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+                            break;
+                        default:
+                            swal({
+                                title: "保存失败！",
+                                text: "",
+                                type: "error",
+                                html: true,
+                                timer: 2000,
+                                showConfirmButton: false,
+                            });
+                    }
+                }
+                if (data['success']) {
+                    swal({
+                        title: "保存成功！",
+                        text: "",
+                        type: "success",
+                        html: true,
+                        timer: 2000,
+                        showConfirmButton: false,
+                    });
+
+                    if (id != '') {
+                        app.close_VC();
+                    } else {
+                        applocalStorage.setItem("report_examination_id", data['success']);
+                        setTimeout(function () {
+                            app.pop({
+                                "name": "Examination/detail.html?list=1", "id": "examination_detail", 'titleNView': {
+                                    "buttons": [{
+                                        "color": "#FFFFFF",
+                                        "float": "right",
+                                        "text": "保存",
+                                        "fontSize": "16px",
+                                        "onclick": "javascript:plus.webview.getWebviewById('examination_detail').evalJS('saveBtn();')",
+                                    }]
+                                }
+                            });
+                        }, 1500);
+                    }
+
+                }
+            },
+        })
+    };
+</script>
+</body>
+</html>  

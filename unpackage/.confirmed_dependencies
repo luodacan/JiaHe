@@ -1,0 +1,58 @@
+{
+	"YunShiApp/Html/Home/index.html": {
+		"refer": [
+			"YunShiApp/Html/User/UserCenter.html",
+			"YunShiApp/Html/VAAD/HE.html",
+			"YunShiApp/Html/Pay/Paymemt.html",
+			"newApp/diagnosis/list.html",
+			"YunShiApp/Html/HR/MHR.html",
+			"YunShiApp/Login.html",
+			"/YunShiApp/Login.html",
+			"YunShiApp/Register2.html"
+		],
+		"resources": [
+			"/YunShiApp/Login.html"
+		]
+	},
+	"YunShiApp/Html/User/UserCenter.html": {
+		"refer": [
+			"newApp/personal/myDiagnosis.html",
+			"YunShiApp/Html/User/UserManage.html",
+			"YunShiApp/Html/Home/index.html"
+		],
+		"resources": []
+	},
+	"YunShiApp/Html/VAAD/HE.html": {
+		"refer": [
+			"YunShiApp/Html/Home/index.html",
+			"YunShiApp/Html/VAAD/SE.html"
+		]
+	},
+	"YunShiApp/Register2.html": {
+		"refer": [
+			"YunShiApp/Login.html"
+		]
+	},
+	"YunShiApp/Login.html": {
+		"refer": [
+			"YunShiApp/Register2.html",
+			"YunShiApp/Html/User/ForgetPass.html",
+			"YunShiApp/Html/Home/index.html"
+		]
+	},
+	"YunShiApp/Html/VAAD/SE.html": {
+		"refer": [
+			"YunShiApp/Html/VAAD/A.html"
+		]
+	},
+	"YunShiApp/Html/VAAD/A.html": {
+		"refer": [
+			"YunShiApp/Html/VAAD/PT.html"
+		]
+	},
+	"YunShiApp/Html/VAAD/PT.html": {
+		"refer": [
+			"YunShiApp/Html/VAAD/FP.html"
+		]
+	}
+}

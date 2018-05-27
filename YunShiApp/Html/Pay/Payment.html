@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<script src="../../js/flexible.js"></script>
+		<link rel="stylesheet" href="../../lib/MyIcon/iconfont.css" />
+		<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../css/custom.css" rel="stylesheet" />
+		<link href="../../css/artdialog.css" rel="stylesheet" />			
+		<script src="../../js/jquery-3.2.1.min.js"></script>
+		<script src="../../js/AppRequest.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<title>订单支付</title>
+	</head>
+	<body>
+		<style>
+			body,html{ height:100%}
+			.bgg{display: inline-block; height: 26px;width: 26px;background-size: 100% 100% !important;vertical-align:bottom;}
+			.wxbg{background: url(../../img/Pay/icon64_appwx_logo.png) no-repeat;}
+			.alibg{background: url(../../img/Pay/icon64_appalipay_logo.png) no-repeat;}
+			.payflag{position: absolute;right: 16px;top:50% ;margin-top: -8px;color: #31B0D5;}
+			.plughide{display: none;}
+		</style>
+		<div class="container">
+			<header class="header">
+				<div class="backicon" onclick="$ys.platform.back()">
+				<span class="glyphicon glyphicon-chevron-left"></span>返回</div>订单支付
+			</header>
+			<div style="margin-top: 20px;">
+				<div class="list-grouppp">
+					<div class="text-groupp">						
+				  	用户名
+					</div>
+					<span class="righttxt" id="visitor"></span>
+				</div>	
+				<!--<div class="list-grouppp">
+					<div class="text-groupp">						
+				  	业务类型
+					</div>
+					<span class="righttxt" >test</span>
+				</div>-->
+				<div class="list-grouppp">
+					<div class="text-groupp">						
+				  	产品名称
+					</div>
+					<span class="righttxt" id="product"></span>
+				</div>
+				
+				<!--<div class="list-grouppp">
+					<div class="text-groupp">						
+				  	备注
+					</div>
+					<span class="righttxt" >test</span>
+				</div>-->
+				<div class="list-grouppp">
+					<div class="text-groupp">						
+				  	价格
+					</div>
+					<span class="righttxt" style="color: red;" id="price"></span>
+				</div>
+			</div>
+			<div style="margin-top: 30px;">
+				<div class="list-grouppp pd5_10 plughide" data-id="wxpayplugin" onclick="changepay(this)" id="wxpayplugin">
+					
+					<div class="text-groupp" style="line-height: 28px;">
+					<span class="bgg wxbg"></span>	
+				  	微信
+					</div>															
+				</div>
+				<div class="list-grouppp pd5_10 plughide" data-id="alipayplugin" onclick="changepay(this)" id="alipayplugin">
+					
+					<div class="text-groupp" style="line-height: 28px;">
+					<span class="bgg alibg"></span>	
+				  	支付宝
+					</div>														
+				</div>
+			</div>
+			<div style="margin-top: 30px;text-align: center;">
+				<button type="button" class="bbtn" onclick="pay()">支付</button>
+			</div>
+		</div>
+		<script src="../../Script/Pay/Payment.js"></script>
+	</body>
+</html>

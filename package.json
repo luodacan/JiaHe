@@ -1,0 +1,28 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "node-sass": "^4.5.3",
+    "requirejs-text": "^2.0.15"
+  },
+  "devDependencies": {
+    "gulp-imagemin": "^4.1.0",
+    "gulp-ruby-sass": "^3.0.0",
+    "imagemin-pngquant": "^5.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

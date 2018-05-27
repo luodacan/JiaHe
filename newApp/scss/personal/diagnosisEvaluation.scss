@@ -1,0 +1,79 @@
+@import "../config";
+
+.container{
+
+  text-align: left;
+  overflow: hidden;
+}
+.intro-info{
+  background: $color-white;
+  width: 100%;
+  padding: r(30) 0;
+  margin-bottom: r(20);
+  border-bottom: r(1) solid $color-border-e5;
+  position: relative;
+  @include flex-center-left;
+  .info{
+    max-width: 70%;
+    img{
+      width: r(120);
+      height: r(120);
+      margin-left: r(30);
+      margin-right: r(30);
+      vertical-align: middle;
+    }
+
+  }
+  .title{
+    .t-text{
+      display: block;
+      width: 100%;
+      font-size: r(24);
+      color: $color-999;
+    }
+    .bold{
+      display: block;
+      font-size: r(32);
+      margin-bottom: r(20);
+      color: $color-333;
+    }
+  }
+}
+.eva-num{
+  text-align: center;
+  display: block;
+  width: 100%;
+  .eva-n-warp{
+    display: block;
+    padding: 0 r(30);
+    text-align: left;
+  }
+  .collection{
+    width:r(70);
+    height: r(70);
+    margin: 0 r(4);
+  }
+}
+.eva-content{
+  display: block;
+  width: 100%;
+
+  .eva-c-warp{
+    display: block;
+    padding: 0 r(30);
+    overflow: hidden;
+  }
+  .eva-c-text{
+    width: 100%;
+    height: r(300);
+    text-indent:1em;
+    border:r(1) solid $color-border-e5;
+    font-size: r(28);
+    text-align: left;
+    padding: r(10) 0;
+    border-radius: r(6);
+  }
+}
+.save-form{
+  width: 100%;
+}

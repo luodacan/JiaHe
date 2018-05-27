@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>健康记录</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../Content/HealthRecord/index.css" />
+	</head>
+
+	<body>
+		<div class="container">
+			<header class="header row span-white">
+				<div class="col-xs-4 column text-left">
+					<span class="glyphicon glyphicon-chevron-left" onclick="$ys.platform.back()">返回</span>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<div>
+						<h4 class="mar-none">健康记录</h4></div>
+				</div>
+				<div class="col-xs-4 column text-right">
+				</div>
+			</header>
+			<div class="row pad-tb10">
+				<div class="col-xs-4 column text-left">
+					<span class="label label-main pad-tb2 pad-lr20 circle-none" style="font-size: 16px;">日程</span>
+				</div>
+				<div class="col-xs-8 column text-right">
+					<h4 class="span-white mar-none"><span class="year">2018</span>年<span class="month">01</span>月<span class="day">16</span>日 今天</h4>
+				</div>
+			</div>
+			<div class="row pad10">
+				<div class="col-xs-12 column text-center bc-white mar-none pad-none" id="MyDate">
+				</div>
+			</div>
+
+		</div>
+		<div class="container">
+			<div class="row pad-tb10">
+				<div class="col-xs-12 column text-left">
+					<span class="label label-main pad-tb2 pad-lr20 circle-none" style="font-size: 16px;">安排</span>
+				</div>
+			</div>
+			<div class="row pad-t10">
+				<div class="col-xs-12 column" id="listtask">
+					
+				</div>
+			</div>
+		</div>
+		<div class="container bc-white">
+			<a href="javascript:void(0);" onclick="$ys.platform.open({url:'/Html/HR/AM.html'})">
+				<div class="row pad-tb10">
+					<div class="col-xs-2 lih50">
+						<img alt="140x140" src="../../img/AddMotion.png" style="background-color: rgb(236,154,19);" class="img-rounded title-img" />
+					</div>
+					<div class="col-xs-8 text-left lih50">
+						<h4 class="lih35 text-default">添加运动</h4>
+					</div>
+					<div class="col-xs-2 column text-right lih50">
+						<img src="../../img/Add.png" width="30" />
+					</div>
+				</div>
+			</a>
+			<div class="border-b"></div>
+			<div id="todaymotion"></div>			
+			<div class="border-b"></div>
+			<a href="javascript:void(0);" onclick="$ys.platform.open({url:'/Html/HR/DOH.html'})">
+				<div class="row pad-tb10">
+					<div class="col-xs-2 lih50">
+						<img alt="140x140" src="../../img/AddDiet.png" style="background-color: rgb(35,202,36);" class="img-rounded title-img" />
+					</div>
+					<div class="col-xs-8 text-left lih50">
+						<h4 class="lih35 text-default">添加饮食</h4>
+					</div>
+					<div class="col-xs-2 column text-right lih50">
+						<img src="../../img/Add.png" width="30" />
+					</div>
+				</div>
+			</a>
+			
+			<div class="border-b"></div>
+			<div id="eattoday"></div>
+			<div class="row pad-tb10">
+				<div class="col-xs-2 lih50">
+					<img alt="140x140" src="../../img/AddSleep.png" style="background-color: rgb(3,184,237);" class="img-rounded title-img" />
+				</div>
+				<div class="col-xs-8 text-left lih50">
+					<h4 class="lih35 text-default">添加睡眠</h4>
+				</div>
+				<div class="col-xs-2 column text-right lih50">
+					<img src="../../img/Add.png" width="30" />
+				</div>
+			</div>
+			<div class="border-b"></div>
+			<div class="row pad-tb10">
+				<div class="col-xs-2 lih50">
+					<img alt="140x140" src="../../img/AddHeartRate.png" style="background-color: rgb(235,87,42);" class="img-rounded title-img" />
+				</div>
+				<div class="col-xs-8 text-left lih50">
+					<h4 class="lih35 text-default">添加心率</h4>
+				</div>
+				<div class="col-xs-2 column text-right lih50">
+					<img src="../../img/Add.png" width="30" />
+				</div>
+			</div>
+			<div class="border-b"></div>
+			<div class="row pad-tb10">
+				<div class="col-xs-12">
+					<textarea class="border img-rounded pad10" style="resize:none;width: 100%;height: 120px;" placeholder="输入备注信息"></textarea>
+				</div>
+			</div>
+			<div class="row pad-tb10">
+				<div class="col-xs-3">
+					<img src="../../img/Photograph.png" width="100%" />
+				</div>
+			</div>
+			<div class="row pad-tb10">
+				<div class="col-xs-12">
+					<a class="btn btn-default btn-block lih35 bc-main span-white">上传</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!--Js脚本文件-->
+		<script type="text/javascript " src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../js/calendar.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../Script/HealthRecord/index.js"></script>
+		
+		
+	</body>
+
+</html>

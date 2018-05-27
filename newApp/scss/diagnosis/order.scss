@@ -1,0 +1,166 @@
+@import "../config";
+
+body {
+  background: $color-bg;
+  text-align: left;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.list-page {
+  display: none;
+  &.listShow {
+    display: block;
+  }
+}
+
+.intro-info {
+  background: $color-white;
+  width: 100%;
+  padding: r(30) 0;
+  margin-bottom: r(10);
+  @include flex-center;
+  .info {
+    max-width: 70%;
+    .img {
+      width: r(120);
+      height: r(120);
+      margin-left: r(30);
+      margin-right: r(30);
+      vertical-align: middle;
+    }
+    .title {
+      line-height: 1.5;
+      font-size: r(28);
+      font-weight: bold;
+    }
+  }
+
+  .price {
+    color: $color-green;
+    margin-right: r(30);
+    font-size: r(28);
+    font-weight: bold;
+  }
+}
+
+.list {
+  width: 100%;
+  .item.user-info{
+    display: block;
+    padding: r(30) r(50) r(30) r(120);
+    position: relative;
+    border-width: 0;
+
+    .user-icon{
+      position: absolute;
+      width: r(80);
+      top:50%;
+      text-align: center;
+      height: r(64);
+      margin-top: r(-32);
+      background-size: r(64) r(64);
+      background-repeat: no-repeat;
+      &.left-icon{
+        //background-image: url(#{$wxapp_icon}/edit_blue.png});
+        left: r(30);
+        background-image: url(#{$wxapp_icon}/profile_light.png);
+      }
+    }
+    .user-top{
+      margin-bottom: r(15);
+      .user-name{
+        font-size: r(28);
+        float: left;
+      }
+      .user-phone{
+        float:right;
+      }
+    }
+    .user-bottom{
+      &.user-idcard{
+
+      }
+    }
+  }
+  .item {
+    background-color: $color-white;
+    padding: r(20) r(50) r(20) r(30);
+
+    @include flex-center;
+    display: none;
+    &.show {
+      display: flex;
+    }
+    font-size: r(28);
+    border-bottom: 1px solid $color-border-e5;
+    a {
+      display: block;
+      width: 100%;
+    }
+    &.no-border {
+      border: 0;
+    }
+    .title {
+      height: r(80);
+      line-height: r(80);
+      display: inline-block;
+      @include flex-grow(1);
+    }
+    input {
+      text-align: right;
+      height: r(80);
+      line-height: r(80);
+      margin: 0;
+      border: 0;
+      width: r(350);
+      border-radius: 0;
+      font-size: r(28);
+      padding: r(10) 0;
+      @include flex-grow(1);
+    }
+    .text {
+      @include flex-grow(1);
+      text-align: right;
+      max-width: 70%;
+    }
+    .upload-img {
+      width: r(120);
+      height: r(80);
+    }
+    //picker{
+    //  width: 100%;
+    //}
+  }
+}
+
+.comment {
+  color: $color-666;
+  font-size: r(28);
+  text-align: left;
+  display: inline-block;
+  padding-left: r(30);
+  height: r(60);
+  line-height: r(60);
+  width: 100%;
+}
+
+.order-btn {
+  margin: r(60) 0;
+  padding: 0 r(30);
+  .btn-text {
+    display: block;
+    background: $color-green;
+    text-align: center;
+    color: $color-white;
+    font-size: r(32);
+    height: r(90);
+    line-height: r(90);
+    border-radius: r(10);
+  }
+}
+
+
+

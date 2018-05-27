@@ -1,0 +1,93 @@
+@import "../config";
+
+$colorText: #e73f3f #58aa37 #1589f3 #ffe1b5 #c740d3 #c5a42f;
+$colorBg: #fc8d8d #90ba71 #93c1ee #ffe1b5 #f0acf6 #d5be6c;
+$colorTitle: #4d4d4d;
+.history-list {
+  padding: r(20);
+  .history-item {
+    height: r(209);
+    line-height: r(209);
+    margin-bottom: r(20);
+    position: relative;
+    padding: 0 r(22) 0 r(53);
+    background: $color-white;
+    border-radius: r(6);
+    overflow: hidden;
+    &:after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: r(15);
+      background: nth($colorBg, 1);
+      left: 0;
+      bottom: 0;
+    }
+    &.action {
+      .text {
+        color: $color-ba !important;
+      }
+    }
+    .title {
+      font-size: r(34);
+      color: $colorTitle;
+      position: relative;
+      margin: 0 0 0 r(304-53);
+      &:after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: r(62);
+        height: r(2);
+        min-height: 1px;
+        left: 0;
+        bottom: r(-16);
+        background: nth($colorBg, 1);
+      }
+    }
+    .text {
+      float: right;
+      font-size: r(26);
+      color: nth($colorText, 1);
+
+    }
+    .bg-img {
+      position: absolute;
+      left: r(53);
+      width: r(228);
+      height: r(170);
+      top: r(30);
+      .bg-img-i {
+        width: 100%;
+      }
+      z-index: 1000;
+    }
+
+  }
+}
+
+@for $i from 1 through 6 {
+  .history-list {
+    .history-item.item-#{$i} {
+      &:after {
+        background: nth($colorBg, $i);
+      }
+      .title:after {
+        background: nth($colorBg, $i);
+      }
+      .text {
+        color: nth($colorText, $i);
+      }
+      @if $i%2==0{
+        .title {
+          margin: 0;
+        }
+        .bg-img {
+          width: r(200);
+          height: r(178);
+          left: r(216);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>健康画像</title>
+		<!--Css文件-->
+		<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../lib/LoadingBall/prettify/prettify.css" />
+		<link rel="stylesheet" href="../../css/Global.css" />
+		<link rel="stylesheet" href="../../css/artdialog.css" />
+		<style>
+			.triangle-down {width: 0;height: 0;border-left: 15px solid transparent;border-right: 15px solid transparent;border-top: 20px solid rgb(18, 150, 219);}
+			.WH-75 {width: 75px;height: 75px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header-yellow row">
+				<div class="col-xs-4 column text-left">
+					<span class="glyphicon glyphicon-chevron-left" onclick="$ys.platform.back()"></span>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<div>健康评估</div>
+				</div>
+				<div class="col-xs-4 column text-right">
+					<i class="fa fa-heartbeat"></i> 选择部位
+				</div>
+			</header>
+			<div class="row pad-t20">
+				<div class="col-xs-12 text-center">
+					<span style="background-color: rgb(153,153,153);color: white;padding: 5px 20px;border-radius:20px ;">亚健康</span>
+				</div>
+			</div>
+			<div class="row pad-t20">
+				<div class="col-xs-4 column text-center">
+					<span style="color: rgba(255, 102, 0, 1);">健康值</span>
+					<br />
+					<canvas class="HV WH-75"></canvas>
+					<br />
+					<span style="color: rgba(168, 228, 168, 1);">健康趋势</span>
+					<br />
+					<canvas class="HT WH-75"></canvas>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<img src="" id="sex" style="max-width: 100%;height: 100%;max-height:230px;" />
+				</div>
+				<div class="col-xs-4 column text-center">
+					<span style="color: rgba(21, 155, 213, 1);">任务项</span>
+					<br />
+					<canvas class="TI WH-75"></canvas>
+					<br />
+					<span style="color: rgba(147, 101, 75, 1);">状态报告</span>
+					<br />
+					<canvas class="SR WH-75"></canvas>
+				</div>
+				<div class="col-xs-12 column text-center">
+					<h4 class="text-warning">[距离任务完成度还有30%，加油哦]</h4>
+					<hr/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 column">
+					<div class="bc-grayw mar-tb10">&nbsp;</div>
+				</div>
+				<div class="col-xs-4 column text-center">
+					<h4 class="text-warning"><strong>今日任务</strong></h4>
+				</div>
+				<div class="col-xs-4 column">
+					<div class="bc-grayw mar-tb10">&nbsp;</div>
+				</div>
+			</div>
+			<div class="row pad-lr10" id="tasklist"></div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../../lib/LoadingBall/js/waterbubble.min.js"></script>
+		<script type="text/javascript" src="../../js/cookie/Cookie.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script src="../../js/jquery.artDialog.js"></script>
+		<script src="../../js/artDialog.iframeTools.js"></script>
+		<script src="../../Script/HealthRecord/TaskCenter.js"></script>
+
+	</body>
+
+</html>

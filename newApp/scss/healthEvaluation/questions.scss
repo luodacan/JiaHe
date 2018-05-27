@@ -1,0 +1,94 @@
+@import "../config";
+
+$marginbottom:20;
+$itempadding:20;
+$btnbg:#99cc33;
+$publiccolor:#ebebeb;
+@mixin choose_btn{
+  width: 32%;
+  max-width:r(250);
+  text-align: center;
+  background: $publiccolor;
+ color: $color-999;
+  font-size: r(28);
+  padding: r(12) 0;
+  margin-left: 10%;
+  margin-bottom:r(20);
+  display: inline-block;
+  border-radius: r(6);
+  &.active{
+    background: $btnbg;
+    color: $color-white;
+  }
+}
+
+@mixin choose_btn_type($type){
+
+}
+
+.list{
+  padding:r(20) r(30);
+  margin-bottom: r(120);
+}
+.eva-title{
+  height: r(90);
+  line-height: r(90);
+  text-align: center;
+  background: $color-white;
+  font-size: r(32);
+  color: $color-333;
+  font-weight: bold;
+  margin-bottom: r($marginbottom);
+}
+.item{
+  background: $color-white;
+  padding: r($itempadding);
+  margin-bottom: r($marginbottom);
+  font-size: r(28);
+  p{margin: 0;}
+  .title{
+    font-size: r(28);
+    font-weight: bold;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: r(20);
+    color: $color-333;
+  }
+  .question-item{
+    padding:r(20) 0;
+    border-bottom: 1px solid $color-border-e5;
+    &:last-child{
+      border: 0;
+    }
+    .question-title{
+      color: $color-666;
+      margin-bottom: r(20);
+      font-size: r(28);
+    }
+    .choose-item{
+      .choose-btn{
+        @include choose_btn;
+      }
+    }
+  }
+}
+.question-save{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: r(120);
+  line-height: r(120);
+  text-align: center;
+  background: $color-white;
+  .save-btn{
+    display: block;
+    background: $color-green;
+    color: $color-white;
+    font-size:14px;
+    text-align: center;
+    height: r(76);
+    line-height: r(76);
+    margin:r(22) r(35);
+    border-radius: r(6);
+  }
+}
