@@ -1,0 +1,7 @@
+ysapp.custom.RsaKey='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvSUucKXsFr2CA2Lcn2ou'+
+'qPnZw1lMeDeiJa2VqjJmNq+W3Hiq6mvfT0ZN7Qa/mH8CBK02fj/2olIfcQPx5e8U'+
+'yfmjN8avwSM0Gv6uByV+Lcb43dKEuaE4HyDIHhZrRecgVXGqvleHhFZsEzzq2J+j'+
+'hhakd7PD1tvwP6esWdAD8IYza4b5IV3IiuAkaMsMa9rZtDChbX4teqXfws6JyA8e'+
+'SRmwaWrKZOheQm26wuPdauW22s4N+ZN0NwgcY2WgUk9eloWWlqR3ARMSbrP/AFG7'+
+'kOcsP9NmizXNS85veARJTItBLQ+YvhaTNCxlAeVNtv16Jp374R5cz0vohYpL3M9x'+
+'hQIDAQAB';
